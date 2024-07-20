@@ -1,0 +1,16 @@
+Types: deb
+URIs: https://ppa.launchpadcontent.net/vcmi/ppa/ubuntu/
+Suites: noble
+Components: main
+Signed-By: -----BEGIN PGP PUBLIC KEY BLOCK-----
+ .
+ mI0EUSBV0QEEAJ5Ln0EQnPVPp9WnoRo6niDFKR89pa1+lVn90/Ekmr3w3AHmy3aU
+ jrM5ZYcJ7PYod40oPFU+DR1ktrJmYf8ZiGnG0C2nCXO48H4TP068zJApRyTJiZQU
+ C/A+Wff+btznE3Bgo7r1P8DEDaNv/4Mp6O7CTsZtul4fm0WLvOgPSMc9ABEBAAG0
+ KkxhdW5jaHBhZCBQUEEgZm9yIFZDTUkgLSBIZXJvZXMzIHJlY3JlYXRlZIi4BBMB
+ AgAiBQJRIFXRAhsDBgsJCAcDAgYVCAIJCgsEFgIDAQIeAQIXgAAKCRCfdQ6dQKJo
+ RtsYBACMf8ZeM8PFFqUsN1Xn7zd9owhN8C3haIS4anhlid2q0pzYwpFi90JKgK7V
+ 2H0WZmpGtiPat5c6OB+dRo1l/Me3F5Usb+6qtJAGlpF2+sGGriRZsl0dIt6/QuLp
+ v/midYIoLv3yQUCh+mqZ7xiMgDVVqOOTjcxNhzDhlM6yB+VxUg==
+ =1+4g
+ -----END PGP PUBLIC KEY BLOCK-----
