@@ -95,6 +95,7 @@ alias r='radian'
 alias py='python3'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 cd_win() {
