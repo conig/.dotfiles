@@ -395,7 +395,7 @@ tmux_switch_or_cd() {
             done < "$dynamic_dirs_file"
         else
             # Default dynamic directories if the file does not exist
-            dynamic_dirs=(~/repos)
+            dynamic_dirs=(~/)
         fi
 
         selected=$( (
