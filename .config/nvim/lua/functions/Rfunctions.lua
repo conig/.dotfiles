@@ -86,7 +86,7 @@ function M.SendRAbove()
   local current_line = vim.api.nvim_win_get_cursor(0)[1]
   vim.api.nvim_win_set_cursor(0, {line_i, 0})
 
-  while line_i < current_line - 1 and line_i ~= prev_i do
+  while line_i < current_line and line_i ~= prev_i do
     require("nvim-slimetree").goo_move()
     -- vim.wait(5)
     prev_i = line_i
