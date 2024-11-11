@@ -65,16 +65,31 @@ function M.QueryRFunction()
   send_to_r_console("?" .. current_word)
 end
 
-function M.SendRAbove() -- use require("nvim-slimetree").goo_move() to execute all code from the start to at least the current line
-  local current_line = vim.api.nvim_win_get_cursor(0)[1] -- Get the current line number
-  local line_i = 1 -- Initialize the line index
+function M.SendRAbove()
+  -- Get the parser and syntax tree
+  local parser = vim.treesitter.get_parser(0)
+  local tree = parser:parse()[1]
+  local root = tree:root()
+
+  -- Initialize line_i
+  local line_i = 1
+
+  -- Check if there's a YAML header (minus_metadata node)
+  local first_child = root:named_child(0)
+  if first_child ~= nil and first_child:type() == 'minus_metadata' then
+    -- Get the end row of the minus_metadata node
+    local _, _, end_row, _ = first_child:range()
+    -- Set line_i to the line after the YAML header
+    line_i = end_row + 1
+  end
+
+  local current_line = vim.api.nvim_win_get_cursor(0)[1]
   vim.api.nvim_win_set_cursor(0, {line_i, 0})
-  -- Set cursor to the first line
-  while line_i < current_line do -- Loop through the lines from the start to the current line
+
+  while line_i < current_line - 1 do
     require("nvim-slimetree").goo_move()
-    -- pause for a second
     vim.wait(150)
-    line_i = vim.api.nvim_win_get_cursor(0)[1] -- Get the line content
+    line_i = vim.api.nvim_win_get_cursor(0)[1]
   end
 end
 

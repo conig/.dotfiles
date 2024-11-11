@@ -26,8 +26,8 @@ return {
   {
     "conig/rmdscope",
     branch = "devel",
-    -- dev = true,
-    -- dir = "/home/conig/repos/rmdscope/",
+    dev = true,
+    dir = "/home/conig/repos/rmdscope/",
     dependencies = {
       "nvim-telescope/telescope.nvim",
       "nvim-lua/plenary.nvim",

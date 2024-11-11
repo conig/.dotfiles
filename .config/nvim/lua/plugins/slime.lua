@@ -18,8 +18,8 @@ return {
     "conig/nvim-slimetree",
     ft = { "markdown", "r", "rmd", "quarto", "lua" },
     dependencies = "jpalardy/vim-slime",
-    -- dev = true,
-    -- dir = "/home/conig/repos/nvim-slimetree/",
+    dev = true,
+    dir = "/home/conig/repos/nvim-slimetree/",
     keys = {
       -- Slime key mappings
       { "<CR>", "<Plug>SlimeRegionSend", mode = "x", remap = true, silent = true },
