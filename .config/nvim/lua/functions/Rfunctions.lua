@@ -61,7 +61,27 @@ function M.SendTableToConsole()
 end
 
 function M.QueryRFunction()
-  local current_word = vim.fn.expand("<cword>")
+  local line = vim.api.nvim_get_current_line()
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  local col = cursor[2] + 1  -- Lua strings are 1-indexed
+  local start_col = col
+  local end_col = col
+
+  -- Define valid characters for package and function names
+  local valid_chars = "[A-Za-z0-9_:.]"
+
+  -- Move start_col backward to the start of the package-function pair
+  while start_col > 1 and line:sub(start_col - 1, start_col - 1):match(valid_chars) do
+    start_col = start_col - 1
+  end
+
+  -- Move end_col forward to the end of the package-function pair
+  while end_col <= #line and line:sub(end_col, end_col):match(valid_chars) do
+    end_col = end_col + 1
+  end
+
+  -- Extract the package-function pair
+  local current_word = line:sub(start_col, end_col - 1)
   send_to_r_console("?" .. current_word)
 end
 
