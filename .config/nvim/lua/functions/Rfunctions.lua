@@ -73,7 +73,7 @@ function M.SendRAbove()
 
   -- Initialize line_i
   local line_i = 1
-
+  local prev_i = 0
   -- Check if there's a YAML header (minus_metadata node)
   local first_child = root:named_child(0)
   if first_child ~= nil and first_child:type() == 'minus_metadata' then
@@ -86,9 +86,10 @@ function M.SendRAbove()
   local current_line = vim.api.nvim_win_get_cursor(0)[1]
   vim.api.nvim_win_set_cursor(0, {line_i, 0})
 
-  while line_i < current_line - 1 do
+  while line_i < current_line - 1 and line_i ~= prev_i do
     require("nvim-slimetree").goo_move()
-    vim.wait(150)
+    -- vim.wait(5)
+    prev_i = line_i
     line_i = vim.api.nvim_win_get_cursor(0)[1]
   end
 end
