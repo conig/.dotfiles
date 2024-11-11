@@ -19,7 +19,7 @@ vim.api.nvim_create_autocmd("FileType", {
         if not _G.goo_started then
             -- Ensure Scripts.start_goo exists and is callable
             if type(Scripts) == "table" and type(Scripts.start_goo) == "function" then
-                Scripts.start_goo("clear && r")
+                Scripts.start_goo("clear && R")
                 -- os.execute("sleep " .. tonumber(1))  -- Give it a moment to start
                 Scripts.summon_goo(1)
                 -- Set the flag to true to prevent future executions in this session
