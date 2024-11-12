@@ -36,4 +36,11 @@ options(help_type = "html")
 .First <- function() {
   message(paste0(crayon::yellow(R.version.string), "\n", crayon::silver(R.Version()$nickname)))
 }
-options(prompt = "󰅂 ")
+options(prompt = "\033[34m󰅂 \033[0m")
+
+update_width <- function() {
+  width <- as.integer(system("tput cols", intern = TRUE))
+  options(width = width)
+}
+update_width()
+options(setWidthOnResize = TRUE)

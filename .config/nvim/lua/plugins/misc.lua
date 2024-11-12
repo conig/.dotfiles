@@ -356,11 +356,21 @@ return {
     end,
   },
   {
-    -- Make sure to set this up properly if you have lazy=true
     "MeanderingProgrammer/render-markdown.nvim",
+    ft = { "Avante", "rmd", "qmd", "md", "markdown" },
     opts = {
-      file_types = { "Avante", "rmd", "md", "qmd", "markdown"},
+      file_types = { "Avante", "rmd", "md", "qmd", "markdown" },
     },
-    ft = { "Avante", "rmd","qmd", "md", "markdown" },
+    config = function()
+      require('render-markdown').setup({
+        heading = {
+          enabled = true,
+          icons = { '# ', '## ', '### ', '#### ', '##### ', '###### ' }, -- Standard markdown headings
+          border = true,        -- No borders
+          above = "",
+          below = "󰼮",
+        },
+      })
+    end,
   },
 }
