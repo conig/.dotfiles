@@ -8,7 +8,7 @@ return {
       hints = { enabled = false },
       -- add any opts here
       -- copilot = {
-      -- model = "claude-3-5-sonnet",
+      -- model = "claude-3-5-sonnet-20241022",
       -- },
     },
     dependencies = {

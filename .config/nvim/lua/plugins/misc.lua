@@ -356,33 +356,11 @@ return {
     end,
   },
   {
-    "OXY2DEV/markview.nvim",
-    enabled = true,
-    ft = { "markdown", "rmd", "qmd" },
-    config = function()
-      require("markview").setup {
-        modes = { "n", "no", "c" }, -- Change these modes
-        -- to what you need
-
-        hybrid_modes = { "n" }, -- Uses this feature on
-        -- normal mode
-
-        -- This is nice to have
-        callbacks = {
-          on_enable = function(_, win)
-            vim.wo[win].conceallevel = 2
-            vim.wo[win].concealcursor = "c"
-          end,
-        },
-      }
-    end,
-  },
-  {
     -- Make sure to set this up properly if you have lazy=true
     "MeanderingProgrammer/render-markdown.nvim",
     opts = {
-      file_types = { "Avante" },
+      file_types = { "Avante", "rmd", "md", "qmd", "markdown"},
     },
-    ft = { "Avante" },
+    ft = { "Avante", "rmd","qmd", "md", "markdown" },
   },
 }
