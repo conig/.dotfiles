@@ -5,8 +5,18 @@ local map = vim.keymap.set
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 -- James's mappings
-map("n", "<leader>cp", ':lua require("minty.huefy").open()<CR>', { noremap = true, silent = true, desc = "colour picker" })
-map("n", "<leader>cps", ':lua require("minty.shades").open()<CR>', { noremap = true, silent = true, desc = "colour picker shades" })
+map(
+  "n",
+  "<leader>cp",
+  ':lua require("minty.huefy").open()<CR>',
+  { noremap = true, silent = true, desc = "colour picker" }
+)
+map(
+  "n",
+  "<leader>cps",
+  ':lua require("minty.shades").open()<CR>',
+  { noremap = true, silent = true, desc = "colour picker shades" }
+)
 map("n", "<leader>v", "<cmd> vsplit <cr>")
 --
 vim.api.nvim_set_keymap(
@@ -17,33 +27,44 @@ vim.api.nvim_set_keymap(
 )
 
 -- Toggle completions
-vim.api.nvim_set_keymap('n', '<leader>tc', '', { noremap = true, callback = function()
+vim.api.nvim_set_keymap("n", "<leader>tc", "", {
+  noremap = true,
+  callback = function()
     vim.b.cmp_enabled = not vim.b.cmp_enabled
-    require('cmp').setup.buffer { enabled = vim.b.cmp_enabled }
-end })
+    require("cmp").setup.buffer { enabled = vim.b.cmp_enabled }
+  end,
+})
 
 -- disable cmdwin
 -- Disable the command-line window mappings
-vim.api.nvim_set_keymap('n', 'q:', '<Nop>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'q/', '<Nop>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'q?', '<Nop>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "q:", "<Nop>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "q/", "<Nop>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "q?", "<Nop>", { noremap = true, silent = true })
 
 -- Substitute periods with period + newline
-vim.keymap.set('n', '<leader>s.', function()
-    local start_line = vim.fn.search('^$', 'bnW')
-    local end_line = vim.fn.search('^$', 'nW')
-    if start_line == 0 then start_line = 1 end
-    if end_line == 0 then end_line = vim.fn.line('$') end
-    vim.cmd(string.format('%d,%ds/\\.\\s\\?/\\.\\r/g', start_line, end_line))
+vim.keymap.set("n", "<leader>s.", function()
+  local start_line = vim.fn.search("^$", "bnW")
+  local end_line = vim.fn.search("^$", "nW")
+  if start_line == 0 then
+    start_line = 1
+  end
+  if end_line == 0 then
+    end_line = vim.fn.line "$"
+  end
+  vim.cmd(string.format("%d,%ds/\\.\\s\\?/\\.\\r/g", start_line, end_line))
 end, { noremap = true, silent = true })
 
 -- Substitute commas with comma + newline
-vim.keymap.set('n', '<leader>s,', function()
-    local start_line = vim.fn.search('^$', 'bnW')
-    local end_line = vim.fn.search('^$', 'nW')
-    if start_line == 0 then start_line = 1 end
-    if end_line == 0 then end_line = vim.fn.line('$') end
-    vim.cmd(string.format('%d,%ds/,\\s\\?/,\\r/g', start_line, end_line))
+vim.keymap.set("n", "<leader>s,", function()
+  local start_line = vim.fn.search("^$", "bnW")
+  local end_line = vim.fn.search("^$", "nW")
+  if start_line == 0 then
+    start_line = 1
+  end
+  if end_line == 0 then
+    end_line = vim.fn.line "$"
+  end
+  vim.cmd(string.format("%d,%ds/,\\s\\?/,\\r/g", start_line, end_line))
 end, { noremap = true, silent = true })
 
 -- Helper function to map paste commands to a specific register
@@ -152,21 +173,18 @@ local function toggle_telescope(harpoon_files)
     :find()
 end
 
-
 -- Define key mappings
+
+vim.keymap.set("n", "<C-e>", function()
+  harpoon.ui:toggle_quick_menu(harpoon:list())
+end)
+
 vim.keymap.set("n", "<leader>aj", function()
   harpoon:list():add()
 end, { desc = "Harpoon" })
-
---remove file from the list
-vim.keymap.set("n", "<leader>ak", function()
-  harpoon:list():remove()
-end, { desc = "unHarpoon" })
 
 vim.keymap.set("n", "<leader>fj", function()
   toggle_telescope(harpoon:list())
 end, { desc = "Open harpoon window" })
 
 vim.api.nvim_set_keymap("i", "<c-p>", "<C-o>a|>", { noremap = true, silent = true })
-
-
