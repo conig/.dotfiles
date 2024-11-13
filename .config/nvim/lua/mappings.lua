@@ -40,6 +40,7 @@ vim.api.nvim_set_keymap("n", "<leader>tc", "", {
 vim.api.nvim_set_keymap("n", "q:", "<Nop>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "q/", "<Nop>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "q?", "<Nop>", { noremap = true, silent = true })
+vim.keymap.del("n", "<leader>h") -- Unmaps <leader>e in normal mode
 
 -- Substitute periods with period + newline
 vim.keymap.set("n", "<leader>s.", function()
