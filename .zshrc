@@ -94,8 +94,8 @@ use_gh_template() {
 
 export PATH="$HOME/.local/bin:$PATH"
 
-alias r='radian'
-alias R='R --no-save --quiet'
+alias r='radian --silent'
+alias R='R --no-save --no-restore --silent'
 alias py='python3'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

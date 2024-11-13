@@ -1,9 +1,13 @@
-
-
 local M = {}
 
 local function send_to_r_console(text)
   vim.fn["slime#send"](text .. "\n")
+end
+
+function M.R_restart()
+  send_to_r_console "try(Q, silent = TRUE)"
+  send_to_r_console "q()"
+  send_to_r_console "clear && R"
 end
 
 function M.knit_render()
@@ -27,7 +31,7 @@ end
 -- Generic function that wraps the current word with the specified function and sends it to the R console
 function M.FunctionToWord(fn_name)
   -- Get the current word under the cursor
-  local word = vim.fn.expand("<cword>")
+  local word = vim.fn.expand "<cword>"
 
   -- Construct the command by wrapping the word with the function
   local command = string.format("%s(%s)", fn_name, word)
@@ -41,29 +45,29 @@ function M.SendWordToConsole()
 end
 
 function M.ClipNames()
-    local current_word = vim.fn.expand("<cword>") -- Get the current word under the cursor
-    send_to_r_console("clipr::write_clip(paste('#', names(" .. current_word .. ")))") -- Send the summary command with the current word
+  local current_word = vim.fn.expand "<cword>" -- Get the current word under the cursor
+  send_to_r_console("clipr::write_clip(paste('#', names(" .. current_word .. ")))") -- Send the summary command with the current word
 end
 
 function M.SendClassToConsole()
-    local current_word = vim.fn.expand("<cword>") -- Get the current word under the cursor
-    send_to_r_console("class(" .. current_word .. ")") -- Send the class command with the current word
+  local current_word = vim.fn.expand "<cword>" -- Get the current word under the cursor
+  send_to_r_console("class(" .. current_word .. ")") -- Send the class command with the current word
 end
 
 function M.SendStrToConsole()
-    local current_word = vim.fn.expand("<cword>") -- Get the current word under the cursor
-    send_to_r_console("str(" .. current_word .. ")") -- Send the str command with the current word
+  local current_word = vim.fn.expand "<cword>" -- Get the current word under the cursor
+  send_to_r_console("str(" .. current_word .. ")") -- Send the str command with the current word
 end
 
 function M.SendTableToConsole()
-    local current_word = vim.fn.expand("<cword>") -- Get the current word under the cursor
-    send_to_r_console("table(" .. current_word .. ")") -- Send the table command with the current word
+  local current_word = vim.fn.expand "<cword>" -- Get the current word under the cursor
+  send_to_r_console("table(" .. current_word .. ")") -- Send the table command with the current word
 end
 
 function M.QueryRFunction()
   local line = vim.api.nvim_get_current_line()
   local cursor = vim.api.nvim_win_get_cursor(0)
-  local col = cursor[2] + 1  -- Lua strings are 1-indexed
+  local col = cursor[2] + 1 -- Lua strings are 1-indexed
   local start_col = col
   local end_col = col
 
@@ -97,7 +101,7 @@ function M.SendRAbove()
   local prev_i = 0
   -- Check if there's a YAML header (minus_metadata node)
   local first_child = root:named_child(0)
-  if first_child ~= nil and first_child:type() == 'minus_metadata' then
+  if first_child ~= nil and first_child:type() == "minus_metadata" then
     -- Get the end row of the minus_metadata node
     local _, _, end_row, _ = first_child:range()
     -- Set line_i to the line after the YAML header
@@ -105,13 +109,13 @@ function M.SendRAbove()
   end
 
   local current_line = vim.api.nvim_win_get_cursor(0)[1]
-  vim.api.nvim_win_set_cursor(0, {line_i, 0})
+  vim.api.nvim_win_set_cursor(0, { line_i, 0 })
   -- we don't want to get stuck in an infinite loop
   local trip = 0
   while line_i < current_line and trip < 10 do
     require("nvim-slimetree").goo_move()
-    if(prev_i == line_i) then
-      vim.wait(5*trip)
+    if prev_i == line_i then
+      vim.wait(5 * trip)
       trip = trip + 1
     else
       trip = 0
@@ -123,76 +127,63 @@ function M.SendRAbove()
 end
 
 function M.r_selection(cmd)
-    -- Get the mode to detect if we're in line-wise visual mode
-    local mode = vim.fn.mode()
-    local bufnr = vim.api.nvim_get_current_buf()
-    
-    -- Handle line-wise visual mode ('V')
-    if mode == 'V' then
-        local start_line = vim.fn.line('v')
-        local end_line = vim.fn.line('.')
-        
-        -- Ensure start_line is before end_line
-        if start_line > end_line then
-            start_line, end_line = end_line, start_line
-        end
-        
-        -- Get the entire lines
-        local selection = vim.api.nvim_buf_get_lines(
-            bufnr,
-            start_line - 1,
-            end_line,
-            false
-        )
-        
-        -- Join lines
-        selection = table.concat(selection, "\n")
-        selection = selection:gsub("^%s*(.-)%s*$", "%1")
-        
-        -- Construct and send the R command
-        local r_command = string.format("%s(%s)", cmd, selection)
-        send_to_r_console(r_command)
-        return
+  -- Get the mode to detect if we're in line-wise visual mode
+  local mode = vim.fn.mode()
+  local bufnr = vim.api.nvim_get_current_buf()
+
+  -- Handle line-wise visual mode ('V')
+  if mode == "V" then
+    local start_line = vim.fn.line "v"
+    local end_line = vim.fn.line "."
+
+    -- Ensure start_line is before end_line
+    if start_line > end_line then
+      start_line, end_line = end_line, start_line
     end
-    
-    -- Handle character-wise visual mode ('v')
-    local start_line, start_col = vim.fn.line('v'), vim.fn.col('v')
-    local end_line, end_col = vim.fn.line('.'), vim.fn.col('.')
-    
-    -- Ensure start position is before end position
-    if start_line > end_line or (start_line == end_line and start_col > end_col) then
-        start_line, end_line = end_line, start_line
-        start_col, end_col = end_col, start_col
-    end
-    
-    -- Get the text
-    local selection = vim.api.nvim_buf_get_text(
-        bufnr,
-        start_line - 1,
-        start_col - 1,
-        end_line - 1,
-        end_col,
-        {}
-    )
-    
-    -- Join lines if multiple lines were selected
+
+    -- Get the entire lines
+    local selection = vim.api.nvim_buf_get_lines(bufnr, start_line - 1, end_line, false)
+
+    -- Join lines
     selection = table.concat(selection, "\n")
-    
-    -- Trim whitespace
     selection = selection:gsub("^%s*(.-)%s*$", "%1")
-    
+
     -- Construct and send the R command
     local r_command = string.format("%s(%s)", cmd, selection)
     send_to_r_console(r_command)
+    return
+  end
+
+  -- Handle character-wise visual mode ('v')
+  local start_line, start_col = vim.fn.line "v", vim.fn.col "v"
+  local end_line, end_col = vim.fn.line ".", vim.fn.col "."
+
+  -- Ensure start position is before end position
+  if start_line > end_line or (start_line == end_line and start_col > end_col) then
+    start_line, end_line = end_line, start_line
+    start_col, end_col = end_col, start_col
+  end
+
+  -- Get the text
+  local selection = vim.api.nvim_buf_get_text(bufnr, start_line - 1, start_col - 1, end_line - 1, end_col, {})
+
+  -- Join lines if multiple lines were selected
+  selection = table.concat(selection, "\n")
+
+  -- Trim whitespace
+  selection = selection:gsub("^%s*(.-)%s*$", "%1")
+
+  -- Construct and send the R command
+  local r_command = string.format("%s(%s)", cmd, selection)
+  send_to_r_console(r_command)
 end
 
 -- Set up the mapping helper
 function M.setup_mapping(cmd, key)
-    vim.keymap.set('x', key, function()
-        M.r_selection(cmd)
-    end, { noremap = true, silent = true })
+  vim.keymap.set("x", key, function()
+    M.r_selection(cmd)
+  end, { noremap = true, silent = true })
 end
-
 
 function M.SendTarMakeDebugObj()
   -- Get the word under the cursor
@@ -414,16 +405,16 @@ function M.Wrap_rmd_chunk()
 
   -- Helper functions to identify chunk delimiters
   local function is_chunk_start(line)
-    return line:match("^```{%s*r") ~= nil
+    return line:match "^```{%s*r" ~= nil
   end
 
   local function is_chunk_end(line)
-    return line:match("^```$") ~= nil
+    return line:match "^```$" ~= nil
   end
 
   -- Function to check if a line is blank
   local function is_blank(line)
-    return line:match("^%s*$") ~= nil
+    return line:match "^%s*$" ~= nil
   end
 
   -- Determine if the cursor is inside an existing R code chunk
@@ -470,7 +461,10 @@ function M.Wrap_rmd_chunk()
       -- Move cursor inside the new chunk
       vim.api.nvim_win_set_cursor(0, { row + 1, 0 })
     else
-      vim.notify("Not inside an R code chunk and current line is not blank. Wrapping current block.", vim.log.levels.INFO)
+      vim.notify(
+        "Not inside an R code chunk and current line is not blank. Wrapping current block.",
+        vim.log.levels.INFO
+      )
       -- Find the start of the current block (contiguous non-blank lines)
       local start = row
       while start > 1 and not is_blank(lines[start - 1]) do
