@@ -35,7 +35,6 @@ vim.api.nvim_set_keymap("n", "<leader>tc", "", {
   end,
 })
 
--- disable cmdwin
 -- Disable the command-line window mappings
 vim.api.nvim_set_keymap("n", "q:", "<Nop>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "q/", "<Nop>", { noremap = true, silent = true })
