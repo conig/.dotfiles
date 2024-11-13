@@ -44,3 +44,5 @@ update_width <- function() {
 }
 update_width()
 options(setWidthOnResize = TRUE)
+# Set R graphics device positon and size
+options(device = function() X11(width = 6, height = 6, xpos = 1920, ypos = 0))
