@@ -30,15 +30,16 @@ return {
         end,
         desc = "Slime and move",
       },
-        {
-          "<leader>rC",
-          function()
-            require("functions.Rfunctions").TerminalInterrupt()
-          end,
-          desc = "Interrupt terminal",
-          noremap = true,
-        },
-        {  "<leader><CR>",
+      {
+        "<leader>rC",
+        function()
+          require("functions.Rfunctions").TerminalInterrupt()
+        end,
+        desc = "Interrupt terminal",
+        noremap = true,
+      },
+      {
+        "<leader><CR>",
         function()
           require("nvim-slimetree").goo_move(true)
         end,
@@ -253,11 +254,24 @@ return {
         desc = "Make targets",
       },
       {
+        "<leader>tM",
+        function()
+          require("functions.Rfunctions").SendTarMakeFuture()
+        end,
+      },
+      {
         "<leader>td",
         function()
           require("functions.Rfunctions").SendTarMakeNoCallr()
         end,
         desc = "Debug targets",
+      },
+      {
+        "<leader>to",
+        function()
+          require("functions.Rfunctions").SendTarMakeDebugObj()
+        end,
+        desc = "Debug target object",
       },
       {
         "<leader>rk",

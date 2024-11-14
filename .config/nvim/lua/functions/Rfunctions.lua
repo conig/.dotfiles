@@ -28,6 +28,10 @@ function M.SendTarMake()
   send_to_r_console "targets::tar_make()"
 end
 
+function M.SendTarMakeFuture()
+  send_to_r_console "targets::tar_make_future()"
+end
+
 function M.SendTarMakeNoCallr()
   send_to_r_console "targets::tar_make(callr_function = NULL, use_crew = FALSE)"
 end
