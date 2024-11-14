@@ -4,6 +4,10 @@ local function send_to_r_console(text)
   vim.fn["slime#send"](text .. "\n")
 end
 
+function M.TerminalInterrupt()
+  vim.fn["slime#send"](string.char(3))
+end
+
 function M.R_restart()
   send_to_r_console "try(Q, silent = TRUE)"
   send_to_r_console "q()"

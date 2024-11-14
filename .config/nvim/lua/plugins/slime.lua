@@ -30,8 +30,15 @@ return {
         end,
         desc = "Slime and move",
       },
-      {
-        "<leader><CR>",
+        {
+          "<leader>rC",
+          function()
+            require("functions.Rfunctions").TerminalInterrupt()
+          end,
+          desc = "Interrupt terminal",
+          noremap = true,
+        },
+        {  "<leader><CR>",
         function()
           require("nvim-slimetree").goo_move(true)
         end,
