@@ -1,10 +1,11 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    ft = {"r","rmd", "quarto","lua"},
-    requires = {
+    event = {"CmdLineEnter", "BufReadPost", "BufNewFile"},
+    dependencies = {
       "hrsh7th/cmp-nvim-lsp", -- LSP completion source
       "hrsh7th/cmp-path", -- Path completion source
+      "hrsh7th/cmp-cmdline",
       -- Add other sources if needed
     },
     config = function()
@@ -62,6 +63,28 @@ return {
           },
           { name = "path" },
         },
+      })
+
+      -- Command-line completion setup
+      cmp.setup.cmdline({ "/", "?" }, {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+          { name = "buffer" },
+        },
+      })
+
+      cmp.setup.cmdline(":", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = "path" },
+        }, {
+          {
+            name = "cmdline",
+            option = {
+              ignore_cmds = { "Man", "!" },
+            },
+          },
+        }),
       })
     end,
   },

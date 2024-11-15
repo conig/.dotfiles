@@ -362,15 +362,34 @@ return {
       file_types = { "Avante", "rmd", "md", "qmd", "markdown" },
     },
     config = function()
-      require('render-markdown').setup({
+      require("render-markdown").setup {
         heading = {
           enabled = true,
-          icons = { '# ', '## ', '### ', '#### ', '##### ', '###### ' }, -- Standard markdown headings
-          border = true,        -- No borders
+          icons = { "# ", "## ", "### ", "#### ", "##### ", "###### " }, -- Standard markdown headings
+          border = true, -- No borders
           above = "",
           below = "󰼮",
         },
-      })
+        bullet = {
+          -- Turn on / off list bullet rendering
+          enabled = true,
+          -- Replaces '-'|'+'|'*' of 'list_item'
+          -- How deeply nested the list is determines the 'level' which is used to index into the list using a cycle
+          -- The item number in the list is used to index into the value using a clamp if the value is also a list
+          -- If the item is a 'checkbox' a conceal is used to hide the bullet instead
+          icons = { "●", "○", "◆", "◇" },
+          -- Replaces 'n.'|'n)' of 'list_item'
+          -- How deeply nested the list is determines the 'level' which is used to index into the list using a cycle
+          -- The item number in the list is used to index into the value using a clamp if the value is also a list
+          ordered_icons = {},
+          -- Padding to add to the left of bullet point
+          left_pad = 0,
+          -- Padding to add to the right of bullet point
+          right_pad = 1,
+          -- Highlight for the bullet icon
+          highlight = "RenderMarkdownBullet",
+        },
+      }
     end,
   },
 }

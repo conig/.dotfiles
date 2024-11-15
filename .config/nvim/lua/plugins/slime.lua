@@ -16,7 +16,7 @@ return {
   },
   {
     "conig/nvim-slimetree",
-    ft = { "markdown", "r", "rmd", "quarto", "lua" },
+    ft = {"r", "rmd", "quarto", "lua" },
     dependencies = "jpalardy/vim-slime",
     dev = true,
     dir = "/home/conig/repos/nvim-slimetree/",
