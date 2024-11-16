@@ -1,7 +1,6 @@
 return {
   "epwalsh/obsidian.nvim",
-  version = "*", -- recommended, use latest release instead of latest commit
-  -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
+  version = "*",
   keys = {
     { "<leader>os", ":ObsidianSearch<CR>", desc = "Search for obsidian note" },
     { "<leader>oww", ":ObsidianWorkspace work<CR>", desc = "Open work workspace" },

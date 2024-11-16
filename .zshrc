@@ -517,3 +517,21 @@ install_neovim() {
 
     echo "Neovim version ${version} installed successfully."
 }
+
+vaultpush() {
+    # Define the vault directory
+    local vault_dir="$HOME/.vaults"
+
+    # Stage all changes in the specified directory
+    git -C "$vault_dir" add .
+
+    # Get the current date and time
+    local current_time
+    current_time=$(date '+%Y-%m-%d %H:%M:%S')
+
+    # Commit with a message including the current time
+    git -C "$vault_dir" commit -m "update obsidian $current_time"
+
+    # Push the changes to the remote repository
+    git -C "$vault_dir" push
+}
