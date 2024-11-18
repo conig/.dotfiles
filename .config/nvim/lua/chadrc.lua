@@ -57,7 +57,9 @@ M.ui = {
     order = nil,
     modules = nil,
   },
-
+  cmp = {
+    style = "atom",
+  },
   -- hl_override = {
   -- 	Comment = { italic = true },
   -- 	["@comment"] = { italic = true },
