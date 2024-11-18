@@ -25,6 +25,7 @@ return {
             },
           },
         },
+
         messages = {
           enabled = true,
           view = "mini",
