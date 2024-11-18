@@ -12,7 +12,7 @@ return {
     "nvim-lua/plenary.nvim",
   },
   init = function()
-    vim.opt.conceallevel = 2
+    vim.opt.conceallevel = 1
   end,
   opts = {
     workspaces = {
@@ -25,5 +25,8 @@ return {
         path = "~/.vaults/personal",
       },
     },
+    follow_url_func = function(url)
+      vim.fn.jobstart({ "wslview", url })
+    end,
   },
 }

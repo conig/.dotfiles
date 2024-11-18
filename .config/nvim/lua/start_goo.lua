@@ -4,7 +4,7 @@
 _G.goo_started = false
 
 -- Define the list of desired filetypes
-local desired_filetypes = { "r", "markdown", "rmd", "quarto", "qmd" }
+local desired_filetypes = { "r", "rmd", "quarto", "qmd" }
 
 -- Create an autocmd group to prevent duplicate autocmds
 local group = vim.api.nvim_create_augroup("StartGooGroup", { clear = true })
