@@ -1,2 +1,9 @@
   # If true, do not allow force pushes
   disableForcePushing: true
+
+  # Make P do a background push
+  customCommands:
+  - key: 'P'
+    command: 'nohup git push > /dev/null 2>&1 &'
+    context: 'global'
+    description: 'Push in background'

@@ -102,9 +102,6 @@ vim.api.nvim_set_keymap("i", "<Down>", "<C-o>gj", { noremap = true, silent = tru
 vim.api.nvim_set_keymap("n", "<Up>", "gk", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Down>", "gj", { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap("n", "<leader>fg", ":Telescope live_grep<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>fb", ":Telescope buffers<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>fh", ":Telescope help_tags<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>aa", ":AvanteAsk<CR>i", { noremap = true, silent = true })
 vim.api.nvim_set_keymap(
   "n",
