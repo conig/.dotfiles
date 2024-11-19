@@ -16,7 +16,7 @@ return {
   },
   {
     "conig/nvim-slimetree",
-    ft = {"r", "rmd", "quarto", "lua" },
+    ft = { "r", "rmd", "quarto", "lua" },
     dependencies = "jpalardy/vim-slime",
     dev = true,
     dir = "/home/conig/repos/nvim-slimetree/",
@@ -37,6 +37,12 @@ return {
         end,
         desc = "Interrupt terminal",
         noremap = true,
+      },
+      {
+        "<leader>rv",
+        function()
+          require("functions.Rfunctions").SendInlineToConsole()
+        end,
       },
       {
         "<leader><CR>",

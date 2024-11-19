@@ -24,6 +24,45 @@ function M.SendTarLoadGlobals()
   send_to_r_console "targets::tar_load_globals()"
 end
 
+function M.SendInlineToConsole()
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  local col = cursor[2] + 1 -- Lua index starts at 1
+  -- Get the current line
+  local line = vim.api.nvim_get_current_line()
+
+  -- Find the start position of `r`
+  local start_pos = nil
+  for i = col, 1, -1 do
+    if line:sub(i - 2, i) == "`r`" then
+      start_pos = i - 2
+      break
+    elseif line:sub(i - 1, i) == "`r" then
+      start_pos = i - 1
+      break
+    end
+  end
+  if not start_pos then
+    print "Start delimiter `r not found"
+    return
+  end
+  -- Find the end position of closing `
+  local end_pos = nil
+  for i = col, #line do
+    if line:sub(i, i) == "`" then
+      end_pos = i
+      break
+    end
+  end
+  if not end_pos then
+    print "End delimiter ` not found"
+    return
+  end
+  -- Extract the content between `r and `
+  local content = line:sub(start_pos + 2, end_pos - 1)
+  -- Send the content to the R console
+  send_to_r_console(content)
+end
+
 function M.SendTarMake()
   send_to_r_console "targets::tar_make()"
 end
