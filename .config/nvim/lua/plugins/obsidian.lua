@@ -6,6 +6,7 @@ return {
     { "<leader>oww", ":ObsidianWorkspace work<CR>", desc = "Open work workspace" },
     { "<leader>owp", ":ObsidianWorkspace personal<CR>", desc = "Open personal workspace" },
     { "<leader>on", ":ObsidianNew<CR>", desc = "New obsidian note" },
+    {"<leader>ot", ":ObsidianTags<CR>", desc = "List tags in obsidian notes"},
   },
   dependencies = {
     -- Required.
