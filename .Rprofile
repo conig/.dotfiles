@@ -20,7 +20,8 @@ local({r <- getOption("repos")
 })
 
 # colorise output
-require("colorout", quietly = FALSE)
+if(interactive())
+  require("colorout", quietly = FALSE)
 
 #' winpath
 #' 
