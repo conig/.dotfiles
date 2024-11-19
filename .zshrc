@@ -460,7 +460,7 @@ tmux_switch_or_cd() {
 zle -N tmux-switch-widget tmux_switch_or_cd
 
 # Bind Ctrl-\ to the tmux-switch-widget
-bindkey '^\\' tmux-switch-widget
+bindkey 'jj' tmux-switch-widget
 
 start_nvim() {
 # start neovim with nvim

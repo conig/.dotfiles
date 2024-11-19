@@ -19,6 +19,9 @@ local({r <- getOption("repos")
        options(repos=r)
 })
 
+# colorise output
+require("colorout", quietly = FALSE)
+
 #' winpath
 #' 
 #' Convert windows path to wsl
