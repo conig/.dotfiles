@@ -21,7 +21,7 @@ local({r <- getOption("repos")
 
 # colorise output
 if(interactive())
-  require("colorout", quietly = FALSE)
+  suppressMessages(require("colorout", quietly = FALSE))
 
 #' winpath
 #' 
