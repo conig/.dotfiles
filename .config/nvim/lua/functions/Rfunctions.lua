@@ -533,4 +533,49 @@ function M.Wrap_rmd_chunk()
   end
 end
 
+-- Function to start the inline mode
+function M.StartInlineMode()
+  -- Search for `r in the forward direction, wrapping around the file
+  local found = vim.fn.search("`r", "W")
+  if found == 0 then
+    print "No `r` chunks found"
+    return
+  end
+  -- Move the cursor to the found position
+  -- (The search function already moves the cursor)
+  -- move cursor one col forward
+  vim.cmd "normal! l"
+
+  -- Execute SendInlineToConsole
+  M.SendInlineToConsole()
+
+  -- Set up mappings
+  vim.keymap.set("n", " ", M.RepeatInline, { buffer = true, silent = true })
+  vim.keymap.set("n", "<Esc>", M.ExitInlineMode, { buffer = true, silent = true })
+  print "Entered inline mode. Press ' ' to execute next chunk, <Esc> to exit."
+end
+
+-- Function to repeat the inline execution
+function M.RepeatInline()
+  -- Search for the next occurrence of `r, wrapping around the file
+  local found = vim.fn.search("`r", "W")
+  if found == 0 then
+    print "No more `r` chunks found"
+    M.ExitInlineMode()
+    return
+  end
+  -- Move cursor one col forward
+  vim.cmd "normal! l"
+  -- Execute SendInlineToConsole
+  M.SendInlineToConsole()
+end
+
+-- Function to exit the inline mode
+function M.ExitInlineMode()
+  -- Remove the mappings
+  vim.keymap.del("n", " ", { buffer = true })
+  vim.keymap.del("n", "<Esc>", { buffer = true })
+  print "Exited inline mode"
+end
+
 return M

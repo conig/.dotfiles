@@ -11,7 +11,7 @@ return {
         target_pane = 1,
       }
       vim.g.slime_dont_ask_default = 1
-      vim.g.slime_bracketed_paste = 0
+      vim.g.slime_bracketed_paste = 1
     end,
   },
   {
@@ -42,6 +42,12 @@ return {
         "<leader>rv",
         function()
           require("functions.Rfunctions").SendInlineToConsole()
+        end,
+      },
+      {
+        "<leader>rj",
+        function()
+          require("functions.Rfunctions").StartInlineMode()
         end,
       },
       {
