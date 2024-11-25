@@ -11,7 +11,7 @@ return {
         target_pane = 1,
       }
       vim.g.slime_dont_ask_default = 1
-      vim.g.slime_bracketed_paste = 1
+      vim.g.slime_bracketed_paste = 0
     end,
   },
   {

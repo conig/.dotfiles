@@ -1,7 +1,7 @@
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-vim.opt.directory = os.getenv("HOME") .. "/.local/share/nvim/swap//"
+vim.opt.directory = os.getenv "HOME" .. "/.local/share/nvim/swap//"
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
@@ -39,5 +39,4 @@ vim.schedule(function()
   require "mappings"
 end)
 
--- James's customisations
 vim.opt.spelllang = "en_au"

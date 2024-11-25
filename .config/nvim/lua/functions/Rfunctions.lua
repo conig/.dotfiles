@@ -550,9 +550,9 @@ function M.StartInlineMode()
   M.SendInlineToConsole()
 
   -- Set up mappings
-  vim.keymap.set("n", " ", M.RepeatInline, { buffer = true, silent = true })
+  vim.keymap.set("n", "<CR>", M.RepeatInline, { buffer = true, silent = true })
   vim.keymap.set("n", "<Esc>", M.ExitInlineMode, { buffer = true, silent = true })
-  print "Entered inline mode. Press ' ' to execute next chunk, <Esc> to exit."
+  print "Entered inline mode. Press '<CR> to execute next, <Esc> to exit."
 end
 
 -- Function to repeat the inline execution
@@ -573,7 +573,7 @@ end
 -- Function to exit the inline mode
 function M.ExitInlineMode()
   -- Remove the mappings
-  vim.keymap.del("n", " ", { buffer = true })
+  vim.keymap.del("n", "<CR>", { buffer = true })
   vim.keymap.del("n", "<Esc>", { buffer = true })
   print "Exited inline mode"
 end

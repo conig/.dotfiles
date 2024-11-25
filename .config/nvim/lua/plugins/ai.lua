@@ -1,5 +1,5 @@
 return {
-{
+  {
     "yetone/avante.nvim",
     event = { "BufReadPost", "BufNewFile" },
     build = "make",
@@ -7,9 +7,9 @@ return {
       provider = "copilot",
       hints = { enabled = false },
       -- add any opts here
-      -- copilot = {
-      -- model = "claude-3-5-sonnet-20241022",
-      -- },
+      copilot = {
+        model = "claude-3.5-sonnet",
+      },
     },
     dependencies = {
       "stevearc/dressing.nvim",
@@ -46,5 +46,5 @@ return {
       vim.g.copilot_tab_fallback = ""
       vim.api.nvim_set_keymap("i", "<C-a>", 'copilot#Accept("<Tab>")', { noremap = true, silent = true, expr = true })
     end,
-  }
+  },
 }
