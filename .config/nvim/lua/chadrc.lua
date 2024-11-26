@@ -4,7 +4,7 @@
 local M = {}
 
 M.base46 = {
-  theme = "gruvchad",
+  theme = "tokyodark",
   transparency = false,
   hl_override = {
     DiffAdd = {

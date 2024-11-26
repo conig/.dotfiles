@@ -182,18 +182,18 @@ return {
       {
         "<leader>ru",
         function()
-          require("functions.Rfunctions").r_selection "unique"
+          require("functions.Rfunctions").FunctionToWord "unique"
         end,
-        desc = "Run unique on selection",
-        mode = "v",
+        desc = "Run unique on word",
+        mode = "n",
       },
       {
         "<leader>rt",
         function()
-          require("functions.Rfunctions").r_selection "table"
+          require("functions.Rfunctions").FunctionToWord "table"
         end,
-        desc = "Run table on selection",
-        mode = "v",
+        desc = "Run table on word",
+        mode = "n",
       },
       {
         "<leader>r?",
@@ -270,6 +270,7 @@ return {
         function()
           require("functions.Rfunctions").SendTarMakeFuture()
         end,
+        desc = "Tar Make Future",
       },
       {
         "<leader>td",

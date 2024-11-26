@@ -1,5 +1,7 @@
 local M = {}
 
+local utils = require "functions.utils"
+
 local function send_to_r_console(text)
   vim.fn["slime#send"](text .. "\n")
 end
@@ -68,7 +70,7 @@ function M.SendTarMake()
 end
 
 function M.SendTarMakeFuture()
-  send_to_r_console "targets::tar_make_future()"
+  send_to_r_console "targets::tar_make_future(workers = snipe::n_workers())"
 end
 
 function M.SendTarMakeNoCallr()
@@ -78,7 +80,7 @@ end
 -- Generic function that wraps the current word with the specified function and sends it to the R console
 function M.FunctionToWord(fn_name)
   -- Get the current word under the cursor
-  local word = vim.fn.expand "<cword>"
+  local word = utils.get_word()
 
   -- Construct the command by wrapping the word with the function
   local command = string.format("%s(%s)", fn_name, word)
@@ -88,7 +90,7 @@ function M.FunctionToWord(fn_name)
 end
 
 function M.SendWordToConsole()
-  send_to_r_console(vim.fn.expand "<cword>")
+  send_to_r_console(utils.get_word())
 end
 
 function M.ClipNames()
