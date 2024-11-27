@@ -12,7 +12,7 @@ map(
   { noremap = true, silent = true, desc = "insert browser()" }
 )
 -- Remove browser()
-map("n", "<leader>rB", [[:g/^browser()$/d<CR>:noh<CR>]], { noremap = true, silent = true, desc = "remove browser()" })
+map("n", "<leader>rB", [[:g/^\s*browser()$/d<CR>:noh<CR>]], { noremap = true, silent = true, desc = "remove browser()" })
 
 -- James's mappings
 map(
