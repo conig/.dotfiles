@@ -3,6 +3,17 @@ require "nvchad.mappings"
 local map = vim.keymap.set
 
 map("i", "jk", "<ESC>")
+-- R mappings
+-- Insert brower()
+map(
+  "n",
+  "<leader>rb",
+  [[:call append(line('.') - 1, 'browser()')<CR>]],
+  { noremap = true, silent = true, desc = "insert browser()" }
+)
+-- Remove browser()
+map("n", "<leader>rB", [[:g/^browser()$/d<CR>:noh<CR>]], { noremap = true, silent = true, desc = "remove browser()" })
+
 -- James's mappings
 map(
   "n",
