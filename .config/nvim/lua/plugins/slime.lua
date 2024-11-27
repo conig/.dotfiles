@@ -159,6 +159,12 @@ return {
         desc = "Send word to console",
       },
       {
+        "<leader>rW",
+        function()
+          require("functions.Rfunctions").SendWordToConsole(true)
+        end,
+      },
+      {
         "<leader>rs",
         function()
           require("functions.Rfunctions").FunctionToWord "summary"

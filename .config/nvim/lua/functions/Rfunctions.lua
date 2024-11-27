@@ -89,8 +89,9 @@ function M.FunctionToWord(fn_name)
   send_to_r_console(command)
 end
 
-function M.SendWordToConsole()
-  send_to_r_console(utils.get_word())
+function M.SendWordToConsole(use_cword)
+  use_cword = use_cword or false
+  send_to_r_console(utils.get_word(use_cword))
 end
 
 function M.ClipNames()
