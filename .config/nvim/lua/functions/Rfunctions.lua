@@ -140,6 +140,7 @@ function M.QueryRFunction()
 end
 
 function M.SendRAbove()
+  local slime = require "nvim-slimetree"
   local original_view = vim.fn.winsaveview()
   -- Get the parser and syntax tree
   local parser = vim.treesitter.get_parser(0)
@@ -162,13 +163,19 @@ function M.SendRAbove()
   vim.api.nvim_win_set_cursor(0, { line_i, 0 })
   -- we don't want to get stuck in an infinite loop
   local trip = 0
-  while line_i < current_line and trip < 10 do
-    require("nvim-slimetree").goo_move()
+  while line_i < current_line and trip < 20 do
+    slime.goo_move()
     if prev_i == line_i then
+      if trip == 18 then
+        slime.goo_move()
+        vim.notify("Last chance...", vim.log.levels.ERROR)
+      end
+      vim.wait(30)
       vim.wait(5 * trip)
       trip = trip + 1
     else
       trip = 0
+      vim.wait(10)
     end
     prev_i = line_i
     line_i = vim.api.nvim_win_get_cursor(0)[1]
