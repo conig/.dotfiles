@@ -549,9 +549,6 @@ function M.StartInlineMode()
   -- move cursor one col forward
   vim.cmd "normal! l"
 
-  -- Execute SendInlineToConsole
-  M.SendInlineToConsole()
-
   -- Set up mappings
   vim.keymap.set("n", "<CR>", M.RepeatInline, { buffer = true, silent = true })
   vim.keymap.set("n", "<Esc>", M.ExitInlineMode, { buffer = true, silent = true })
