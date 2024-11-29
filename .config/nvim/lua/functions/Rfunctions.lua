@@ -77,6 +77,33 @@ function M.SendTarMakeNoCallr()
   send_to_r_console "targets::tar_make(callr_function = NULL, use_crew = FALSE)"
 end
 
+function M.SendTarMakeActive()
+  local active_target = require("target_target").get_active_name()
+  if active_target == nil then
+    vim.notify("No active target found.", vim.log.levels.ERROR)
+    return
+  end
+  send_to_r_console("targets::tar_make(" .. active_target .. ")")
+end
+
+function M.TarLoadActive()
+  local active_target = require("target_target").get_active_name()
+  if active_target == nil then
+    vim.notify("No active target found.", vim.log.levels.ERROR)
+    return
+  end
+  send_to_r_console("targets::tar_load(" .. active_target .. ")")
+end
+
+function M.SendTarMakeActiveDebug()
+  local active_target = require("target_target").get_active_name()
+  if active_target == nil then
+    vim.notify("No active target found.", vim.log.levels.ERROR)
+    return
+  end
+  send_to_r_console("targets::tar_make(" .. active_target .. ", callr_function = NULL, use_crew = FALSE)")
+end
+
 -- Generic function that wraps the current word with the specified function and sends it to the R console
 function M.FunctionToWord(fn_name)
   -- Get the current word under the cursor

@@ -272,6 +272,18 @@ return {
         desc = "Make targets",
       },
       {
+        "<leader>ttd",
+        function()
+          require("functions.Rfunctions").SendTarMakeActiveDebug()
+        end,
+      },
+      {
+        "<leader>ttl",
+        function()
+          require("functions.Rfunctions").TarLoadActive()
+        end,
+      },
+      {
         "<leader>tM",
         function()
           require("functions.Rfunctions").SendTarMakeFuture()
