@@ -291,6 +291,12 @@ return {
         desc = "Tar Make Future",
       },
       {
+      "<leader>tl",
+      function()
+        require("functions.Rfunctions").TarLoad()
+      end,
+      },
+      {
         "<leader>td",
         function()
           require("functions.Rfunctions").SendTarMakeNoCallr()

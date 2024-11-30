@@ -86,14 +86,16 @@ function M.SendTarMakeActive()
   send_to_r_console("targets::tar_make(" .. active_target .. ")")
 end
 
-function M.TarLoadActive()
-  local active_target = require("target_target").get_active_name()
-  if active_target == nil then
-    vim.notify("No active target found.", vim.log.levels.ERROR)
-    return
-  end
-  send_to_r_console("targets::tar_load(" .. active_target .. ")")
+function M.TarLoad()
+  require("target_target").pick_target(function(active_target)
+    if not active_target then
+      vim.notify("No active target found.", vim.log.levels.ERROR)
+      return
+    end
+    send_to_r_console("targets::tar_load(" .. active_target .. ")")
+  end)
 end
+
 
 function M.SendTarMakeActiveDebug()
   local active_target = require("target_target").get_active_name()
