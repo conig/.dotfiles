@@ -44,15 +44,14 @@ M.nvdash = {
     "",
     "",
   },
-
 }
 M.ui = {
-  telescope = {style = "bordered"},
+  telescope = { style = "bordered" },
   tabufline = {
     enabled = true,
   },
   statusline = {
-    theme = "default", -- default/vscode/vscode_colored/minimal,
+    theme = "vscode", -- default/vscode/vscode_colored/minimal,
     separator_style = "round",
     order = nil,
     modules = nil,
