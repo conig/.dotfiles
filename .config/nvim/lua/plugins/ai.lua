@@ -7,9 +7,9 @@ return {
       provider = "copilot",
       hints = { enabled = false },
       -- add any opts here
-      copilot = {
-        model = "claude-3.5-sonnet",
-      },
+      -- copilot = {
+        -- model = "claude-3.5-sonnet",
+      -- },
     },
     dependencies = {
       "stevearc/dressing.nvim",
