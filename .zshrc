@@ -495,7 +495,7 @@ bindkey '^f' fuzzy_find_dir_widget
 
 install_neovim() {
     local version=$1
-    local url="https://github.com/neovim/neovim/releases/download/v${version}/nvim-linux64.tar.gz"
+    local url="https://github.com/neovim/neovim/releases/download/${version}/nvim-linux64.tar.gz"
     local tmp_dir=$(mktemp -d)
 
     # Download and install Neovim

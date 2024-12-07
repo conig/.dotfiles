@@ -1,12 +1,12 @@
 require "nvchad.options"
-vim.treesitter.language.register("markdown","qmd")
+vim.treesitter.language.register("markdown", "qmd")
 vim.treesitter.language.register("markdown", "txt")
 vim.treesitter.language.register("bash", "zsh")
-vim.treesitter.language.register("markdown","rmd")
+vim.treesitter.language.register("markdown", "rmd")
 -- add yours here!
 
 local o = vim.o
-o.cursorlineopt ='both' -- to enable cursorline!
+o.cursorlineopt = "both" -- to enable cursorline!
 -- -- toggle relative line numbers
 vim.api.nvim_set_keymap("n", "\\", ":set relativenumber!<CR>", { noremap = true, silent = true })
 
@@ -19,7 +19,10 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.expandtab = true
   end,
 })
-
+vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#005f00", fg = nil}) -- Dark green
+vim.api.nvim_set_hl(0, "DiffChange", { bg = "#005f5f", fg = nil}) -- Dark cyan
+vim.api.nvim_set_hl(0, "DiffDelete", { bg = "#5f0000", fg = nil}) -- Dark red
+-- general options
 vim.opt.relativenumber = true
 vim.opt.showcmd = false
 -- Automatically convert DOS line endings to Unix on save
@@ -46,5 +49,3 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end
   end,
 })
-
-

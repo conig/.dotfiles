@@ -216,13 +216,6 @@ return {
         desc = "Show Targets progress",
       },
       {
-        "<leader>gd",
-        function()
-          require("functions.Rfunctions").StartHttpgd()
-        end,
-        desc = "Start httpgd server",
-      },
-      {
         "<leader>rI",
         function()
           require("functions.Rfunctions").InstallRpackages()
