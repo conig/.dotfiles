@@ -5,7 +5,7 @@ local M = {}
 
 M.base46 = {
   theme = "solarized_osaka",
-  transparency = false,
+  transparency = true,
   hl_override = {
     DiffDelete = {
       bg = "dark_purple",
