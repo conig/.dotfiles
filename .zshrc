@@ -469,7 +469,7 @@ start_nvim() {
 # start_nvim widget
 zle -N start_nvim
 # bind to ctrl-n
-bindkey '  ' start_nvim
+bindkey 'fj' start_nvim
 
 alias we="explorer.exe ."
 

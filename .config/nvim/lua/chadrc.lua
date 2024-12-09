@@ -4,20 +4,12 @@
 local M = {}
 
 M.base46 = {
-  theme = "tokyonight",
+  theme = "solarized_osaka",
   transparency = false,
   hl_override = {
-    DiffAdd = {
-      --   bg = "#4c4c4c",
-      fg = "pink",
-    },
-    DiffChange = {
-      --   bg = "one_bg2",
-      fg = "blue",
-    },
     DiffDelete = {
-      --   bg = "one_bg3",
-      fg = "cyan",
+      bg = "dark_purple",
+      fg = "white",
     },
   },
 }

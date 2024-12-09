@@ -19,9 +19,13 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.expandtab = true
   end,
 })
-vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#005f00", fg = nil}) -- Dark green
-vim.api.nvim_set_hl(0, "DiffChange", { bg = "#005f5f", fg = nil}) -- Dark cyan
-vim.api.nvim_set_hl(0, "DiffDelete", { bg = "#5f0000", fg = nil}) -- Dark red
+
+-- add highlight groups
+vim.cmd [[
+  highlight DiffAdd guibg=#005f00 guifg=NONE
+  highlight DiffChange guibg=#005f5f guifg=NONE
+  highlight DiffDelete guibg=#5f0000 guifg=NONE
+]]
 -- general options
 vim.opt.relativenumber = true
 vim.opt.showcmd = false

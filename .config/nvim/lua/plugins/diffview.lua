@@ -17,6 +17,6 @@ return {
         end
       end, { silent = true, noremap = true, desc = "Toggle Diffview" }),
       -- Define custom highlights for diff mode
-        }
+    }
   end,
 }
