@@ -3,7 +3,7 @@ if os.getenv("TMUX") then
   -- Function to get the current tmux session name
   local function get_tmux_session()
     local handle = io.popen("tmux display-message -p '#{session_name}'")
-    local result = handle:read("*a")
+    local result = handle:read("*a") or nil
     handle:close()
     -- Trim any trailing newline or whitespace
     return result:match("^%s*(.-)%s*$")

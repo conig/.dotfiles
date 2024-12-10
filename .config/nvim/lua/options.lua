@@ -20,15 +20,10 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- add highlight groups
-vim.cmd [[
-  highlight DiffAdd guibg=#005f00 guifg=NONE
-  highlight DiffChange guibg=#005f5f guifg=NONE
-  highlight DiffDelete guibg=#5f0000 guifg=NONE
-]]
 -- general options
 vim.opt.relativenumber = true
 vim.opt.showcmd = false
+vim.opt.cmdheight = 0
 -- Automatically convert DOS line endings to Unix on save
 local group = vim.api.nvim_create_augroup("ConvertDosToUnix", { clear = true })
 -- Define the autocmd

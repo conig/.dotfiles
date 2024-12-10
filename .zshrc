@@ -12,10 +12,10 @@ export ZSH="$HOME/.oh-my-zsh"
 export BROWSER=wslview
 # Set theme
 ZSH_THEME="powerlevel10k/powerlevel10k"
-typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
 # Set config home
 export XDG_CONFIG_HOME="$HOME/.config"
-
+# start pl9k quietly
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 # Uncomment to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 

@@ -5,7 +5,7 @@ local M = {}
 
 M.base46 = {
   theme = "solarized_osaka",
-  transparency = false,
+  transparency = true,
   hl_override = {
     DiffDelete = {
       bg = "dark_purple",
@@ -37,14 +37,17 @@ M.nvdash = {
     "",
   },
 }
+M.telescope = {
+  style = "bordered",
+}
+
 M.ui = {
-  telescope = { style = "bordered" },
   tabufline = {
     enabled = true,
   },
   statusline = {
-    theme = "vscode", -- default/vscode/vscode_colored/minimal,
-    separator_style = "round",
+    theme = "minimal", -- default/vscode/vscode_colored/minimal,
+    separator_style = "block", -- block/arrow/round/
     order = nil,
     modules = nil,
   },

@@ -40,7 +40,7 @@ return {
         function()
           require("rmdscope.telescope").templates()
         end,
-        desc = "Rmd templates", -- Optional: description for which-key plugins
+        desc = "Rmd templates",
         mode = "n", -- Mode: 'n' for normal mode
         noremap = true,
         silent = true,

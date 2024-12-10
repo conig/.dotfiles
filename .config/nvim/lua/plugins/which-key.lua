@@ -1,7 +1,7 @@
 return{
   {
   "folke/which-key.nvim",
-  event = "VeryLazy",
+  event = {"BufReadPre", "BufNewFile"},
   opts = {
      triggers = {
       { "<auto>", mode = { "n", "i", "o", "t", "c" } }, -- Exclude visual and select modes
