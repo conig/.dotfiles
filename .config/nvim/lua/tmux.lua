@@ -33,4 +33,13 @@ if os.getenv("TMUX") then
       set_tmux_status("on")
     end,
   })
+  -- add mapping to turn back on and off
+vim.keymap.set('n', '<leader>bb', function()
+  set_tmux_status('on')
+end, { noremap = true, silent = true })
+
+vim.keymap.set('n', '<leader>bB', function()
+  set_tmux_status('off')
+end, { noremap = true, silent = true })
+
 end
