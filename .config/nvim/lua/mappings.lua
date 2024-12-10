@@ -195,3 +195,6 @@ vim.keymap.set("n", "<leader>fj", function()
 end, { desc = "Open harpoon window" })
 
 vim.api.nvim_set_keymap("i", "<c-p>", "<C-o>a|>", { noremap = true, silent = true })
+
+-- R mappings
+vim.keymap.set("n", "<leader>\\", "A |> <Cr>", { desc = "Append '|>' and return to normal mode" })

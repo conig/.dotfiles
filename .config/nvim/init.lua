@@ -34,6 +34,7 @@ require "options"
 require "nvchad.autocmds"
 require "start_goo"
 require "autocommands"
+require "tmux"
 
 vim.schedule(function()
   require "mappings"
