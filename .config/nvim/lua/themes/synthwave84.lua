@@ -1,7 +1,5 @@
 -- Credits to original SynthWave84 theme
--- Converted to Base46 format without alpha channels
 
----@type Base46Table
 local M = {}
 
 -- Base30: Primary and Accent Colors
@@ -63,7 +61,6 @@ M.base_16 = {
   base0F = "#c94c16",
 }
 
--- Polish Highlights: Syntax and UI Enhancements
 M.polish_hl = {
   treesitter = {
     ["@comment"] = { fg = "#848bbd", italic = true },
@@ -108,7 +105,6 @@ M.polish_hl = {
 -- Theme Type
 M.type = "dark"
 
--- Override and Return the Theme
 M = require("base46").override_theme(M, "synthwave84")
 
 return M

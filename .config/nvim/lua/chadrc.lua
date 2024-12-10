@@ -4,7 +4,7 @@
 local M = {}
 
 M.base46 = {
-  theme = "solarized_osaka",
+  theme = "synthwave84",
   transparency = true,
   hl_override = {
     DiffDelete = {
@@ -46,7 +46,7 @@ M.ui = {
     enabled = true,
   },
   statusline = {
-    theme = "minimal", -- default/vscode/vscode_colored/minimal,
+    theme = "vscode_colored", -- default/vscode/vscode_colored/minimal,
     separator_style = "block", -- block/arrow/round/
     order = nil,
     modules = nil,
