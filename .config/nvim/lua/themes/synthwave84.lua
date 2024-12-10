@@ -43,7 +43,7 @@ M.base_30 = {
 
 -- Base16: Color Scheme Mapping
 M.base_16 = {
-  base00 = M.base_30.black,
+  base00 = "#2a2838",
   base01 = M.base_30.one_bg,
   base02 = M.base_30.one_bg2,
   base03 = M.base_30.one_bg3,

@@ -12,8 +12,17 @@ map(
   { noremap = true, silent = true, desc = "insert browser()" }
 )
 -- Remove browser()
-map("n", "<leader>rB", [[:g/^\s*browser()$/d<CR>:noh<CR>]], { noremap = true, silent = true, desc = "remove browser()" })
+function ZoomTmuxPane()
+    local tmux_zoom_command = "tmux resize-pane -Z"
+    os.execute(tmux_zoom_command)
+end
+vim.api.nvim_set_keymap('n', '<Tab>', ':lua ZoomTmuxPane()<CR>', { noremap = true, silent = true })
 
+-- map left and right arrow keys to bnext and bprev
+map("n", "<Left>", ":bprev<CR>", { noremap = true, silent = true })
+map("n", "<Right>", ":bnext<CR>", { noremap = true, silent = true })
+map("n", "<leader>bh", ":bprev<CR>", { noremap = true, silent = true })
+map("n", "<leader>bl", ":bnext<CR>", { noremap = true, silent = true })
 -- James's mappings
 map(
   "n",
