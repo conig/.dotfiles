@@ -18,7 +18,7 @@ M.base_30 = {
   light_grey = "#586E75",
 
   -- Accent Colors
-  red = "#fe4450",
+  red = "#f9604c",
   baby_pink = "#ff7edb",
   pink = "#f97e72",
   green = "#72f1b8",
@@ -43,7 +43,7 @@ M.base_30 = {
 
 -- Base16: Color Scheme Mapping
 M.base_16 = {
-  base00 = "#2a2838",
+  base00 = "#262335",
   base01 = M.base_30.one_bg,
   base02 = M.base_30.one_bg2,
   base03 = M.base_30.one_bg3,
@@ -69,7 +69,7 @@ M.polish_hl = {
     ["@variable"] = { fg = "#ff7edb" },
     ["@constant"] = { fg = "#f97e72" },
     ["@keyword"] = { fg = "#fede5d" },
-    ["@function"] = { fg = "#36f9f6" },
+    ["@identifier"] = { fg = "#36f9f6"},
     ["@call"] = {fg = "#36f9f6"},
     ["@type"] = { fg = "#fe4450" },
     ["@boolean"] = { fg = "#f97e72" },
@@ -79,7 +79,7 @@ M.polish_hl = {
     ["@attribute"] = { fg = "#fede5d" },
     ["@punctuation.bracket"] = { fg = "#fede5d" },
     ["@parameter"] = { fg = M.base_30.baby_pink, italic = true },
-    ["@function.builtin"] = { fg = "#c94c16" },
+    ["@function.builtin"] = { fg = M.base_30.vibrant_green },
     ["@variable.parameter"] = { fg = M.base_30.baby_pink, italic = true },
     ["@constant.builtin"] = { fg = "#f97e72" },
     ["@property"] = { fg = "#ff7edb" },

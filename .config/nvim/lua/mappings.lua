@@ -21,8 +21,8 @@ vim.api.nvim_set_keymap('n', '<Tab>', ':lua ZoomTmuxPane()<CR>', { noremap = tru
 -- map left and right arrow keys to bnext and bprev
 map("n", "<Left>", ":bprev<CR>", { noremap = true, silent = true })
 map("n", "<Right>", ":bnext<CR>", { noremap = true, silent = true })
-map("n", "<leader>bh", ":bprev<CR>", { noremap = true, silent = true })
-map("n", "<leader>bl", ":bnext<CR>", { noremap = true, silent = true })
+map("n", "<M-h>", ":bprev<CR>", { noremap = true, silent = true })
+map("n", "<M-l>", ":bnext<CR>", { noremap = true, silent = true })
 -- James's mappings
 map(
   "n",
