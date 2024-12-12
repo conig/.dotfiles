@@ -12,6 +12,7 @@ map(
   { noremap = true, silent = true, desc = "insert browser()" }
 )
 -- Remove browser()
+map("n", "<leader>rB", [[:g/^\s*browser()$/d<CR>:noh<CR>]], { noremap = true, silent = true, desc = "remove browser()" })
 function ZoomTmuxPane()
     local tmux_zoom_command = "tmux resize-pane -Z"
     os.execute(tmux_zoom_command)
