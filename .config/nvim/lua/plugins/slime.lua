@@ -20,6 +20,10 @@ return {
     dependencies = "jpalardy/vim-slime",
     dev = true,
     dir = "/home/conig/repos/nvim-slimetree/",
+    keys = {
+      { "<leader>gs", function() require("nvim-slimetree").gootabs.start_goo { "r" }
+end, desc = "Start goo", noremap = true, silent = true },
+    },
     config = function()
       local st = require "nvim-slimetree"
 
@@ -48,10 +52,6 @@ return {
       vim.keymap.set("n", "<C-c><C-c>", function()
         st.slimetree.SlimeCurrentLine()
       end, { desc = "Send current line to Slime" })
-
-      vim.keymap.set("n", "<leader>gs", function()
-        st.gootabs.start_goo "clear && r"
-      end, { desc = "Start goo", noremap = true, silent = true })
 
       vim.keymap.set("n", "<leader>g1", function()
         st.gootabs.summon_goo(1)
@@ -114,6 +114,9 @@ return {
       vim.keymap.set("n", "<leader>rt", function()
         require("functions.Rfunctions").FunctionToWord "table"
       end, { desc = "Run table on word" })
+      vim.keymap.set("n", "<leader>rp", function()
+        require("functiuons.Rfunctions").FunctionToWord "plot"
+      end, {desc = "Plot word"})
 
       vim.keymap.set("n", "<leader>r?", function()
         require("functions.Rfunctions").QueryRFunction()

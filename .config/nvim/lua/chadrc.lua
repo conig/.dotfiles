@@ -4,8 +4,8 @@
 local M = {}
 
 M.base46 = {
-  theme = "kanagawa",
-  transparency = true,
+  theme = "chocolate",
+  transparency = false,
   hl_override = {
     DiffDelete = {
       -- bg = "dark_purple",

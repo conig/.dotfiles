@@ -417,6 +417,7 @@ tmux_switch_or_cd() {
 
     # Extract the basename of the selected directory to use as session name
     session_name=$(basename "$expanded_selected")
+    session_name="${session_name// /_}"   # Convert spaces to underscores
     # Replace periods with underscores in the session name
     session_name="${session_name//./_}"
 

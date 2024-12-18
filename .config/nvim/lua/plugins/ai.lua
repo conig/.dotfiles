@@ -2,7 +2,7 @@ return {
   {
     "yetone/avante.nvim",
     event = { "BufReadPost", "BufNewFile" },
-    enabled = false,
+    enabled = true,
     build = "make",
     opts = {
       provider = "copilot",
@@ -41,7 +41,7 @@ return {
   {
     "github/copilot.vim",
     event = { "BufReadPost", "BufNewFile" },
-    enabled = false,
+    enabled = true,
     config = function()
       vim.g.copilot_no_tab_map = true
       vim.g.copilot_assume_mapped = true

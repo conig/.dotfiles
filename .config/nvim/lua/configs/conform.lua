@@ -1,7 +1,7 @@
 local options = {
   formatters_by_ft = {
     lua = { "stylua" },
-    r = { "lsp" },
+    r = { "lsp"},
     rmd = {"lsp"},
     qmd = {"lsp"},
   },
