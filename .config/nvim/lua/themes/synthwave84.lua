@@ -64,6 +64,7 @@ M.base_16 = {
 
 M.polish_hl = {
   treesitter = {
+    ["@markup.strong.markdown_inline"] = {fg = M.base_30.baby_pink, bold = true},
     ["@comment"] = { fg = "#848bbd", italic = true },
     ["@string"] = { fg = "#ff8b39" },
     ["@punctuation.delimiter"] = { fg = "#b6b1b1" },
