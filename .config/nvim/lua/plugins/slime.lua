@@ -39,11 +39,11 @@ end, desc = "Start goo", noremap = true, silent = true },
 
       vim.keymap.set("n", "<leader>rv", function()
         require("functions.Rfunctions").SendInlineToConsole()
-      end)
+      end, { desc = "Send inline to console" })
 
       vim.keymap.set("n", "<leader>rj", function()
         require("functions.Rfunctions").StartInlineMode()
-      end)
+      end, {desc = "Start inline mode"})
 
       vim.keymap.set("n", "<leader><CR>", function()
         st.slimetree.goo_move(true)
@@ -106,6 +106,10 @@ end, desc = "Start goo", noremap = true, silent = true },
       vim.keymap.set("n", "<leader>rr", function()
         require("functions.Rfunctions").FunctionToWord "str"
       end, { desc = "Print object str" })
+
+      vim.keymap.set("n", "<leader>tg", function()
+        require("functions.Rfunctions").SendTarLoadGlobals()
+      end, { desc = "Load all target globals" })
 
       vim.keymap.set("n", "<leader>ru", function()
         require("functions.Rfunctions").FunctionToWord "unique"
