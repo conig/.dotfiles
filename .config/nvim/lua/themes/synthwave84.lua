@@ -9,8 +9,8 @@ M.base_30 = {
   darker_black = "#1f212b",
   black = "#262335",
   black2 = "#241b2f",
-  one_bg = "#2a2139",
-  one_bg2 = "#232530",
+  one_bg = "#232530",
+  one_bg2 = "#010102",
   one_bg3 = "#34294f",
   grey = "#495495",
   grey_fg = "#47585E",
@@ -40,6 +40,7 @@ M.base_30 = {
   folder_bg = "#268bd3",
   line = "#022736", -- Added 'line' as per the original example
 }
+
 
 -- Base16: Color Scheme Mapping
 M.base_16 = {
@@ -95,10 +96,10 @@ M.polish_hl = {
   },
 
   lsp = {
-    DiagnosticVirtualTextError = {fg = M.base_30.red }, -- Removed alpha
-    DiagnosticVirtualTextWarn = { fg = M.base_30.yellow }, -- Removed alpha
-    DiagnosticVirtualTextInfo = { fg = M.base_30.cyan }, -- Removed alpha
-    DiagnosticVirtualTextHint = { fg = M.base_30.teal }, -- Removed alpha
+    DiagnosticVirtualTextError = {fg = M.base_30.red },
+    DiagnosticVirtualTextWarn = { fg = M.base_30.yellow },
+    DiagnosticVirtualTextInfo = { fg = M.base_30.cyan },
+    DiagnosticVirtualTextHint = { fg = M.base_30.teal },
   },
 }
 

@@ -4,7 +4,7 @@
 local M = {}
 
 M.base46 = {
-  theme = "gatekeeper",
+  theme = "synthwave84",
   transparency = false,
   hl_override = {
     DiffDelete = {
