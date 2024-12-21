@@ -6,7 +6,7 @@ local M = {}
 M.base_30 = {
   -- Primary Colors
   white = "#ffffff",
-  darker_black = "#1f212b",
+  darker_black = "#1a1c25",
   black = "#262335",
   black2 = "#241b2f",
   one_bg = "#232530",
@@ -34,13 +34,12 @@ M.base_30 = {
   cyan = "#72f1b8",
 
   -- UI Specific
-  statusline_bg = "#1f212b",
+  statusline_bg = "#241b2f",
   lightbg = "#2a2139",
   pmenu_bg = "#f97e72",
   folder_bg = "#268bd3",
   line = "#022736", -- Added 'line' as per the original example
 }
-
 
 -- Base16: Color Scheme Mapping
 M.base_16 = {
