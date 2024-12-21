@@ -2,7 +2,8 @@ return {
   {
     "hrsh7th/nvim-cmp",
     lazy = true,
-    event = { "CmdLineEnter", "BufReadPost", "BufNewFile" },
+    event = {"BufReadPost", "BufNewFile" },
+    keys = {":"},
     dependencies = {
       {"hrsh7th/cmp-nvim-lsp", after = "nvim-cmp"}, -- LSP completion source
       {"hrsh7th/cmp-path", after = "nvim-cmp"}, -- Path completion source

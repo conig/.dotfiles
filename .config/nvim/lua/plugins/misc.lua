@@ -48,12 +48,6 @@ return {
     },
   },
   {
-    "ThePrimeagen/harpoon",
-    lazy = true,
-    branch = "harpoon2",
-    dependencies = { "nvim-lua/plenary.nvim" },
-  },
-  {
     "nvim-treesitter/playground",
   },
   { "akinsho/git-conflict.nvim", version = "*", config = true },

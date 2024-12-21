@@ -1,7 +1,10 @@
 return {
   {
     "folke/noice.nvim",
-    event = { "CmdlineEnter", "BufReadPost", "BufNewFile" },
+    event = {"BufReadPost", "BufNewFile" },
+    keys = {
+      ":"
+    },
     config = function()
       require("noice").setup {
         lsp = {

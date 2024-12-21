@@ -164,46 +164,6 @@ vim.keymap.set("n", "<leader>cF", function()
   }
 end, { noremap = true, silent = true, desc = "Format whole file" })
 
--- Require Harpoon
-local harpoon = require "harpoon"
-
--- Initialize Harpoon with default settings
-harpoon.setup()
-
--- basic telescope configuration
-local conf = require("telescope.config").values
-local function toggle_telescope(harpoon_files)
-  local file_paths = {}
-  for _, item in ipairs(harpoon_files.items) do
-    table.insert(file_paths, item.value)
-  end
-
-  require("telescope.pickers")
-    .new({}, {
-      prompt_title = "Harpoon",
-      finder = require("telescope.finders").new_table {
-        results = file_paths,
-      },
-      previewer = conf.file_previewer {},
-      sorter = conf.generic_sorter {},
-    })
-    :find()
-end
-
--- Define key mappings
-
-vim.keymap.set("n", "<C-e>", function()
-  harpoon.ui:toggle_quick_menu(harpoon:list())
-end)
-
-vim.keymap.set("n", "<leader>aj", function()
-  harpoon:list():add()
-end, { desc = "Harpoon" })
-
-vim.keymap.set("n", "<leader>fj", function()
-  toggle_telescope(harpoon:list())
-end, { desc = "Open harpoon window" })
-
 vim.api.nvim_set_keymap("i", "<c-p>", "<C-o>a|>", { noremap = true, silent = true })
 
 -- R mappings
