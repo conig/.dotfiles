@@ -1,0 +1,19 @@
+
+general {
+    output_format = "i3bar"
+    colors = true
+    interval = 5
+}
+
+order += "wireless wlp0s20f3"
+order += "time"
+
+wireless wlp0s20f3 {
+    format_up = "wifi"
+    format_down = "no wifi"
+}
+
+time {
+    format = "%Y-%m-%d %H:%M"
+}
+
