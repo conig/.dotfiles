@@ -1,0 +1,54 @@
+# Alacritty Configuration File
+
+[general]
+# Import the Dracula theme
+import = ["~/.config/alacritty/themes/themes/dracula.toml"]
+
+[window]
+# Window dimensions in terms of terminal rows/columns
+dimensions = { columns = 80, lines = 24 }
+
+# Padding around the terminal (in pixels)
+padding = { x = 0, y = 0 }
+
+# Background transparency (0.0 = fully transparent, 1.0 = fully opaque)
+opacity = 0.5
+
+# Decorations: "Full", "None", "Transparent", "Buttonless"
+decorations = "Full"
+
+# Startup mode: "Windowed", "Maximized", "Fullscreen", "SimpleFullscreen"
+startup_mode = "Windowed"
+
+# Title of the terminal window
+title = "Alacritty"
+
+# Decorations theme variant: "Dark", "Light", or "None"
+decorations_theme_variant = "Dark"
+
+[font]
+# Use JetBrains Mono Nerd Font
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
+italic = { family = "JetBrainsMono Nerd Font", style = "Italic" }
+bold_italic = { family = "JetBrainsMono Nerd Font", style = "Bold Italic" }
+size = 12.0
+
+[scrolling]
+# Scrollback history size
+history = 10000
+
+# Scrolling multiplier
+multiplier = 3
+
+[cursor]
+# Cursor configuration
+style = "Block"  # Options: "Block", "Underline", "Beam"
+
+[keyboard]
+# Keybindings configuration
+bindings = [
+    # Toggle fullscreen with F11
+    { key = "F11", action = "ToggleFullscreen" }
+]
+
