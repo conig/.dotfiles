@@ -49,6 +49,9 @@ style = "Block"  # Options: "Block", "Underline", "Beam"
 # Keybindings configuration
 bindings = [
     # Toggle fullscreen with F11
-    { key = "F11", action = "ToggleFullscreen" }
+    { key = "F11", action = "ToggleFullscreen" },
+    { key = "NumpadEnter", mods = "None", action = "ReceiveChar"}
 ]
 
+[env]
+term = "xterm-256color"
