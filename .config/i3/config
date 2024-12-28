@@ -9,6 +9,9 @@
 # Set background image
 exec --no-startup-id sh ~/.fehbg
 exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
+# Turn on numlock
+exec --no-startup-id numlockx on
+
 # i3 config file (v4)
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
@@ -219,6 +222,12 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
  bar {
         status_command i3status
+        i3bar_command i3bar --transparency
+        colors {
+        background #00000000  # Fully transparent
+        statusline #FFFFFF     # White text
+        separator #666666      # Grey separators
+        }
 }
 
 # ------------------------------------------

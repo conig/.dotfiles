@@ -9,7 +9,7 @@ order += "wireless wlp0s20f3"
 order += "time"
 
 wireless wlp0s20f3 {
-    format_up = "wifi"
+    format_up = ""
     format_down = "no wifi"
 }
 
