@@ -2,29 +2,29 @@
 
 [general]
 # Import the Dracula theme
-import = ["~/.config/alacritty/themes/themes/dracula.toml"]
+import = ["~/.config/alacritty/themes/themes/solarized_osaka.toml"]
 
 [window]
+# Background transparency (0.0 = fully transparent, 1.0 = fully opaque)
+opacity = 0.5
+
 # Window dimensions in terms of terminal rows/columns
 dimensions = { columns = 80, lines = 24 }
 
 # Padding around the terminal (in pixels)
 padding = { x = 0, y = 0 }
 
-# Background transparency (0.0 = fully transparent, 1.0 = fully opaque)
-opacity = 0.5
-
 # Decorations: "Full", "None", "Transparent", "Buttonless"
-decorations = "Full"
+# decorations = "Full"
 
 # Startup mode: "Windowed", "Maximized", "Fullscreen", "SimpleFullscreen"
-startup_mode = "Windowed"
+startup_mode = "Fullscreen"
 
 # Title of the terminal window
 title = "Alacritty"
 
 # Decorations theme variant: "Dark", "Light", or "None"
-decorations_theme_variant = "Dark"
+# decorations_theme_variant = "Dark"
 
 [font]
 # Use JetBrains Mono Nerd Font
