@@ -11,6 +11,15 @@ map(
   [[:call append(line('.') - 1, 'browser()')<CR>]],
   { noremap = true, silent = true, desc = "insert browser()" }
 )
+-- open files
+vim.keymap.set('n', '<leader>nn', function()
+    vim.fn.jobstart({ vim.o.shell, '-c', 'open .' }, { detach = true })
+end, { desc = "Open files in the current working directory" })
+
+vim.keymap.set('n', '<leader>rP', function()
+    vim.fn.jobstart({ vim.o.shell, '-c', 'feh ./.last_Rplot.png' }, { detach = true })
+end, { desc = "Open last plot with gthumb" })
+
 -- Remove browser()
 map("n", "<leader>rB", [[:g/^\s*browser()$/d<CR>:noh<CR>]], { noremap = true, silent = true, desc = "remove browser()" })
 function ZoomTmuxPane()

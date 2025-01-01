@@ -523,3 +523,6 @@ vaultpush() {
     # Push the changes to the remote repository
     git -C "$vault_dir" push
 }
+
+alias wmclass="xprop | grep WM_CLASS"
+

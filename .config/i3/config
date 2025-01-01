@@ -11,11 +11,11 @@ exec --no-startup-id sh ~/.fehbg
 exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
 # Turn on numlock
 exec --no-startup-id numlockx on
+# Enable screensaver
+exec --no-startup-id xscreensaver -no-splash
+
 
 # i3 config file (v4)
-#
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
-
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -142,6 +142,18 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
+# Numberpad also works
+bindsym $mod+Shift+KP_1 move container to workspace 1
+bindsym $mod+Shift+KP_2 move container to workspace 2
+bindsym $mod+Shift+KP_3 move container to workspace 3
+bindsym $mod+Shift+KP_4 move container to workspace 4
+bindsym $mod+Shift+KP_5 move container to workspace 5
+bindsym $mod+Shift+KP_6 move container to workspace 6
+bindsym $mod+Shift+KP_7 move container to workspace 7
+bindsym $mod+Shift+KP_8 move container to workspace 8
+bindsym $mod+Shift+KP_9 move container to workspace 9
+bindsym $mod+Shift+KP_0 move container to workspace 10<ScrollWheelDown>
+
 # NOTE: This is some real tom fooliery with my keyboard layout
 #  ZMK will send a shift mod with the items that require a shift key on a
 #  regular keyboard.  so though it defines a keycode as "LEFT_BRACE" it really
@@ -257,10 +269,24 @@ bindsym $mod+m move workspace to output left
 # Suspend
 bindsym $mod+Shift+period exec systemctl suspend
 
-# start polybar
-# Kill all existing Polybar instances
+# Assign programs to windows
+assign [class="libreoffice"] 1
+assign [title="Zotero"] 2
+assign [class="Google-chrome"] 3
+assign [class="Alacritty"] 5
+assign [title="Microsoft Teams"] 8
+assign [title="YouTube Music"] 9
+assign [title="Outlook (PWA)"] 7
+assign [class="org.gnome.Nautilus"] 10
+# Set floating windows
+for_window [class="Zotero"] floating enable
 
-# exec_always --no-startup-id polybar
-# exec --no-startup-id ~/.config/polybar/launch.sh
+bindsym $mod+p exec --no-startup-id "zotero & libreoffice & google-chrome-stable & microsoft-teams & youtube-music & outlook-pwa"
 
+# Start programs
+exec --no-startup-id alacritty
 
+# Set up monitors
+exec_always --no-startup-id xrandr \
+  --output HDMI-0 --mode 1920x1080 --rate 143.99 --left-of HDMI-1 \
+  --output HDMI-1 --mode 1920x1080 --rate 143.99

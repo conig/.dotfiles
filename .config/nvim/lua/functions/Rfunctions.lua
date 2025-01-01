@@ -298,7 +298,7 @@ function M.BrowserQuit()
 end
 
 function M.StartHttpgd()
-  send_to_r_console "httpgd::hgd(silent = TRUE); httpgd::hgd_browse()"
+  send_to_r_console "httpgd::hgd(silent = TRUE); httpgd::hgd_browse(browser='google-chrome --new-window')"
 end
 
 function M.InstallRpackages()
