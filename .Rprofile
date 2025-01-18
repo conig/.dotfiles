@@ -53,7 +53,4 @@ if (interactive()) {
   update_width()
   options(setWidthOnResize = TRUE)
   # Set R graphics device positon and size
-  options(device = function() {
-   Cairo::CairoPNG(file = ".last_Rplot.png")
-  })
 }

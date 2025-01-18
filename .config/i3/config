@@ -278,8 +278,10 @@ assign [title="Microsoft Teams"] 8
 assign [title="YouTube Music"] 9
 assign [title="Outlook (PWA)"] 7
 assign [class="org.gnome.Nautilus"] 10
+assign [class="R_x11"] 10
 # Set floating windows
 for_window [class="Zotero"] floating enable
+for_window [class="R_x11"] floating enable
 
 bindsym $mod+p exec --no-startup-id "zotero & libreoffice & google-chrome-stable & microsoft-teams & youtube-music & outlook-pwa"
 
