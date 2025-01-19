@@ -1,11 +1,11 @@
--- This file needs to have same structure as nvconfig.luachar
+-- This file needs to have same saructure as nvconfig.luachar
 -- https://github.com/NvChad/ui/blob/v2.5/lua/nvconfig.lua
 
 local M = {}
 
 M.base46 = {
   theme = "synthwave84",
-  transparency = true,
+  transparency = false,
   hl_override = {
     DiffDelete = {
       -- bg = "dark_purple",

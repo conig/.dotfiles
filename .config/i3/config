@@ -272,7 +272,7 @@ bindsym $mod+Shift+period exec systemctl suspend
 # Assign programs to windows
 assign [class="libreoffice"] 1
 assign [title="Zotero"] 2
-assign [class="Google-chrome"] 3
+assign [title="Google Chrome"] 3
 assign [class="Alacritty"] 5
 assign [title="Microsoft Teams"] 8
 assign [title="YouTube Music"] 9
@@ -282,7 +282,9 @@ assign [class="R_x11"] 10
 # Set floating windows
 for_window [class="Zotero"] floating enable
 for_window [class="R_x11"] floating enable
-
+# Set workspace default positions
+workspace 10 output HDMI-1
+workspace 5 output HDMI-0
 bindsym $mod+p exec --no-startup-id "zotero & libreoffice & google-chrome-stable & microsoft-teams & youtube-music & outlook-pwa"
 
 # Start programs
