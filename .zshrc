@@ -1,8 +1,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 export ZSH_THEME="robbyrussell"
-# Export wlsu browser view
-export BROWSER=wslview
 # Set theme
 # Set config home
 export XDG_CONFIG_HOME="$HOME/.config"
