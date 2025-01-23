@@ -523,4 +523,6 @@ vaultpush() {
 }
 
 alias wmclass="xprop | grep WM_CLASS"
-
+alias winstart="docker compose --file ~/.config/winapps/compose.yaml start"
+alias winstop="docker compose --file ~/.config/winapps/compose.yaml stop"
+alias winrestart="docker compose --file ~/.config/winapps/compose.yaml restart"

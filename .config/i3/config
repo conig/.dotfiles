@@ -8,6 +8,7 @@
 
 # Set background image
 exec --no-startup-id sh ~/.fehbg
+exec --no-startup-id pulseaudio --start
 exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
 # Turn on numlock
 exec --no-startup-id numlockx on
@@ -16,7 +17,6 @@ exec --no-startup-id xscreensaver -no-splash
 # Start bluetooth
 exec --no-startup-id blueman-applet
 # Start pulseaudio
-exec --no-startup-id pulseaudio --start
 
 # i3 config file (v4)
 set $mod Mod4
@@ -280,6 +280,7 @@ bindsym $mod+y exec hints --mode scroll
 assign [class="libreoffice"] 1
 assign [title="Zotero"] 2
 assign [title="Google Chrome"] 3
+assign [title="Calendar"] 4
 assign [class="Alacritty"] 5
 assign [title="ChatGPT"] 6
 assign [title="Microsoft Teams"] 8
@@ -287,10 +288,16 @@ assign [title="YouTube Music"] 9
 assign [title="Outlook"] 7
 assign [class="org.gnome.Nautilus"] 10
 assign [class="R_x11"] 10
+assign [title="Starcraft"] 10
+assign [title="Windows"] 10
+assign [title="Creative Cloud"] 10
 # Set floating windows
 for_window [class="Zotero"] floating enable
 for_window [class="R_x11"] floating enable
 for_window [class="blueman-manager"] floating enable
+for_window [title="Starcraft"] floating enable
+for_window [title="Windows"] fullscreen
+
 # Set workspace default positions
 ## Hero applications (left)
 workspace 1 output HDMI-0
@@ -304,7 +311,11 @@ workspace 6 output HDMI-1
 workspace 9 output HDMI-1
 workspace 10 output HDMI-1
 
-bindsym $mod+p exec --no-startup-id "zotero & libreoffice & google-chrome-stable & microsoft-teams & youtube-music & outlook-pwa"
+bindsym $mod+p exec --no-startup-id "sh -c 'google-chrome-stable & \
+gtk-launch chrome-cadlkienfkclaiaibeoongdcgmdikeeg-Profile_5 & \
+gtk-launch chrome-cinhimbnkkaeohfgghhklpknlkffjgod-Profile_5 & \
+gtk-launch chrome-cifhbcnohmdccbgoicgdjpfamggdegmo-Profile_5 & \
+gtk-launch chrome-faolnafnngnfdaknnbpnkhgohbobgegn-Profile_5'"
 
 # Application display rules
 for_window [title="Microsoft Teams"] fullscreen
