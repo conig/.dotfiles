@@ -10,6 +10,8 @@
 exec --no-startup-id sh ~/.fehbg
 exec --no-startup-id pulseaudio --start
 exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
+# Turn on VPN
+exec --no-startup-id nordvpn connect
 # Turn on numlock
 exec --no-startup-id numlockx on
 # Enable screensaver
@@ -237,9 +239,9 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
  bar {
         status_command i3status
-        i3bar_command i3bar --transparency
+        i3bar_command i3bar --t
         colors {
-        background #00000000  # Fully transparent
+        background #00000080  # Semi transparent black
         statusline #FFFFFF     # White text
         separator #666666      # Grey separators
         }
@@ -286,7 +288,7 @@ assign [title="ChatGPT"] 6
 assign [title="Microsoft Teams"] 8
 assign [title="YouTube Music"] 9
 assign [title="Outlook"] 7
-assign [class="org.gnome.Nautilus"] 10
+# assign [class="org.gnome.Nautilus"] 10
 assign [class="R_x11"] 10
 assign [title="Starcraft"] 10
 assign [title="Windows"] 10
@@ -296,6 +298,8 @@ for_window [class="Zotero"] floating enable
 for_window [class="R_x11"] floating enable
 for_window [class="blueman-manager"] floating enable
 for_window [title="Starcraft"] floating enable
+for_window [class="feh"] floating enable
+for_window [class="org.gnome.Nautilus"] floating enable
 for_window [title="Windows"] fullscreen
 
 # Set workspace default positions

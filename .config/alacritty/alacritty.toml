@@ -50,7 +50,8 @@ style = "Block"  # Options: "Block", "Underline", "Beam"
 bindings = [
     # Toggle fullscreen with F11
     { key = "F11", action = "ToggleFullscreen" },
-    { key = "NumpadEnter", mods = "None", action = "ReceiveChar"}
+    { key = "NumpadEnter", mods = "None", action = "ReceiveChar"},
+    { key = "Tab", mods = "Alt", action = "ToggleViMode"}
 ]
 
 [env]
