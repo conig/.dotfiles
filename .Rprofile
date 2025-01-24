@@ -56,15 +56,14 @@ if (interactive()) {
 
   # if i3
   session_type <- system("echo $XDG_SESSION_DESKTOP", intern = TRUE)
-  if(session_type == "i3") {
+  if (session_type == "i3") {
     i3_socket <- system("i3 --get-socketpath", intern = TRUE)
-  active_ws <- system("i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).name'", intern = TRUE)
-   i3_plot <- function(...) {
-   system(sprintf("i3-msg -s %s workspace 10" ,i3_socket), intern = TRUE)
-   grDevices::x11(...)
-   system(glue::glue("i3-msg -s {i3_socket} workspace 5"), intern = TRUE)
-   }
-  options(device = i3_plot)
+    active_ws <- system(sprintf("i3-msg -s %s -t get_workspaces | jq -r '.[] | select(.focused==true).name'", i3_socket), intern = TRUE)
+    i3_plot <- function(...) {
+      system(sprintf("i3-msg -s %s workspace 10", i3_socket), intern = TRUE)
+      grDevices::x11(...)
+      system(glue::glue("i3-msg -s {i3_socket} workspace 5"), intern = TRUE)
+    }
+    options(device = i3_plot)
   }
-
 }
