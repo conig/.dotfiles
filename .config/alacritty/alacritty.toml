@@ -2,11 +2,11 @@
 
 [general]
 # Import the Dracula theme
-import = ["~/.config/alacritty/themes/themes/solarized_osaka.toml"]
+import = ["~/.config/alacritty/themes/themes/synthwave_84.toml"]
 
 [window]
 # Background transparency (0.0 = fully transparent, 1.0 = fully opaque)
-opacity = 0.5
+opacity = 0.8
 
 # Window dimensions in terms of terminal rows/columns
 dimensions = { columns = 80, lines = 24 }
@@ -23,6 +23,9 @@ startup_mode = "Fullscreen"
 # Title of the terminal window
 title = "Alacritty"
 
+[colors.primary]
+# Force the background to be black so it’s easier to read
+background = "#000000"
 # Decorations theme variant: "Dark", "Light", or "None"
 # decorations_theme_variant = "Dark"
 
@@ -32,7 +35,7 @@ normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
 bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
 italic = { family = "JetBrainsMono Nerd Font", style = "Italic" }
 bold_italic = { family = "JetBrainsMono Nerd Font", style = "Bold Italic" }
-size = 12.0
+size = 13.0
 
 [scrolling]
 # Scrollback history size

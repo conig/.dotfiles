@@ -290,7 +290,7 @@ assign [title="YouTube Music"] 9
 assign [title="Outlook"] 7
 # assign [class="org.gnome.Nautilus"] 10
 assign [class="R_x11"] 10
-assign [title="Starcraft"] 10
+assign [title="StarCraft"] 10
 assign [title="Windows"] 10
 assign [title="Creative Cloud"] 10
 # Set floating windows
