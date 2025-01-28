@@ -27,3 +27,4 @@ vim.api.nvim_create_autocmd("RecordingLeave", {
   end,
   group = vim.api.nvim_create_augroup("NoiceMacroNotificationDismiss", { clear = true }),
 })
+

@@ -27,7 +27,7 @@ return {
       },
     },
     follow_url_func = function(url)
-      vim.fn.jobstart({ "wslview", url })
+      vim.fn.jobstart({ "open", url })
     end,
     note_id_func = function(title)
       -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.

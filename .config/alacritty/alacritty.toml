@@ -54,7 +54,8 @@ bindings = [
     # Toggle fullscreen with F11
     { key = "F11", action = "ToggleFullscreen" },
     { key = "NumpadEnter", mods = "None", action = "ReceiveChar"},
-    { key = "Tab", mods = "Alt", action = "ToggleViMode"}
+    { key = "Tab", mods = "Alt", action = "ToggleViMode"},
+    { key = "v", mods = "Control", action = "Paste"}
 ]
 
 [env]
