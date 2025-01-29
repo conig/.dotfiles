@@ -522,6 +522,12 @@ vaultpush() {
     git -C "$vault_dir" push
 }
 
+store_pwd() {
+  local file="$HOME/.project_static_dirs"
+  echo "$PWD" >> "$file"
+  echo "Added $PWD to static directories."
+}
+
 alias wmclass="xprop | grep WM_CLASS"
 alias winstart="docker compose --file ~/.config/winapps/compose.yaml start"
 alias winstop="docker compose --file ~/.config/winapps/compose.yaml stop"

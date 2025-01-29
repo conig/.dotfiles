@@ -27,4 +27,14 @@ vim.api.nvim_create_autocmd("RecordingLeave", {
   end,
   group = vim.api.nvim_create_augroup("NoiceMacroNotificationDismiss", { clear = true }),
 })
+-- open pdf in zathura
+vim.api.nvim_create_autocmd("BufReadPost", {
+    pattern = "*.pdf",
+    callback = function()
+        local file = vim.fn.expand("%:p")
+        vim.cmd("silent !zathura " .. vim.fn.shellescape(file) .. " &")
+        vim.cmd("bdelete!")  -- Close the buffer
+    end,
+})
+
 

@@ -25,7 +25,7 @@ return {
   { "nvchad/minty", lazy = true, event = { "BufReadPost", "BufNewFile" } },
   {
     "conig/rmdscope",
-    branch = "devel",
+    -- branch = "devel",
     dev = false,
     -- dir = "/home/conig/repos/rmdscope/",
     dependencies = {

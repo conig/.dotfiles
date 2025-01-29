@@ -296,6 +296,7 @@ assign [class="R_x11"] 10
 assign [title="StarCraft"] 10
 assign [title="Windows"] 10
 assign [title="Creative Cloud"] 10
+assign [class="Zathura"] 10
 # Set floating windows
 for_window [class="Zotero"] floating enable
 for_window [class="R_x11"] floating enable
