@@ -26,8 +26,8 @@ return {
   {
     "conig/rmdscope",
     branch = "devel",
-    dev = true,
-    dir = "/home/conig/repos/rmdscope/",
+    dev = false,
+    -- dir = "/home/conig/repos/rmdscope/",
     dependencies = {
       "nvim-telescope/telescope.nvim",
       "nvim-lua/plenary.nvim",
@@ -38,7 +38,7 @@ return {
       {
         "<leader>ks", -- Key combination
         function()
-          require("rmdscope.telescope").templates()
+          require("rmdscope").templates()
         end,
         desc = "Rmd templates",
         mode = "n", -- Mode: 'n' for normal mode
