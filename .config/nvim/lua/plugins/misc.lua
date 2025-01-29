@@ -38,7 +38,7 @@ return {
       {
         "<leader>ks", -- Key combination
         function()
-          require("rmdscope").templates()
+          require("rmdscope.telescope").templates()
         end,
         desc = "Rmd templates",
         mode = "n", -- Mode: 'n' for normal mode
