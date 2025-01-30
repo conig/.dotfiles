@@ -1,0 +1,30 @@
+[Unit]
+Description=RClone OneDrive (ltu) mount
+Wants=network-online.target
+After=network-online.target dbus.service systemd-user-sessions.service
+
+[Service]
+Type=notify
+NotifyAccess=all
+TimeoutStartSec=300
+ExecStartPre=/bin/sleep 10
+ExecStart=/usr/bin/rclone mount ltu: /mnt/onedrive \
+    --header "Prefer: Include-Feature=AddToOneDrive" \
+    --allow-other \
+    --vfs-cache-mode full \
+    --vfs-write-back 1s \
+    --vfs-cache-poll-interval 30s \
+    --dir-cache-time 30s \
+    --vfs-cache-max-size 2G \
+    --cache-dir /tmp/rclonecache \
+    --config %h/.config/rclone/rclone.conf \
+    --log-file /tmp/rclone.log \
+    --log-level DEBUG
+ExecStop=/bin/fusermount -uz /mnt/onedrive
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target
+
+
