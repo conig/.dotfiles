@@ -154,6 +154,10 @@ end, desc = "Start goo", noremap = true, silent = true },
         require("functions.Rfunctions").Wrap_rmd_chunk()
       end, { desc = "Wrap code under cursor in Rmd chunk" })
 
+      vim.keymap.set("n", "<leader>I", function()
+        require("functions.Rfunctions").Wrap_rmd_chunk("asis")
+      end, { desc = "Wrap code under cursor in asis Rmd chunk" })
+
       vim.keymap.set("n", "<leader>tm", function()
         require("functions.Rfunctions").SendTarMake()
       end, { desc = "Make targets" })

@@ -476,7 +476,8 @@ end
 -- end tartet definition function
 
 -- rmd block insert
-function M.Wrap_rmd_chunk()
+function M.Wrap_rmd_chunk(chunk_type)
+  chunk_type = chunk_type or "r"
   -- Notify that the function has been called (for debugging)
   vim.notify("Wrap_rmd_chunk function called", vim.log.levels.INFO)
 
@@ -491,7 +492,7 @@ function M.Wrap_rmd_chunk()
 
   -- Helper functions to identify chunk delimiters
   local function is_chunk_start(line)
-    return line:match "^```{%s*r" ~= nil
+    return line:match("^```{%s*" .. chunk_type) ~= nil
   end
 
   local function is_chunk_end(line)
@@ -534,15 +535,15 @@ function M.Wrap_rmd_chunk()
   if inside_chunk then
     vim.notify("Inside an existing R code chunk. Inserting a new chunk.", vim.log.levels.INFO)
     -- Insert a new R code chunk above the current line
-    local new_chunk = { "```{r}", "", "```" }
+    local new_chunk = { "```{" .. chunk_type .. "}", "", "```" }
     vim.api.nvim_buf_set_lines(bufnr, row, row, false, new_chunk)
     -- Move cursor inside the new chunk
     vim.api.nvim_win_set_cursor(0, { row + 1, 0 })
   else
     if is_blank(current_line) then
-      vim.notify("Current line is blank. Inserting a new R code chunk.", vim.log.levels.INFO)
+      vim.notify("Current line is blank. Inserting a new code chunk.", vim.log.levels.INFO)
       -- Insert a new R code chunk at the cursor position
-      local new_chunk = { "```{r}", "", "```" }
+      local new_chunk = { "```{" .. chunk_type .. "}", "", "```" }
       vim.api.nvim_buf_set_lines(bufnr, row, row, false, new_chunk)
       -- Move cursor inside the new chunk
       vim.api.nvim_win_set_cursor(0, { row + 1, 0 })
@@ -565,7 +566,7 @@ function M.Wrap_rmd_chunk()
       -- Insert the end delimiter first to avoid shifting lines
       vim.api.nvim_buf_set_lines(bufnr, finish, finish, false, { "```" })
       -- Insert the start delimiter
-      vim.api.nvim_buf_set_lines(bufnr, start - 1, start - 1, false, { "```{r}" })
+      vim.api.nvim_buf_set_lines(bufnr, start - 1, start - 1, false, { "```{" .. chunk_type .. "}" })
       -- Move cursor inside the wrapped chunk
       vim.api.nvim_win_set_cursor(0, { start + 1, 0 })
     end
