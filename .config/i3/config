@@ -11,6 +11,9 @@ exec --no-startup-id sh ~/.fehbg
 exec --no-startup-id pulseaudio --start
 exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
 
+# We don't need a cursor
+exec --no-startup-id xbanish
+
 # Turn on right alt compose key
 exec --no-startup-id setxkbmap -option compose:ralt
 
