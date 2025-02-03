@@ -2,11 +2,11 @@
 
 [general]
 # Import the Dracula theme
-import = ["~/.config/alacritty/themes/themes/synthwave_84.toml"]
+import = ["~/.config/alacritty/themes/themes/omni.toml"]
 
 [window]
 # Background transparency (0.0 = fully transparent, 1.0 = fully opaque)
-opacity = 0.8
+opacity = 0.6
 
 # Window dimensions in terms of terminal rows/columns
 dimensions = { columns = 80, lines = 24 }

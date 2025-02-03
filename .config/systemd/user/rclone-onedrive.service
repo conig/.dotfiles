@@ -12,14 +12,18 @@ ExecStart=/usr/bin/rclone mount ltu: /mnt/onedrive \
     --header "Prefer: Include-Feature=AddToOneDrive" \
     --allow-other \
     --vfs-cache-mode full \
-    --vfs-cache-max-size 4G \
-    --vfs-cache-poll-interval 2m \
-    --vfs-write-back 30s \
-    --dir-cache-time 10m \
+    --vfs-cache-max-size 20G \
+    --vfs-cache-poll-interval 5m \
+    --vfs-write-back 1m \
+    --buffer-size 256M \
+    --dir-cache-time 4h \
+    --attr-timeout 1h \
+    --fast-list \
+    --async-read=true \
     --cache-dir /tmp/rclonecache \
     --config %h/.config/rclone/rclone.conf \
     --log-file /tmp/rclone.log \
-    --log-level DEBUG
+    --log-level ERROR
 ExecStop=/bin/fusermount -uz /mnt/onedrive
 Restart=always
 RestartSec=10

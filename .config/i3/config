@@ -25,8 +25,8 @@ exec --no-startup-id numlockx on
 exec --no-startup-id xscreensaver -no-splash
 # Start bluetooth
 exec --no-startup-id blueman-applet
-# Start pulseaudio
-
+# Try to connect to main BT headset
+exec --no-startup-id bluetoothctl connect AC:80:0A:36:E2:1B
 # i3 config file (v4)
 set $mod Mod4
 
@@ -77,6 +77,9 @@ bindsym Print exec "flameshot gui"
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
+# Connect to headset
+bindsym $mod+b exec --no-startup-id bluetoothctl connect AC:80:0A:36:E2:1B
+
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -100,9 +103,6 @@ bindsym $mod+z split h
 
 # split in vertical orientation
 bindsym $mod+v split v
-
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -129,6 +129,12 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
+
+bindsym $mod+mod2+KP_Decimal workspace 11
+# Make workspace global
+bindsym $mod+mod2+KP_Enter exec --no-startup-id i3-msg fullscreen toggle global
+# Make workspace fullscreen asterisk
+bindsym $mod+mod2+KP_Multiply exec --no-startup-id i3-msg fullscreen toggle
 
 # Numpad also works
 bindsym $mod+mod2+KP_1 workspace 1
@@ -164,8 +170,7 @@ bindsym $mod+Shift+KP_6 move container to workspace 6
 bindsym $mod+Shift+KP_7 move container to workspace 7
 bindsym $mod+Shift+KP_8 move container to workspace 8
 bindsym $mod+Shift+KP_9 move container to workspace 9
-bindsym $mod+Shift+KP_0 move container to workspace 10<ScrollWheelDown>
-
+bindsym $mod+Shift+KP_0 move container to workspace 10
 # NOTE: This is some real tom fooliery with my keyboard layout
 #  ZMK will send a shift mod with the items that require a shift key on a
 #  regular keyboard.  so though it defines a keycode as "LEFT_BRACE" it really
@@ -289,7 +294,8 @@ bindsym $mod+y exec hints --mode scroll
 assign [class="libreoffice"] 1
 assign [title="Zotero"] 2
 assign [title="Google Chrome"] 3
-assign [title="Calendar"] 4
+assign [instance="planner.cloud.microsoft__webui_myday"] 4
+assign [instance="outlook.office.com__calendar_view_workweek"] 4
 assign [class="Alacritty"] 5
 assign [title="ChatGPT"] 6
 assign [title="Microsoft Teams"] 8
@@ -298,7 +304,7 @@ assign [title="Outlook"] 7
 # assign [class="org.gnome.Nautilus"] 10
 assign [class="R_x11"] 10
 assign [title="StarCraft"] 10
-assign [title="Windows"] 10
+assign [title="Windows"] 11
 assign [title="Creative Cloud"] 10
 assign [class="Zathura"] 10
 # Set floating windows
@@ -308,7 +314,8 @@ for_window [class="blueman-manager"] floating enable
 for_window [title="Starcraft"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="org.gnome.Nautilus"] floating enable
-for_window [title="Windows"] fullscreen
+for_window [title="Windows"] fullscreen enable
+for_window [title="Google Chrome"] fullscreen enable
 
 # Set workspace default positions
 ## Hero applications (left)
@@ -316,18 +323,22 @@ workspace 1 output HDMI-0
 workspace 5 output HDMI-0
 workspace 7 output HDMI-0
 workspace 8 output HDMI-0
+workspace 11 output HDMI-0
 # Supporting workspaces (right)
 workspace 2 output HDMI-1
 workspace 3 output HDMI-1
+workspace 4 output HDMI-1
 workspace 6 output HDMI-1
 workspace 9 output HDMI-1
 workspace 10 output HDMI-1
-
+# chrome, planner, chatgpt, TYmusic, outlook, calendar
 bindsym $mod+p exec --no-startup-id "sh -c 'google-chrome-stable & \
+          gtk-launch chrome-imjgnpfagonedjjnjaibbemmhgglmmca-Profile_5 & \
 gtk-launch chrome-cadlkienfkclaiaibeoongdcgmdikeeg-Profile_5 & \
 gtk-launch chrome-cinhimbnkkaeohfgghhklpknlkffjgod-Profile_5 & \
 gtk-launch chrome-cifhbcnohmdccbgoicgdjpfamggdegmo-Profile_5 & \
-gtk-launch chrome-faolnafnngnfdaknnbpnkhgohbobgegn-Profile_5'"
+gtk-launch chrome-faolnafnngnfdaknnbpnkhgohbobgegn-Profile_5 & \
+gtk-launch chrome-calendar-Profile_5'" 
 
 # Application display rules
 for_window [title="Microsoft Teams"] fullscreen
