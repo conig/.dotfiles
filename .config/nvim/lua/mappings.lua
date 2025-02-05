@@ -113,6 +113,18 @@ vim.api.nvim_set_keymap("n", "y", '"+y', { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "y", '"+y', { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "Y", '"+Y', { noremap = true, silent = true })
 
+-- Prioritise visual line movement as default
+-- Normal mode mappings
+vim.api.nvim_set_keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "gj", "j", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "gk", "k", { noremap = true, silent = true })
+-- Visual mode mappings
+vim.api.nvim_set_keymap("v", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "gj", "j", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "gk", "k", { noremap = true, silent = true })
+
 -- Insert mode mappings for arrow keys
 vim.api.nvim_set_keymap("i", "<Up>", "<C-o>gk", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "<Down>", "<C-o>gj", { noremap = true, silent = true })
