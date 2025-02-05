@@ -27,6 +27,23 @@ function ZoomTmuxPane()
     os.execute(tmux_zoom_command)
 end
 vim.api.nvim_set_keymap('n', '<Tab>', ':lua ZoomTmuxPane()<CR>', { noremap = true, silent = true })
+-- Allow tmux swithing in neovim
+vim.api.nvim_create_user_command("TmuxSwitch", function()
+    vim.cmd("new")  -- Open a new split for the terminal
+    local opts = {
+        on_exit = function(_, exit_code, _)
+            vim.schedule(function()
+                vim.cmd("close")
+            end)
+        end,
+    }
+    vim.fn.termopen("zsh -ic 'tmux_switch_or_cd'", opts)
+    vim.cmd("startinsert")  -- Automatically enter insert mode
+end, {})
+
+vim.keymap.set("n", "<leader>jj", function()
+    vim.cmd("execute 'TmuxSwitch'")
+end, { noremap = true, silent = true })
 
 -- map left and right arrow keys to bnext and bprev
 map("n", "<Left>", ":bprev<CR>", { noremap = true, silent = true })
