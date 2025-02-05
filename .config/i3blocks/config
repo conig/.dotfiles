@@ -1,0 +1,15 @@
+[next_meeting]
+command=/scripts/cal.py
+interval=60
+
+[wireless]
+# This block checks the state of the wireless interface wlp0s20f3.
+# If the interface is not connected, it outputs "no wifi"; otherwise, it outputs nothing.
+command=bash -c "if iw dev wlp0s20f3 link | grep -q 'Not connected'; then echo 'no wifi'; else echo ''; fi"
+interval=5
+
+[time]
+# This block displays the date and time in the specified format.
+command=date '+%Y-%m-%d %H:%M'
+interval=5
+

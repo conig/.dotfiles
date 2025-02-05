@@ -25,6 +25,9 @@ exec --no-startup-id numlockx on
 exec --no-startup-id xscreensaver -no-splash
 # Start bluetooth
 exec --no-startup-id blueman-applet
+# Set default audio level
+exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ 22%
+
 # i3 config file (v4)
 set $mod Mod4
 
