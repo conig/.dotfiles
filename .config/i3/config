@@ -324,8 +324,6 @@ for_window [title="Starcraft"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="org.gnome.Nautilus"] floating enable
 for_window [title="Windows"] fullscreen enable
-for_window [title="Google Chrome"] fullscreen enable
-for_window [title="Microsoft Teams"] fullscreen enable
 # Set workspace default positions
 ## Hero applications (left)
 workspace 1 output HDMI-0
