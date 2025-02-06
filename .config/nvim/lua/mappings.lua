@@ -29,16 +29,20 @@ end
 vim.api.nvim_set_keymap('n', '<Tab>', ':lua ZoomTmuxPane()<CR>', { noremap = true, silent = true })
 -- Allow tmux swithing in neovim
 vim.api.nvim_create_user_command("TmuxSwitch", function()
-    vim.cmd("new")  -- Open a new split for the terminal
+    vim.cmd("new")  -- open a new split for the terminal
+    local buf = vim.api.nvim_get_current_buf()  -- capture the terminal buffer number
+
     local opts = {
         on_exit = function(_, exit_code, _)
             vim.schedule(function()
-                vim.cmd("close")
+                if vim.api.nvim_buf_is_valid(buf) then
+                    vim.api.nvim_buf_delete(buf, { force = true })
+                end
             end)
         end,
     }
     vim.fn.termopen("zsh -ic 'tmux_switch_or_cd'", opts)
-    vim.cmd("startinsert")  -- Automatically enter insert mode
+    vim.cmd("startinsert")  -- automatically enter insert mode
 end, {})
 
 vim.keymap.set("n", "<leader>jj", function()
