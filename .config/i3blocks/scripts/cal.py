@@ -12,8 +12,7 @@ from datetime import datetime, timezone, timedelta
 # === CONFIGURATION ===
 
 # Replace with your actual ICS feed URL
-CACHE_FILE = '/tmp/calendar.ics'
-
+CACHE_FILE = os.path.expanduser('~/.cache/calendar/ltu.ics')
 # Fixed offset correction (ideally 0 when timezone conversion is correct)
 FIX_OFFSET_HOURS = 0
 
@@ -99,11 +98,10 @@ def parse_next_event(ics_data):
         return None, None
     upcoming.sort(key=lambda x: x[0])
     return upcoming[0]  # returns (start_time, event)
-
 def main():
     ics_data = get_ics_data()
     if not ics_data:
-        print("Error: No ICS data available")
+        print("Waiting for ics...")
         return
 
     now_utc = datetime.now(timezone.utc)
@@ -120,7 +118,7 @@ def main():
             else:
                 print(f"{meeting_name} ~{delta_minutes / 60:.1f}h")
         else:
-            print("")
+            print("🌴")
     else:
         print("")
 
