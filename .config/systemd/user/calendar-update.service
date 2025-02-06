@@ -1,0 +1,8 @@
+[Unit]
+Description=Update ICS Calendar Cache
+
+[Service]
+EnvironmentFile=%h/.config/cal/cal.env
+Type=oneshot
+ExecStart=/bin/sh -c "curl -s \"$CAL_ICS\" > %h/.cache/calendar/ltu.ics"
+
