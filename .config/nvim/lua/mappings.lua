@@ -72,7 +72,7 @@ map("n", "<leader>v", "<cmd> vsplit <cr>")
 vim.api.nvim_set_keymap(
   "n",
   "<leader>we",
-  ":silent !explorer.exe .<CR>",
+  ":silent !open . &<CR>",
   { noremap = true, silent = true, desc = "Open Windows Explorer" }
 )
 

@@ -88,6 +88,8 @@ def parse_next_event(ics_data):
     for event in cal.events:
         if event.name and event.name.lower().startswith("canceled:"):
             continue
+        # if event.name.lower().startswith("placeholder"):
+            # breakpoint()
         if getattr(event, 'status', '').upper() == 'CANCELLED':
             continue
 

@@ -5,7 +5,6 @@
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
 #
-
 # Set background image
 exec --no-startup-id sh ~/.fehbg
 exec --no-startup-id pulseaudio --start
@@ -325,6 +324,7 @@ for_window [title="Starcraft"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="org.gnome.Nautilus"] floating enable
 for_window [title="Windows"] fullscreen enable
+for_window [class="battle.net.exe"] floating enable
 # Set workspace default positions
 ## Hero applications (left)
 workspace 1 output HDMI-0
