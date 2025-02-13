@@ -17,7 +17,7 @@ ExecStart=/usr/bin/rclone mount ltu: /mnt/onedrive \
     --vfs-write-back 1m \
     --buffer-size 256M \
     --dir-cache-time 4h \
-    --attr-timeout 1h \
+    --attr-timeout 30m \
     --fast-list \
     --async-read=true \
     --cache-dir /tmp/rclonecache \
@@ -30,5 +30,3 @@ RestartSec=10
 
 [Install]
 WantedBy=default.target
-
-

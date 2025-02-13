@@ -3,6 +3,12 @@ get_gh <- function(repo) {
     glue::glue() |>
     remotes::install_git()
 }
+# data.table print settings
+options(
+  datatable.print = "pillar",
+  datatable.print.nrows = 10,
+  datatable.print.trunc.cols = TRUE
+)
 
 update_packages <- function(...) {
   d.outdated <- old.packages() |> tibble::as_tibble()
