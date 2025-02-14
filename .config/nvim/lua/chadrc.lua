@@ -4,7 +4,7 @@
 local M = {}
 
 M.base46 = {
-  theme = "bearded-arc",
+  theme = "ashes",
   transparency = true,
   hl_override = {
     DiffDelete = {
