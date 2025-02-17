@@ -10,6 +10,11 @@ options(
   datatable.print.trunc.cols = TRUE
 )
 
+get_cite <- function(pkg) {
+  citation_text <- toBibtex((citation(pkg)))
+  clipr::write_clip(citation_text)
+}
+
 update_packages <- function(...) {
   d.outdated <- old.packages() |> tibble::as_tibble()
   if (nrow(d.outdated) > 0) {
