@@ -458,17 +458,33 @@ bindkey 'fj' start_nvim
 alias we="explorer.exe ."
 
 # Fuzzy find directories up to 6 levels deep
+
 fuzzy_find_dir() {
-    local selected_dir
-
-    # Use find to list directories up to 6 levels deep and pass to fzf
-    selected_dir=$(find . -type d -maxdepth 6 2>/dev/null | fzf --pointer='▶' --preview 'ls -la {}')
-
-    if [[ -n "$selected_dir" ]]; then
-        # Change directory to the selected directory
-        cd "$selected_dir" || return
+  local selected rofi_exit
+  selected=$(find . 2>/dev/null \
+    | rofi -dmenu -i -p "Select item (Enter: open file / cd into dir, Alt+Return: cd to containing dir):" \
+        -kb-custom-1 "Alt+Return" \
+        -preview-window "right,60%,max" \
+        -preview 'if [ -d "{}" ]; then ls -la "{}"; else bat --style=numbers --color=always "{}"; fi')
+  rofi_exit=$?
+  [ -n "$selected" ] && {
+    if [ $rofi_exit -eq 0 ]; then
+      [ -d "$selected" ] && cd "$selected" || xdg-open "$selected"
+    elif [ $rofi_exit -eq 10 ]; then
+      [ -d "$selected" ] && cd "$selected" || cd "$(dirname "$selected")"
     fi
+  }
 }
+
+# Optional: Bind the function as a Zsh widget.
+zle -N fuzzy_find_dir_widget fuzzy_find_dir
+
+
+# Optional: Create a Zsh widget for key binding.
+zle -N fuzzy_find_dir_widget fuzzy_find_dir
+
+
+
 
 # Optional: Create a Zsh widget for binding to a key
 zle -N fuzzy_find_dir_widget fuzzy_find_dir
@@ -479,12 +495,12 @@ bindkey '^f' fuzzy_find_dir_widget
 
 install_neovim() {
     local version=$1
-    local url="https://github.com/neovim/neovim/releases/download/${version}/nvim-linux86_64.tar.gz"
+    local url="https://github.com/neovim/neovim/releases/download/${version}/nvim-linux-x86_64.tar.gz"
     local tmp_dir=$(mktemp -d)
 
     # Download and install Neovim
     echo "Downloading Neovim version ${version}..."
-    curl -Lo "${tmp_dir}/nvim-linux64.tar.gz" "${url}"
+    curl -Lo "${tmp_dir}/nvim-linux-x86_64.tar.gz" "${url}"
     
     if [[ $? -ne 0 ]]; then
         echo "Failed to download Neovim. Please check the version number."
@@ -492,10 +508,10 @@ install_neovim() {
     fi
     
     echo "Extracting Neovim..."
-    tar -xzvf "${tmp_dir}/nvim-linux64.tar.gz" -C "${tmp_dir}"
+    tar -xzvf "${tmp_dir}/nvim-linux-x86_64.tar.gz" -C "${tmp_dir}"
     
     echo "Installing Neovim..."
-    sudo cp -r "${tmp_dir}/nvim-linux64/"* /usr/local/
+    sudo cp -r "${tmp_dir}/nvim-linux-x86_64/"* /usr/local/
 
     # Clean up
     echo "Cleaning up..."
