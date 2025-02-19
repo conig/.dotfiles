@@ -10,6 +10,6 @@ interval=5
 
 [time]
 # This block displays the date and time in the specified format.
-command=date '+%Y-%m-%d %H:%M'
+command=date '+%b %d, %H:%M'
 interval=5
 

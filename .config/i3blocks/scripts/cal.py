@@ -112,7 +112,7 @@ def main():
         if len(meeting_name) > 15:
             meeting_name = meeting_name[:15] + "..."
         delta_minutes = int((event_start - now_utc).total_seconds() // 60)
-        if(delta_minutes < 480):
+        if(delta_minutes < 720):
             if(delta_minutes < 60):
                 print(f"{meeting_name} in {delta_minutes} mins")
             else:

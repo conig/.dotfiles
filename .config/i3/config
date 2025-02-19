@@ -258,6 +258,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the syst
 # finds out, if available)
  bar {
+        font pango:Iosevka 12
         status_command i3blocks
         i3bar_command i3bar --t
         colors {
