@@ -63,27 +63,44 @@ def get_ics_data():
     return data
 
 def get_event_start(event):
-    # We now use the parsed datetime from the ics library directly.
     dt = event.begin.datetime
-
-    # If the datetime is naive, assume it is in local time.
     if dt.tzinfo is None:
-        # Use the system's local timezone.
         local_tz = datetime.now().astimezone().tzinfo
         dt = dt.replace(tzinfo=local_tz)
-
-    # At this point dt should be timezone-aware. Convert to UTC.
     event_start = dt.astimezone(timezone.utc)
-
     if FIX_OFFSET_HOURS:
         event_start -= timedelta(hours=FIX_OFFSET_HOURS)
     return event_start
+
+def get_event_end(event):
+    dt = event.end.datetime
+    if dt.tzinfo is None:
+        local_tz = datetime.now().astimezone().tzinfo
+        dt = dt.replace(tzinfo=local_tz)
+    event_end = dt.astimezone(timezone.utc)
+    if FIX_OFFSET_HOURS:
+        event_end -= timedelta(hours=FIX_OFFSET_HOURS)
+    return event_end
+
+def parse_current_event(ics_data):
+    cal = Calendar(ics_data)
+    now_utc = datetime.now(timezone.utc)
+    for event in cal.events:
+        if event.name and event.name.lower().startswith("canceled:"):
+            continue
+        if getattr(event, 'status', '').upper() == 'CANCELLED':
+            continue
+
+        event_start = get_event_start(event)
+        event_end = get_event_end(event)
+        if event_start <= now_utc < event_end:
+            return event, event_end
+    return None, None
 
 def parse_next_event(ics_data):
     cal = Calendar(ics_data)
     now_utc = datetime.now(timezone.utc)
     upcoming = []
-
     for event in cal.events:
         if event.name and event.name.lower().startswith("canceled:"):
             continue
@@ -105,21 +122,27 @@ def main():
         return
 
     now_utc = datetime.now(timezone.utc)
+    # Check for a current meeting.
+    current_event, event_end = parse_current_event(ics_data)
+    if current_event:
+        remaining = int((event_end - now_utc).total_seconds() // 60)
+        print(f"📅 {remaining} mins")
+        return
+
+    # If no current meeting, display the next upcoming event.
     event_start, event = parse_next_event(ics_data)
-    
     if event:
         meeting_name = event.name if event.name else 'No Title'
         if len(meeting_name) > 15:
             meeting_name = meeting_name[:15] + "..."
         delta_minutes = int((event_start - now_utc).total_seconds() // 60)
-        if(delta_minutes < 720):
-            if(delta_minutes < 60):
+        if delta_minutes < 720:
+            if delta_minutes < 60:
                 print(f"{meeting_name} in {delta_minutes} mins")
             else:
                 print(f"{meeting_name} in {delta_minutes / 60:.1f} hours")
         else:
             print("🌴")
-
     else:
         print("No upcoming events")
 
