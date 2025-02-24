@@ -21,7 +21,7 @@ win_title=$(xdotool getwindowname "$win_id")
 
 # Extract the number in parentheses, if present.
 if [[ $win_title =~ \(([0-9]+)\) ]]; then
-    echo "💬 ${BASH_REMATCH[1]}"
+    echo "🔔 ${BASH_REMATCH[1]}"
 else
     echo ""
 fi

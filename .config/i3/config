@@ -302,6 +302,7 @@ bindsym $mod+y exec hints --mode scroll
 # Assign programs to windows
 assign [class="libreoffice"] 1
 assign [title="LibreOffice"] 1
+assign [class="Microsoft Word"] 1
 assign [title="Zotero"] 2
 assign [title="Google Chrome"] 3
 assign [instance="planner.cloud.microsoft__webui_myday"] 12
@@ -319,6 +320,7 @@ assign [title="Creative Cloud"] 10
 assign [class="Zathura"] 10
 # Set floating windows
 for_window [class="Zotero"] floating enable
+for_window [class="Microsoft Word"] floating enable
 for_window [class="R_x11"] floating enable
 for_window [class="blueman-manager"] floating enable
 for_window [title="Starcraft"] floating enable

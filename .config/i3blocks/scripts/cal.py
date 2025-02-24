@@ -5,6 +5,7 @@ import os
 import re
 import requests
 import pytz
+import traceback
 
 from ics import Calendar
 from datetime import datetime, timezone, timedelta
@@ -90,6 +91,8 @@ def parse_current_event(ics_data):
             continue
         if getattr(event, 'status', '').upper() == 'CANCELLED':
             continue
+        if event.all_day:  # Exclude all-day events
+            continue
 
         event_start = get_event_start(event)
         event_end = get_event_end(event)
@@ -105,6 +108,8 @@ def parse_next_event(ics_data):
         if event.name and event.name.lower().startswith("canceled:"):
             continue
         if getattr(event, 'status', '').upper() == 'CANCELLED':
+            continue
+        if event.all_day:  # Exclude all-day events
             continue
 
         event_start = get_event_start(event)
@@ -126,7 +131,7 @@ def main():
     current_event, event_end = parse_current_event(ics_data)
     if current_event:
         remaining = int((event_end - now_utc).total_seconds() // 60)
-        print(f"📅 {remaining} mins")
+        print(f"⏳ {remaining} mins")
         return
 
     # If no current meeting, display the next upcoming event.

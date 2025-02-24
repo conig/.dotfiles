@@ -462,7 +462,7 @@ alias we="explorer.exe ."
 fuzzy_find_dir() {
   local selected rofi_exit
   selected=$(find . 2>/dev/null \
-    | rofi -dmenu -i -p "Select item (Enter: open file / cd into dir, Alt+Return: cd to containing dir):" \
+    | rofi -dmenu -i -p "Enter: open, Alt+Return: cd parent:" \
         -kb-custom-1 "Alt+Return" \
         -preview-window "right,60%,max" \
         -preview 'if [ -d "{}" ]; then ls -la "{}"; else bat --style=numbers --color=always "{}"; fi')
