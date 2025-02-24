@@ -1,5 +1,10 @@
+
 [next_meeting]
 command=~/.config/i3blocks/scripts/cal.py
+interval=60
+
+[teams_messages]
+command=~/.config/i3blocks/scripts/teams_messages.sh
 interval=60
 
 [wireless]
