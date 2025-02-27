@@ -58,6 +58,16 @@ vim.api.nvim_create_autocmd("BufEnter", {
     end,
 })
 
+-- open .html in browser
+vim.api.nvim_create_autocmd('BufReadPost', {
+  pattern = '*.html',
+  callback = function()
+    local file = vim.fn.expand('%:p')  -- Get the full file path
+    vim.fn.jobstart({'xdg-open', file}, {detach = true})  -- Opens file in your default browser (use 'open' on macOS or adjust for Windows)
+    vim.cmd('bdelete!')  -- Closes the buffer
+  end,
+})
+
 
 --Don't worry about meta-data updates on /mnt/onedrive/
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
