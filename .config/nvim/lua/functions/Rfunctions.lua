@@ -13,7 +13,7 @@ end
 function M.R_restart()
   send_to_r_console "try(Q, silent = TRUE)"
   send_to_r_console "q()"
-  send_to_r_console "clear && R"
+  send_to_r_console "clear && r"
 end
 
 function M.knit_render()

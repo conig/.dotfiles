@@ -24,6 +24,11 @@ interval=60
 command=~/.config/i3blocks/scripts/weather.py
 interval=60
 
+[timers]
+# Displays any timers in operation
+command=timers
+interval=20
+
 [time]
 # This block displays the date and time in the specified format.
 command=date '+%b %d, %H:%M'

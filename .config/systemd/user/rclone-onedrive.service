@@ -13,11 +13,11 @@ ExecStart=/usr/bin/rclone mount ltu: /mnt/onedrive \
     --allow-other \
     --vfs-cache-mode full \
     --vfs-cache-max-size 20G \
-    --vfs-cache-poll-interval 20s \
-    --vfs-write-back 10s \
+    --vfs-cache-poll-interval 5s \
+    --vfs-write-back 5s \
     --buffer-size 256M \
-    --dir-cache-time 4h \
-    --attr-timeout 30m \
+    --dir-cache-time 30s \
+    --attr-timeout 5s \
     --fast-list \
     --async-read=true \
     --cache-dir /tmp/rclonecache \

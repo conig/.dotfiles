@@ -35,5 +35,9 @@ else:
     temperature = data["main"]["temp"]
     humidity = data["main"]["humidity"]
 
-    humidity_output = f" 💧{humidity}%" if humidity < 60 else ""
-    print(f"{weather_emoji} {temperature:.0f}°C{humidity_output}")
+    # Only show the weather emoji and temperature if the temperature exceeds 34°C.
+    temp_display = f"{weather_emoji} {temperature:.0f}°C" if temperature > 24 else ""
+    # Humidity is shown separately if it is below 45%.
+    humidity_display = f" 💧{humidity}%" if humidity < 45 else ""
+    
+    print(f"{temp_display}{humidity_display}")

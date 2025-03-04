@@ -51,7 +51,7 @@ options(help_type = "html")
 
 .First <- function() {
   if (interactive()) {
-    message(paste0(crayon::yellow(R.version.string), "\n", crayon::silver(R.Version()$nickname, "󰌪")))
+    message(paste0(crayon::yellow(R.version.string), "\n", crayon::silver(R.Version()$nickname, "🎖️")))
   }
 }
 options(prompt = "\033[34m󰅂 \033[0m")
@@ -71,7 +71,7 @@ if (interactive()) {
     i3_socket <- system("i3 --get-socketpath", intern = TRUE)
     active_ws <- system(sprintf("i3-msg -s %s -t get_workspaces | jq -r '.[] | select(.focused==true).name'", i3_socket), intern = TRUE)
     i3_plot <- function(...) {
-      system(sprintf("i3-msg -s %s workspace 10", i3_socket), intern = TRUE)
+      system(sprintf("i3-msg -s %s workspace pl", i3_socket), intern = TRUE)
       grDevices::x11(...)
       system(glue::glue("i3-msg -s {i3_socket} workspace 5"), intern = TRUE)
     }
