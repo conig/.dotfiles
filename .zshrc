@@ -544,29 +544,31 @@ store_pwd() {
   echo "Added $PWD to static directories."
 }
 
+rm() {
+  local skip_options=0
+  local arg canon
+  for arg in "$@"; do
+    if [ "$arg" = "--" ]; then
+      skip_options=1
+      continue
+    fi
+    if [ $skip_options -eq 0 ] && [[ "$arg" == -* ]]; then
+      continue
+    fi
+    # Attempt to get the canonical path.
+    canon=$(readlink -f "$arg" 2>/dev/null)
+    if [ -z "$canon" ]; then
+      canon="$arg"
+    fi
+    if [ "$canon" = "/" ]; then
+      echo "Error: Attempted to delete the root directory! Operation blocked."
+      return 1
+    fi
+  done
+  command rm --preserve-root "$@"
+}
+
 alias wmclass="xprop | grep WM_CLASS"
 alias winstart="docker compose --file ~/.config/winapps/compose.yaml start"
 alias winstop="docker compose --file ~/.config/winapps/compose.yaml stop"
 alias winrestart="docker compose --file ~/.config/winapps/compose.yaml restart"
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/home/conig/.lmstudio/bin"
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
