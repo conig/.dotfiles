@@ -1,6 +1,7 @@
 
 [Unit]
 Description=Run calendar-update.service every 10 minutes
+After=graphical.target
 
 [Timer]
 OnBootSec=5min

@@ -20,6 +20,9 @@ alias dce='devcontainer exec --workspace-folder . zsh'
 # Enable command auto-correction
 ENABLE_CORRECTION="true"
 
+# Enable accesibility for chrome
+export CHROME_ACCESSIBILITY=1
+
 # Don't put duplicate lines or lines starting with space in the history.
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
@@ -461,11 +464,16 @@ alias we="explorer.exe ."
 
 fuzzy_find_dir() {
   local selected rofi_exit
-  selected=$(find . 2>/dev/null \
-    | rofi -dmenu -i -p "Enter: open, Alt+Return: cd parent:" \
+  selected=$(fdfind --hidden --no-ignore --type d --type f --regex '.*' 2>/dev/null \
+| rofi -dmenu -i -p "Enter: open, Alt+Return: cd parent:" \
         -kb-custom-1 "Alt+Return" \
+        -matching regex \
+        -lines 40 -width 100 \
+        -font "monospace 8" \
+        -filter '' \
         -preview-window "right,60%,max" \
         -preview 'if [ -d "{}" ]; then ls -la "{}"; else bat --style=numbers --color=always "{}"; fi')
+
   rofi_exit=$?
   [ -n "$selected" ] && {
     if [ $rofi_exit -eq 0 ]; then
@@ -475,6 +483,8 @@ fuzzy_find_dir() {
     fi
   }
 }
+
+
 
 # Optional: Bind the function as a Zsh widget.
 zle -N fuzzy_find_dir_widget fuzzy_find_dir
@@ -545,8 +555,25 @@ store_pwd() {
 }
 
 rm() {
+  local is_recursive=0
   local skip_options=0
-  local arg canon
+  local arg
+
+  # First pass: Check if any option enables recursion.
+  for arg in "$@"; do
+    if [ "$arg" = "--" ]; then
+      skip_options=1
+      continue
+    fi
+    if [ $skip_options -eq 0 ] && [[ "$arg" == -* ]]; then
+      if [[ "$arg" == *r* || "$arg" == *R* ]]; then
+        is_recursive=1
+      fi
+    fi
+  done
+
+  skip_options=0
+  # Second pass: Check each non-option argument.
   for arg in "$@"; do
     if [ "$arg" = "--" ]; then
       skip_options=1
@@ -555,16 +582,21 @@ rm() {
     if [ $skip_options -eq 0 ] && [[ "$arg" == -* ]]; then
       continue
     fi
-    # Attempt to get the canonical path.
+
+    # Resolve the canonical path.
+    local canon
     canon=$(readlink -f "$arg" 2>/dev/null)
     if [ -z "$canon" ]; then
       canon="$arg"
     fi
-    if [ "$canon" = "/" ]; then
-      echo "Error: Attempted to delete the root directory! Operation blocked."
+
+    # If the canonical path is exactly "/mnt" and recursive deletion is enabled, block it.
+    if [ "$canon" = "/mnt" ] && [ "$is_recursive" -eq 1 ]; then
+      echo "Error: Attempted recursive deletion of /mnt directory! Operation blocked."
       return 1
     fi
   done
+
   command rm --preserve-root "$@"
 }
 

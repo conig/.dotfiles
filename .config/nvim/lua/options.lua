@@ -21,6 +21,11 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Disable swap & backup to prevent disk I/O lag
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.writebackup = false
+
 -- general options
 vim.opt.relativenumber = true
 vim.opt.showcmd = false

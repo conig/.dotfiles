@@ -5,4 +5,6 @@ Description=Update ICS Calendar Cache
 EnvironmentFile=%h/.config/cal/cal.env
 Type=oneshot
 ExecStart=/bin/sh -c "curl -s \"$CAL_ICS\" > %h/.cache/calendar/ltu.ics"
+Restart=on-failure
+RestartSec=5
 

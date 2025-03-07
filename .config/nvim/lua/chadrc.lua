@@ -4,8 +4,8 @@
 local M = {}
 
 M.base46 = {
-  theme = "synthwave84",
-  transparency = false,
+  theme = "everforest",
+  transparency = true,
   hl_override = {
     DiffDelete = {
       -- bg = "dark_purple",
@@ -14,7 +14,7 @@ M.base46 = {
   },
 }
 M.nvdash = {
-  load_on_startup = true,
+  load_on_startup = false,
   header = {
     "░░░░░░░░░░░░░░▄▌░░░",
     "░░░░░░░▄▄▄░░▄██▄░░░",

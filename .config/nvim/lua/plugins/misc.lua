@@ -169,6 +169,7 @@ return {
         ensure_installed = { "markdown",
         "html",
         "latex",
+        "lua",
         "markdown",
         "yaml",
         "markdown_inline",

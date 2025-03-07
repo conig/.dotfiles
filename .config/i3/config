@@ -302,7 +302,7 @@ bindsym $mod+Shift+period exec systemctl suspend
 # Hints setup
 exec_always for id in $(xinput list | grep "ydotool.*pointer" | cut -d '=' -f 2 | cut -f 1); do xinput --set-prop $id 'libinput Accel Profile Enabled' 0, 1; done
 bindsym Mod1+Tab exec hints
-bindsym $mod+y exec hints --mode scroll
+bindsym $mod+i exec hints --mode scroll
 # Assign programs to windows
 assign [class="libreoffice"] 1
 assign [title="LibreOffice"] 1

@@ -7,7 +7,7 @@ return {
 		dependencies = {
 			{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" }, -- LSP completion source
 			{ "hrsh7th/cmp-path", after = "nvim-cmp" }, -- Path completion source
-			{ "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
+			-- { "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
 			-- Add other sources if needed
 		},
 		config = function()
@@ -15,6 +15,11 @@ return {
 
 			-- Default setup for all filetypes
 			cmp.setup({
+        performance = {
+          max_view_entries = 5,
+          debounce = 100,
+          fetching_timeout = 100,
+        },
 				sources = {
 					{ name = "nvim_lsp" },
 					{ name = "path" },
