@@ -14,7 +14,7 @@ M.base46 = {
   },
 }
 M.nvdash = {
-  load_on_startup = false,
+  load_on_startup = true,
   header = {
     "░░░░░░░░░░░░░░▄▌░░░",
     "░░░░░░░▄▄▄░░▄██▄░░░",
@@ -44,12 +44,11 @@ M.telescope = {
 M.ui = {
   tabufline = {
     enabled = true,
-    modules = nil,
     order = { "treeOffset", "buffers", "tabs" },
   },
   statusline = {
     enabled = true,
-    theme = "vscode", -- default/vscode/vscode_colored/minimal,
+    theme = "vscode_colored", -- default/vscode/vscode_colored/minimal,
     separator_style = "block", -- block/arrow/round/
     order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "cursor", "cwd" },
     modules = {

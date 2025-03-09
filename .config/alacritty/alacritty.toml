@@ -2,7 +2,7 @@
 
 [general]
 # Import the Dracula theme
-import = ["~/.config/alacritty/themes/themes/omni.toml"]
+import = ["~/.config/alacritty/themes/themes/iris.toml"]
 
 [window]
 # Background transparency (0.0 = fully transparent, 1.0 = fully opaque)

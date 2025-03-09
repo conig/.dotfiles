@@ -3,7 +3,7 @@ return {
 		"hrsh7th/nvim-cmp",
 		lazy = true,
 		event = { "BufReadPost", "BufNewFile" },
-		keys = { ":" },
+    enabled = true,
 		dependencies = {
 			{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" }, -- LSP completion source
 			{ "hrsh7th/cmp-path", after = "nvim-cmp" }, -- Path completion source
@@ -17,8 +17,16 @@ return {
 			cmp.setup({
         performance = {
           max_view_entries = 5,
-          debounce = 100,
+          debounce = 1000,
+          throttle = 400,
           fetching_timeout = 100,
+        },
+        matching = {
+          disallow_fuzzy_matching = true,
+          disallow_fullfuzzy_matching = true,
+          disallow_partial_fuzzy_matching = true,
+          disallow_partial_matching = false,
+          disallow_prefix_unmatching = true,
         },
 				sources = {
 					{ name = "nvim_lsp" },
