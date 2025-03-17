@@ -113,6 +113,7 @@ vim.keymap.set("n", "<leader>s.", function()
 		end_line = vim.fn.line("$")
 	end
 	vim.cmd(string.format("%d,%ds/\\.\\s\\?/\\.\\r/g", start_line, end_line))
+  vim.cmd("nohlsearch")
 end, { noremap = true, silent = true })
 
 -- Substitute commas with comma + newline
@@ -126,6 +127,8 @@ vim.keymap.set("n", "<leader>s,", function()
 		end_line = vim.fn.line("$")
 	end
 	vim.cmd(string.format("%d,%ds/,\\s\\?/,\\r/g", start_line, end_line))
+  vim.cmd("nohlsearch")
+
 end, { noremap = true, silent = true })
 
 -- Helper function to map paste commands to a specific register

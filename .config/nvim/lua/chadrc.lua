@@ -4,7 +4,7 @@
 local M = {}
 
 M.base46 = {
-  theme = "monekai",
+  theme = "falcon",
   transparency = false,
   hl_override = {
     DiffDelete = {
