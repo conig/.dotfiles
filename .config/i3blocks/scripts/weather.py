@@ -3,7 +3,7 @@
 import os
 import requests
 from dotenv import load_dotenv
-
+from datetime import datetime
 # Load environment variables from a centralised .env file.
 dotenv_path = os.path.expanduser('~/.config/owm/owm.env')
 load_dotenv(dotenv_path)
@@ -31,13 +31,27 @@ else:
         weather_emoji = "❄️"
     else:
         weather_emoji = "🌡️"
-    
+
     temperature = data["main"]["temp"]
     humidity = data["main"]["humidity"]
 
-    # Only show the weather emoji and temperature if the temperature exceeds 34°C.
-    temp_display = f"{weather_emoji} {temperature:.0f}°C" if temperature > 24 else ""
-    # Humidity is shown separately if it is below 45%.
-    humidity_display = f"💧{humidity}%" if humidity < 45 else ""
-    
+    # Determine current month and season logic
+    month = datetime.now().month
+    if month in [12, 1, 2]:  # Summer
+        season = "summer"
+        display = temperature < 20
+    elif month in [3, 4, 5]:  # Autumn
+        season = "autumn"
+        display = temperature < 20
+    elif month in [6, 7, 8]:  # Winter
+        season = "winter"
+        display = temperature > 18
+    else:  # Spring
+        season = "spring"
+        display = temperature > 18
+
+    # Decide whether to display temp
+    temp_display = f"{weather_emoji} {temperature:.0f}°C" if display else ""
+    humidity_display = f"💧{humidity}%" if humidity < 50 else ""
+
     print(f"{temp_display}{humidity_display}")
