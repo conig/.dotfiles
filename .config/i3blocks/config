@@ -1,3 +1,6 @@
+[R_update]
+command=~/.config/i3blocks/scripts/R_update.sh
+interval=21600
 
 [next_meeting]
 command=~/.config/i3blocks/scripts/cal.py
@@ -6,11 +9,11 @@ interval=60
 [timers]
 # Displays any timers in operation
 command=timers
-interval=60
+interval=20
 
 [teams_messages]
 command=~/.config/i3blocks/scripts/teams_messages.sh
-interval=60
+interval=20
 
 [wireless]
 # This block checks the state of the wireless interface wlp0s20f3.
@@ -33,5 +36,5 @@ interval=60
 [time]
 # This block displays the date and time in the specified format.
 command=date '+%b %d, %H:%M'
-interval=60
+interval=20
 

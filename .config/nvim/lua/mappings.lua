@@ -19,6 +19,12 @@ end, { desc = "Open files in the current working directory" })
 vim.keymap.set("n", "<leader>rP", function()
 	vim.fn.jobstart({ vim.o.shell, "-c", "feh ./.last_Rplot.png" }, { detach = true })
 end, { desc = "Open last plot with gthumb" })
+--  leader l triggers lazy sync
+vim.keymap.set("n", "<leader>ls", function()
+  -- First, run Lazy sync
+  vim.cmd("Lazy sync")
+  -- Then, open lazygit
+end, { desc = "Lazy sync" })
 
 -- Remove browser()
 map(

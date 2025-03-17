@@ -183,22 +183,35 @@ return {
       }
     end,
   },
-  {
-    "HiPhish/rainbow-delimiters.nvim",
-    config = function()
-      vim.g.rainbow_delimiters = {
-        highlight = {
-          "RainbowDelimiterCyan",
-          "RainbowDelimiterViolet",
-          "RainbowDelimiterGreen",
-          "RainbowDelimiterOrange",
-          "RainbowDelimiterBlue",
-          "RainbowDelimiterYellow",
-          "RainbowDelimiterRed",
-        },
-      }
-    end,
-  },
+{
+  "HiPhish/rainbow-delimiters.nvim",
+  ft = {"r", "rmd", "quarto","lua"},
+  config = function()
+    require('rainbow-delimiters.setup').setup({
+      strategy = {
+        [''] = require('rainbow-delimiters').strategy['global'],
+        vim = require('rainbow-delimiters').strategy['local'],
+      },
+      query = {
+        [''] = 'rainbow-delimiters',
+        lua = 'rainbow-blocks',
+      },
+      priority = {
+        [''] = 110,
+        lua = 210,
+      },
+      highlight = {
+        'RainbowDelimiterRed',
+        'RainbowDelimiterYellow',
+        'RainbowDelimiterBlue',
+        'RainbowDelimiterOrange',
+        'RainbowDelimiterGreen',
+        'RainbowDelimiterViolet',
+        'RainbowDelimiterCyan',
+      },
+    })
+  end,
+},
   {
     "stevearc/conform.nvim",
     enabled = true,

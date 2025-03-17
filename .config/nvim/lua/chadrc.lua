@@ -4,8 +4,8 @@
 local M = {}
 
 M.base46 = {
-  theme = "everforest",
-  transparency = true,
+  theme = "monekai",
+  transparency = false,
   hl_override = {
     DiffDelete = {
       -- bg = "dark_purple",

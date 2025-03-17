@@ -63,7 +63,7 @@ return {
 					enabled = true,
 					auto_trigger = true, -- Enables auto-suggestions
 					hide_during_completion = true,
-					debounce = 350,
+					debounce = 150,
 					keymap = {
 						accept = "<C-a>", -- Accept Copilot suggestion with Ctrl + A
 						accept_word = false,

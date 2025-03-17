@@ -333,6 +333,7 @@ for_window [class="org.gnome.Nautilus"] floating enable
 for_window [title="Windows"] fullscreen enable
 for_window [class="battle.net.exe"] floating enable
 for_window [class="org.gnome.Characters"] floating enable
+for_window [class="Blueman-applet"] kill
 # Set workspace default positions
 ## Hero applications (left)
 workspace 1 output HDMI-0
