@@ -84,7 +84,7 @@ vim.api.nvim_set_keymap(
 	"n",
 	"<leader>we",
 	":silent !open . &<CR>",
-	{ noremap = true, silent = true, desc = "Open Windows Explorer" }
+	{ noremap = true, silent = true, desc = "Open Files Explorer" }
 )
 
 -- Toggle completions

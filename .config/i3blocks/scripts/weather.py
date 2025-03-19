@@ -37,9 +37,9 @@ else:
     # Determine current season and set temperature thresholds
     month = datetime.now().month
     if month in [12, 1, 2]:  # Summer
-        display = temperature < 20 or temperature > 30
+        display = temperature < 22 or temperature > 25
     elif month in [3, 4, 5]:  # Autumn
-        display = temperature < 10 or temperature > 25
+        display = temperature < 15 or temperature > 25
     elif month in [6, 7, 8]:  # Winter
         display = temperature < 3 or temperature > 18
     else:  # Spring
@@ -50,7 +50,7 @@ else:
         display = True
 
     # Build display strings
-    temp_display = f"{weather_emoji}{temperature:.0f}°C" if display else ""
+    temp_display = f"{weather_emoji} {temperature:.0f}°C" if display else ""
     humidity_display = f"💧{humidity}%" if humidity < 45 or humidity > 80 else ""
     wind_display = f"🌬️{wind}km/h" if wind > 30 else ""
 
