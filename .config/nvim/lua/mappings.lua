@@ -83,7 +83,7 @@ map("n", "<leader>v", "<cmd> vsplit <cr>")
 vim.api.nvim_set_keymap(
 	"n",
 	"<leader>we",
-	":silent !open . &<CR>",
+	":silent !thunar . &<CR>",
 	{ noremap = true, silent = true, desc = "Open Files Explorer" }
 )
 
@@ -104,32 +104,34 @@ vim.keymap.del("n", "<leader>h") -- Unmaps <leader>e in normal mode
 
 -- Substitute periods with period + newline
 vim.keymap.set("n", "<leader>s.", function()
-	local start_line = vim.fn.search("^$", "bnW")
-	local end_line = vim.fn.search("^$", "nW")
-	if start_line == 0 then
-		start_line = 1
-	end
-	if end_line == 0 then
-		end_line = vim.fn.line("$")
-	end
-	vim.cmd(string.format("%d,%ds/\\.\\s\\?/\\.\\r/g", start_line, end_line))
+  local start_line = vim.fn.search("^$", "bnW")
+  local end_line = vim.fn.search("^$", "nW")
+  if start_line == 0 then
+    start_line = 1
+  end
+  if end_line == 0 then
+    end_line = vim.fn.line("$")
+  end
+  -- Match period followed by exactly one space
+  vim.cmd(string.format("%d,%ds/\\.\\s/\\.\\r/g", start_line, end_line))
   vim.cmd("nohlsearch")
 end, { noremap = true, silent = true })
 
 -- Substitute commas with comma + newline
-vim.keymap.set("n", "<leader>s,", function()
-	local start_line = vim.fn.search("^$", "bnW")
-	local end_line = vim.fn.search("^$", "nW")
-	if start_line == 0 then
-		start_line = 1
-	end
-	if end_line == 0 then
-		end_line = vim.fn.line("$")
-	end
-	vim.cmd(string.format("%d,%ds/,\\s\\?/,\\r/g", start_line, end_line))
+vim.keymap.set("n", "<leader>s,",function()
+  local start_line = vim.fn.search("^$", "bnW")
+  local end_line = vim.fn.search("^$", "nW")
+  if start_line == 0 then
+    start_line = 1
+  end
+  if end_line == 0 then
+    end_line = vim.fn.line("$")
+  end
+  -- Match comma followed by exactly one space
+  vim.cmd(string.format("%d,%ds/,\\s/,\\r/g", start_line, end_line))
   vim.cmd("nohlsearch")
-
-end, { noremap = true, silent = true })
+end
+, { noremap = true, silent = true })
 
 -- Helper function to map paste commands to a specific register
 local function map_paste(mode, keys, register, command)
