@@ -337,111 +337,82 @@ if [ -z "$TMUX" ] && [ -n "$TERM" ] && [ "$TERM" != "linux" ]; then
 fi
 
 # Function to select or create a tmux session based on a directory
-tmux_switch_or_cd() {
-    # Function to switch tmux sessions or navigate directories based on context
 
+tmux_switch_or_cd() {
     # Determine the selected directory
     if [[ $# -eq 1 ]]; then
         selected="$1"
     else
-        # Paths to the external configuration files
         static_dirs_file=~/.project_static_dirs
         dynamic_dirs_file=~/.project_dynamic_dirs
-
-        # Arrays to hold static and dynamic directories
         static_dirs=()
         dynamic_dirs=()
 
-        # Function to strip surrounding quotes
         strip_quotes() {
             local str="$1"
-            # Remove leading and trailing double quotes
-            str="${str%\"}"
-            str="${str#\"}"
-            # Remove leading and trailing single quotes
-            str="${str%\'}"
-            str="${str#\'}"
+            str="${str%\"}"; str="${str#\"}"
+            str="${str%\'}"; str="${str#\'}"
             echo "$str"
         }
 
-        # Read the static directories file if it exists
         if [[ -f "$static_dirs_file" ]]; then
             while IFS= read -r line; do
-                # Strip quotes and skip comments and empty lines
                 [[ "$line" =~ ^#.*$ || -z "$line" ]] && continue
                 line=$(strip_quotes "$line")
                 static_dirs+=("$line")
             done < "$static_dirs_file"
         else
-            # Default static directories if the file does not exist
             static_dirs=(~ ~/.config/nvim ~/repos)
         fi
 
-        # Read the dynamic directories file if it exists
         if [[ -f "$dynamic_dirs_file" ]]; then
             while IFS= read -r line; do
-                # Strip quotes and skip comments and empty lines
                 [[ "$line" =~ ^#.*$ || -z "$line" ]] && continue
                 line=$(strip_quotes "$line")
                 dynamic_dirs+=("$line")
             done < "$dynamic_dirs_file"
         else
-            # Default dynamic directories if the file does not exist
             dynamic_dirs=(~/)
         fi
 
         selected=$( (
-            # Print static directories first
             printf "%s\n" "${static_dirs[@]}"
-
-            # Add dynamic directories using find, with explicit path expansion
             for dir in "${dynamic_dirs[@]}"; do
-                # Expand ~ to $HOME
                 expanded_dir="${dir/#\~/$HOME}"
-                # Check if the directory exists before running find
                 if [[ -d "$expanded_dir" ]]; then
                     find "$expanded_dir" -mindepth 1 -maxdepth 1 -type d ! -path "$HOME/.config" -print
-                else
-                    echo "Warning: Directory '$expanded_dir' does not exist." >&2
                 fi
             done
         ) | fzf --pointer='▶')
 
-        # Exit if no selection was made
         if [[ -z "$selected" ]]; then
             return 0
         fi
     fi
 
-    # Expand ~ to $HOME in selected path
     expanded_selected="${selected/#\~/$HOME}"
-
-    # Extract the basename of the selected directory to use as session name
     session_name=$(basename "$expanded_selected")
-    session_name="${session_name// /_}"   # Convert spaces to underscores
-    # Replace periods with underscores in the session name
+    session_name="${session_name// /_}"
     session_name="${session_name//./_}"
 
-    # If inside tmux, switch sessions or create a new one
-    if [[ -n "$TMUX" ]]; then
-        # Use the '=' prefix to specify the session name exactly
-        if tmux has-session -t "=$session_name" 2>/dev/null; then
-            # Switch to the existing session
-            tmux switch-client -t "=$session_name"
-        else
-            # Create a new session with the selected directory as the starting directory
-            tmux new-session -s "$session_name" -c "$expanded_selected" -d
-            # Switch to the new session
-            tmux switch-client -t "=$session_name"
-        fi
+if [[ -n "$TMUX" ]]; then
+    if tmux has-session -t "=$session_name" 2>/dev/null; then
+        tmux switch-client -t "=$session_name"
     else
-        # If not inside tmux, simply change to the selected directory
-        cd "$expanded_selected" || {
-            echo "Error: Directory '$expanded_selected' does not exist or cannot be accessed." >&2
-            return 1
-        }
+        tmux new-session -s "$session_name" -c "$expanded_selected" -d
+        tmux switch-client -t "=$session_name"
     fi
+    # Always cd in active pane
+    tmux send-keys "cd '$expanded_selected'" C-m
+    tmux send-keys "clear" C-m
+else
+    cd "$expanded_selected" || {
+        echo "Error: Directory '$expanded_selected' does not exist or cannot be accessed." >&2
+        return 1
+    }
+fi
 }
+
 # Bind Ctrl-p to the tmux-switch function
 # Create the Zsh widget
 zle -N tmux-switch-widget tmux_switch_or_cd
