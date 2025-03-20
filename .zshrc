@@ -396,16 +396,24 @@ tmux_switch_or_cd() {
     session_name="${session_name//./_}"
 
 if [[ -n "$TMUX" ]]; then
+    current_session=$(tmux display-message -p '#S')
+
     if tmux has-session -t "=$session_name" 2>/dev/null; then
-        tmux switch-client -t "=$session_name"
+        if [[ "$current_session" == "$session_name" ]]; then
+            # Same session: reset directory
+            tmux send-keys "cd '$expanded_selected'" C-m
+            tmux send-keys "clear" C-m
+        else
+            # Different session: switch
+            tmux switch-client -t "=$session_name"
+        fi
     else
+        # New session
         tmux new-session -s "$session_name" -c "$expanded_selected" -d
         tmux switch-client -t "=$session_name"
     fi
-    # Always cd in active pane
-    tmux send-keys "cd '$expanded_selected'" C-m
-    tmux send-keys "clear" C-m
 else
+    # Outside tmux, cd normally
     cd "$expanded_selected" || {
         echo "Error: Directory '$expanded_selected' does not exist or cannot be accessed." >&2
         return 1
