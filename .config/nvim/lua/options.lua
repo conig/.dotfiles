@@ -4,6 +4,18 @@ vim.treesitter.language.register("markdown", "txt")
 vim.treesitter.language.register("bash", "zsh")
 vim.treesitter.language.register("markdown", "rmd")
 -- add yours here!
+vim.g.clipboard = {
+  name = 'wl-clipboard',
+  copy = {
+    ['+'] = 'wl-copy',
+    ['*'] = 'wl-copy',
+  },
+  paste = {
+    ['+'] = 'wl-paste',
+    ['*'] = 'wl-paste',
+  },
+  cache_enabled = 0,
+}
 
 local o = vim.o
 o.cursorlineopt = "both" -- to enable cursorline!
