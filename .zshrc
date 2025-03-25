@@ -527,7 +527,7 @@ vaultpush() {
     git -C "$vault_dir" push
 }
 
-store_pwd() {
+store_wd() {
   local file="$HOME/.project_static_dirs"
   echo "$PWD" >> "$file"
   echo "Added $PWD to static directories."

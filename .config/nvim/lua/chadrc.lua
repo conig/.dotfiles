@@ -4,7 +4,7 @@
 local M = {}
 
 M.base46 = {
-  theme = "gruvbox",
+  theme = "synthwave84",
   transparency = false,
   hl_override = {
     DiffDelete = {

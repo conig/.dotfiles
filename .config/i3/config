@@ -8,7 +8,7 @@
 # Set background image
 exec --no-startup-id sh ~/.fehbg
 exec --no-startup-id pulseaudio --start
-exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
+# exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
 
 # It would be nice if clipboard were reliable
 exec --no-startup-id parcellite
@@ -20,7 +20,7 @@ exec --no-startup-id xbanish
 exec --no-startup-id setxkbmap -option compose:ralt
 
 # Turn on VPN
-exec --no-startup-id nordvpn connect
+exec --no-startup-id nordvpn connect Australia Sydney
 # Turn on numlock
 exec --no-startup-id numlockx on
 # Enable screensaver
@@ -29,6 +29,8 @@ exec --no-startup-id xscreensaver -no-splash
 exec --no-startup-id blueman-applet
 # Set default audio level
 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ 22%
+# Start qbittorrent
+exec --no-startup-id qbittorrent
 
 # i3 config file (v4)
 set $mod Mod4
@@ -141,7 +143,7 @@ bindsym $mod+mod2+KP_Decimal workspace 11
 bindsym $mod+mod2+KP_Enter exec --no-startup-id i3-msg fullscreen toggle global
 # Make workspace fullscreen asterisk
 bindsym $mod+mod2+KP_Multiply workspace pl
-
+bindsym $mod+mod2+KP_Divide workspace q
 # Numpad also works
 bindsym $mod+mod2+KP_1 workspace 1
 bindsym $mod+mod2+KP_2 workspace 2
@@ -263,7 +265,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the syst
 # finds out, if available)
  bar {
-        font pango:Iosevka 12
+        font pango:Iosevka Nerd Font Mono 12
         status_command ~/.config/i3blocks/start_i3blocks.sh
         i3bar_command i3bar --t
         tray_output none
@@ -303,8 +305,8 @@ bindsym $mod+Shift+period exec systemctl suspend
 
 # Hints setup
 exec_always for id in $(xinput list | grep "ydotool.*pointer" | cut -d '=' -f 2 | cut -f 1); do xinput --set-prop $id 'libinput Accel Profile Enabled' 0, 1; done
-bindsym Mod1+Tab exec hints
-bindsym $mod+i exec hints --mode scroll
+bindsym Mod1+Tab exec hints 
+bindsym $mod+i exec --no-startup-idd hints --mode scroll
 # Assign programs to windows
 assign [class="libreoffice"] 1
 assign [title="LibreOffice"] 1
@@ -318,6 +320,7 @@ assign [title="ChatGPT"] 6
 assign [title="Microsoft Teams"] 8
 assign [title="YouTube Music"] 9
 assign [title="Outlook"] 7
+assign [class="qBittorrent"] "q"
 # assign [class="org.gnome.Nautilus"] 10
 assign [class="R_x11"] pl
 assign [title="StarCraft"] 10

@@ -6,11 +6,10 @@ return {
 		build = "make",
 		opts = {
 			provider = "copilot",
+      copilot = {
+        disable_tools = false,
+      },
 			hints = { enabled = false },
-			-- add any opts here
-			-- copilot = {
-			-- model = "claude-3.5-sonnet",
-			-- },
 		},
 		dependencies = {
 			"stevearc/dressing.nvim",
