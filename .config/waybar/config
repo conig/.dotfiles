@@ -23,7 +23,7 @@
     "exec": "~/.config/i3blocks/scripts/cal.py",
     "interval": 60,
     "return-type": "plain",
-    "format": "{} | ",
+    "format": "{} <span color='#888888'>|</span> ",
     "format-empty": ""
   },
 
@@ -31,7 +31,7 @@
     "exec": "timers",
     "interval": 20,
     "return-type": "plain",
-    "format": "{} | ",
+    "format": "{} <span color='#888888'>|</span> ",
     "format-empty": ""
   },
 
@@ -39,7 +39,7 @@
     "exec": "~/.config/i3blocks/scripts/teams_messages.sh",
     "interval": 20,
     "return-type": "plain",
-    "format": "{} | ",
+    "format": "{} <span color='#888888'>|</span> ",
     "format-empty": ""
   },
 
@@ -47,7 +47,7 @@
     "exec": "bash -c \"if iw dev wlp0s20f3 link | grep -q 'Not connected'; then echo 'no wifi'; else echo ''; fi\"",
     "interval": 60,
     "return-type": "plain",
-    "format": "{} | ",
+    "format": "{} <span color='#888888'>|</span> ",
     "format-empty": ""
   },
 
@@ -55,7 +55,7 @@
     "exec": "bash -c \"if nordvpn status | grep -q 'Connected'; then echo ''; else echo 'no vpn🔓'; fi\"",
     "interval": 60,
     "return-type": "plain",
-    "format": "{} | ",
+    "format": "{} <span color='#888888'>|</span> ",
     "format-empty": ""
   },
 
@@ -63,7 +63,7 @@
     "exec": "~/.config/i3blocks/scripts/weather.py",
     "interval": 60,
     "return-type": "plain",
-    "format": "{} | ",
+    "format": "{} <span color='#888888'>|</span> ",
     "format-empty": ""
   },
 
