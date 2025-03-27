@@ -6,7 +6,7 @@
 # this file and re-run i3-config-wizard(1).
 #
 exec --no-startup-id pulseaudio --start
-exec --no-startup-id picom -b
+# exec --no-startup-id picom -b
 # It would be nice if clipboard were reliable
 exec --no-startup-id parcellite
 
@@ -364,11 +364,4 @@ gtk-launch chrome-calendar-Profile_5'"
 
 # Start programs
 exec --no-startup-id alacritty
-
-# Set up monitors
-exec_always --no-startup-id xrandr \
-  --output HDMI-0 --mode 1920x1080 --rate 143.99 --left-of HDMI-1 \
-  --output HDMI-1 --mode 1920x1080 --rate 143.99
-  # Set background image
-exec --no-startup-id sh ~/.fehbg
-
+exec --no-startup-id sh ~/.xprofile

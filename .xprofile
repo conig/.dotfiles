@@ -1,0 +1,16 @@
+#!/bin/sh
+# Setup monitor layout before compositor starts
+xrandr \
+  --output HDMI-0 --mode 1920x1080 --rate 143.99 --left-of HDMI-1 \
+  --output HDMI-1 --mode 1920x1080 --rate 143.99
+
+# Wait to ensure Xorg has applied settings
+sleep 1
+
+# Start compositor
+picom -b
+
+# Restore wallpapers (delayed to ensure monitors are ready)
+(sleep 1 && sh ~/.fehbg) &
+
+

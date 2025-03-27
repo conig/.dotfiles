@@ -6,7 +6,7 @@ import = ["~/.config/alacritty/themes/themes/iris.toml"]
 
 [window]
 # Background transparency (0.0 = fully transparent, 1.0 = fully opaque)
-opacity = 0.7
+opacity = 0.8
 
 # Window dimensions in terms of terminal rows/columns
 dimensions = { columns = 80, lines = 24 }
