@@ -43,7 +43,7 @@ M.telescope = {
 
 M.ui = {
   tabufline = {
-    enabled = true,
+    enabled = false,
     order = { "treeOffset", "buffers", "tabs" },
   },
   statusline = {
