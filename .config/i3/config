@@ -5,6 +5,7 @@
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
 #
+exec --no-startup-id sh -c '$HOME/.local/bin/autotiling &'
 exec --no-startup-id pulseaudio --start
 # exec --no-startup-id picom -b
 # It would be nice if clipboard were reliable
@@ -324,6 +325,8 @@ assign [title="StarCraft"] 10
 assign [title="Windows"] 11
 assign [title="Creative Cloud"] 10
 assign [class="Zathura"] 10
+# Set fullscreen windows
+for_window [class="Alacritty"] fullscreen enable
 # Set floating windows
 for_window [class="Zotero"] floating enable
 for_window [class="Microsoft Word"] floating enable
@@ -332,7 +335,7 @@ for_window [class="blueman-manager"] floating enable
 for_window [title="Starcraft"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="org.gnome.Nautilus"] floating enable
-for_window [class="(?i)thunar"] floating enable
+# for_window [class="(?i)thunar"] floating enable
 for_window [title="Windows"] fullscreen enable
 for_window [class="battle.net.exe"] floating enable
 for_window [class="org.gnome.Characters"] floating enable
@@ -353,9 +356,11 @@ workspace 9 output HDMI-1
 workspace 10 output HDMI-1
 workspace 12 output HDMI-1
 workspace 13 output HDMI-1
+workspace pl output HDMI-1
+
 # chrome, planner, chatgpt, TYmusic, outlook, calendar
 bindsym $mod+p exec --no-startup-id "sh -c 'google-chrome-stable & \
-          gtk-launch chrome-imjgnpfagonedjjnjaibbemmhgglmmca-Profile_5 & \
+gtk-launch chrome-imjgnpfagonedjjnjaibbemmhgglmmca-Profile_5 & \
 gtk-launch chrome-cadlkienfkclaiaibeoongdcgmdikeeg-Profile_5 & \
 gtk-launch chrome-cinhimbnkkaeohfgghhklpknlkffjgod-Profile_5 & \
 gtk-launch chrome-cifhbcnohmdccbgoicgdjpfamggdegmo-Profile_5 & \
