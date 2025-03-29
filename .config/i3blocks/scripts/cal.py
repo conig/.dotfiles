@@ -224,7 +224,7 @@ def main():
             else:
                 print(f"{meeting_name} in {delta_minutes / 60:.1f} hours")
         else:
-            print("🌴")
+            print("")
     else:
         print("No upcoming events")
 
