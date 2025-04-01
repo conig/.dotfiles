@@ -5,6 +5,7 @@
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
 #
+
 exec --no-startup-id sh -c '$HOME/.local/bin/autotiling &'
 exec --no-startup-id pulseaudio --start
 # exec --no-startup-id picom -b
@@ -38,13 +39,11 @@ bindsym $mod+Home exec --no-startup-id xscreensaver-command -lock
 # is used in the bar {} block below.
 font pango:monospace 15px
 
-workspace_auto_back_and_forth yes
-
 bindsym $mod+Right move workspace to output right
 bindsym $mod+Left move workspace to output left
 
 # Get rid of borders
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 1
                           # class                 border  backgr. text    indicator child_border
 for_window [class="^.*"] client.focused          #77dd77 #285577 #ffffff #2e9ef4   #285577
 
@@ -124,37 +123,37 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-## switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+## switch to workspace using script
+bindsym $mod+1 exec --no-startup-id ~/.config/i3/switch_workspace.sh 1
+bindsym $mod+2 exec --no-startup-id ~/.config/i3/switch_workspace.sh 2
+bindsym $mod+3 exec --no-startup-id ~/.config/i3/switch_workspace.sh 3
+bindsym $mod+4 exec --no-startup-id ~/.config/i3/switch_workspace.sh 4
+bindsym $mod+5 exec --no-startup-id ~/.config/i3/switch_workspace.sh 5
+bindsym $mod+6 exec --no-startup-id ~/.config/i3/switch_workspace.sh 6
+bindsym $mod+7 exec --no-startup-id ~/.config/i3/switch_workspace.sh 7
+bindsym $mod+8 exec --no-startup-id ~/.config/i3/switch_workspace.sh 8
+bindsym $mod+9 exec --no-startup-id ~/.config/i3/switch_workspace.sh 9
+bindsym $mod+0 exec --no-startup-id ~/.config/i3/switch_workspace.sh 10
 
-bindsym $mod+mod2+KP_Decimal workspace 11
+bindsym $mod+mod2+KP_Decimal exec --no-startup-id ~/.config/i3/switch_workspace.sh 11
 # Make workspace global
 bindsym $mod+mod2+KP_Enter exec --no-startup-id i3-msg fullscreen toggle global
 # Make workspace fullscreen asterisk
-bindsym $mod+mod2+KP_Multiply workspace pl
-bindsym $mod+mod2+KP_Divide workspace q
+bindsym $mod+mod2+KP_Multiply exec --no-startup-id ~/.config/i3/switch_workspace.sh pl
+bindsym $mod+mod2+KP_Divide exec --no-startup-id ~/.config/i3/switch_workspace.sh q
 # Numpad also works
-bindsym $mod+mod2+KP_1 workspace 1
-bindsym $mod+mod2+KP_2 workspace 2
-bindsym $mod+mod2+KP_3 workspace 3
-bindsym $mod+mod2+KP_4 workspace 4
-bindsym $mod+mod2+KP_5 workspace 5
-bindsym $mod+mod2+KP_6 workspace 6
-bindsym $mod+mod2+KP_7 workspace 7
-bindsym $mod+mod2+KP_8 workspace 8
-bindsym $mod+mod2+KP_9 workspace 9
-bindsym $mod+mod2+KP_0 workspace 10
-bindsym $mod+mod2+KP_Subtract workspace 12
-bindsym $mod+mod2+KP_Add workspace 13
+bindsym $mod+mod2+KP_1 exec --no-startup-id ~/.config/i3/switch_workspace.sh 1
+bindsym $mod+mod2+KP_2 exec --no-startup-id ~/.config/i3/switch_workspace.sh 2
+bindsym $mod+mod2+KP_3 exec --no-startup-id ~/.config/i3/switch_workspace.sh 3
+bindsym $mod+mod2+KP_4 exec --no-startup-id ~/.config/i3/switch_workspace.sh 4
+bindsym $mod+mod2+KP_5 exec --no-startup-id ~/.config/i3/switch_workspace.sh 5
+bindsym $mod+mod2+KP_6 exec --no-startup-id ~/.config/i3/switch_workspace.sh 6
+bindsym $mod+mod2+KP_7 exec --no-startup-id ~/.config/i3/switch_workspace.sh 7
+bindsym $mod+mod2+KP_8 exec --no-startup-id ~/.config/i3/switch_workspace.sh 8
+bindsym $mod+mod2+KP_9 exec --no-startup-id ~/.config/i3/switch_workspace.sh 9
+bindsym $mod+mod2+KP_0 exec --no-startup-id ~/.config/i3/switch_workspace.sh 10
+bindsym $mod+mod2+KP_Subtract exec --no-startup-id ~/.config/i3/switch_workspace.sh 12
+bindsym $mod+mod2+KP_Add exec --no-startup-id ~/.config/i3/switch_workspace.sh 13
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -325,6 +324,7 @@ assign [title="StarCraft"] 10
 assign [title="Windows"] 11
 assign [title="Creative Cloud"] 10
 assign [class="Zathura"] 10
+assign [class="openrct2"] 1
 # Set fullscreen windows
 for_window [class="Alacritty"] fullscreen enable
 # Set floating windows
@@ -340,6 +340,7 @@ for_window [title="Windows"] fullscreen enable
 for_window [class="battle.net.exe"] floating enable
 for_window [class="org.gnome.Characters"] floating enable
 for_window [class="Blueman-applet"] kill
+for_window [class="openrct2"] fullscreen enable
 # Set workspace default positions
 ## Hero applications (left)
 workspace 1 output HDMI-0
