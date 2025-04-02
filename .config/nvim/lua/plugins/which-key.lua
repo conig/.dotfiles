@@ -3,9 +3,8 @@ return{
   "folke/which-key.nvim",
   event = {"BufReadPre", "BufNewFile"},
   opts = {
-     triggers = {
-      { "<auto>", mode = { "n", "i", "o", "t", "c" } }, -- Exclude visual and select modes
-    },
+     triggers = {"<leader>"},
+     delay=1000
   },
   keys = {
     {

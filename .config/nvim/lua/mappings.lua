@@ -11,20 +11,46 @@ map(
 	[[:call append(line('.') - 1, 'browser()')<CR>]],
 	{ noremap = true, silent = true, desc = "insert browser()" }
 )
--- open files
-vim.keymap.set("n", "<leader>nn", function()
-	vim.fn.jobstart({ vim.o.shell, "-c", "open ." }, { detach = true })
-end, { desc = "Open files in the current working directory" })
 
-vim.keymap.set("n", "<leader>rP", function()
-	vim.fn.jobstart({ vim.o.shell, "-c", "feh ./.last_Rplot.png" }, { detach = true })
-end, { desc = "Open last plot with gthumb" })
 --  leader l triggers lazy sync
 vim.keymap.set("n", "<leader>ls", function()
 	-- First, run Lazy sync
 	vim.cmd("Lazy sync")
 	-- Then, open lazygit
 end, { desc = "Lazy sync" })
+
+--
+local function open_github_repo()
+  -- Get the Git remote URL
+  local handle = io.popen("git remote get-url origin 2>/dev/null")
+  if not handle then
+    vim.notify("No Git origin found", vim.log.levels.ERROR)
+    return
+  end
+
+  local origin = handle:read("*a"):gsub("%s+", "")
+  handle:close()
+
+  if origin == "" then
+    vim.notify("No Git origin set", vim.log.levels.ERROR)
+    return
+  end
+
+  -- Convert SSH or HTTPS to web URL
+  local url = origin
+    :gsub("^git@github.com:", "https://github.com/")
+    :gsub("%.git$", "")
+    :gsub("^https://github.com/", "https://github.com/")
+
+  if url:find("github.com") then
+    -- Open in Chrome (adjust this if on Mac/Windows)
+    vim.fn.jobstart({ "xdg-open", url }, { detach = true })
+  else
+    vim.notify("Unsupported remote: " .. origin, vim.log.levels.WARN)
+  end
+end
+
+vim.keymap.set("n", "<leader>go", open_github_repo, { desc = "Open GitHub repo" })
 
 -- Remove browser()
 map(

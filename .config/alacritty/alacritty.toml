@@ -2,7 +2,7 @@
 
 [general]
 # Import the Dracula theme
-import = ["~/.config/alacritty/themes/themes/iris.toml"]
+import = ["~/.config/alacritty/themes/themes/gruvbox_dark.toml"]
 
 [window]
 # Background transparency (0.0 = fully transparent, 1.0 = fully opaque)
@@ -32,7 +32,7 @@ normal = { family = "JetBrainsMono Nerd Font Mono", style = "Regular" }
 bold = { family = "JetBrainsMono Nerd Font Mono", style = "Bold" }
 italic = { family = "JetBrainsMono Nerd Font Mono", style = "Italic" }
 bold_italic = { family = "JetBrainsMono Nerd Font Mono", style = "Bold Italic" }
-size = 12
+size = 12.0
 
 [scrolling]
 # Scrollback history size

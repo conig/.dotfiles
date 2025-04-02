@@ -12,6 +12,9 @@ exec --no-startup-id pulseaudio --start
 # It would be nice if clipboard were reliable
 exec --no-startup-id parcellite
 
+# Start keyring daemon
+exec --no-startup-id sh -c 'eval $(/usr/bin/gnome-keyring-daemon --start --components=secrets,pkcs11,ssh) && export GNOME_KEYRING_CONTROL SSH_AUTH_SOCK'
+
 # We don't need a cursor
 exec --no-startup-id xbanish
 
@@ -266,6 +269,7 @@ bindsym $mod+r mode "resize"
         status_command ~/.config/i3blocks/start_i3blocks.sh
         i3bar_command i3bar --t
         tray_output none
+        # position top
         colors {
         background #00000080  # Semi transparent black
         statusline #FFFFFF     # White text
@@ -328,7 +332,7 @@ assign [class="openrct2"] 1
 # Set fullscreen windows
 for_window [class="Alacritty"] fullscreen enable
 # Set floating windows
-for_window [class="Zotero"] floating enable
+# for_window [class="Zotero"] floating enable
 for_window [class="Microsoft Word"] floating enable
 for_window [class="R_x11"] floating enable
 for_window [class="blueman-manager"] floating enable
@@ -366,7 +370,8 @@ gtk-launch chrome-cadlkienfkclaiaibeoongdcgmdikeeg-Profile_5 & \
 gtk-launch chrome-cinhimbnkkaeohfgghhklpknlkffjgod-Profile_5 & \
 gtk-launch chrome-cifhbcnohmdccbgoicgdjpfamggdegmo-Profile_5 & \
 gtk-launch chrome-faolnafnngnfdaknnbpnkhgohbobgegn-Profile_5 & \
-gtk-launch chrome-calendar-Profile_5'"
+gtk-launch chrome-calendar-Profile_5' & \
+gtk-launch zotero"
 
 # Start programs
 exec --no-startup-id alacritty

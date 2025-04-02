@@ -10,6 +10,7 @@ TimeoutStartSec=300
 ExecStartPre=/bin/sleep 10
 ExecStart=%h/.scripts/rclone-watchdog.sh
 ExecStop=/bin/fusermount -uz /mnt/onedrive
+KillMode=control-group
 Restart=always
 RestartSec=10
 

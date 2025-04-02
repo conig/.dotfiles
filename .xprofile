@@ -13,4 +13,3 @@ picom -b
 # Restore wallpapers (delayed to ensure monitors are ready)
 (sleep 1 && sh ~/.fehbg) &
 
-

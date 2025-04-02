@@ -51,7 +51,7 @@ else:
 
     # Build display strings
     temp_display = f"{weather_emoji} {temperature:.0f}°C" if display else ""
-    humidity_display = f"💧{humidity}%" if humidity < 45 or humidity > 80 else ""
+    humidity_display = f"💧{humidity}%" if humidity < 45 or humidity > 99 else ""
     wind_display = f"🌬️{wind}km/h" if wind > 30 else ""
 
     # Collect and print

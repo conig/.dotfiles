@@ -7,9 +7,8 @@ command=~/.config/i3blocks/scripts/cal.py
 interval=60
 
 [timers]
-# Displays any timers in operation
-command=timers
-interval=20
+command=~/.config/i3blocks/scripts/timers.sh
+interval=10
 
 [teams_messages]
 command=~/.config/i3blocks/scripts/teams_messages.sh
@@ -26,7 +25,6 @@ interval=60
 # If connected, nothing appears; if not connected, an insecure emoji is shown.
 command=bash -c "if nordvpn status | grep -q 'Connected'; then echo ''; else echo 'no vpn🔓'; fi"
 interval=60
-
 
 [weather]
 # Checks the weather, gives the temp and humidity
