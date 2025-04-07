@@ -52,9 +52,8 @@ bindsym $mod+Left move workspace to output left
 
 # Get rid of borders
 for_window [class="^.*"] border pixel 1
-                          # class                 border  backgr. text    indicator child_border
-for_window [class="^.*"] client.focused          #77dd77 #285577 #ffffff #2e9ef4   #285577
-
+client.focused          #000000 #000000 #000000 #000000 #000000
+client.unfocused        #888888 #000000 #000000 #000000 #000000
 # Open characters with super + c
 bindsym $mod+c exec --no-startup-id gnome-characters
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
@@ -278,7 +277,7 @@ bindsym $mod+r mode "resize"
            statusline         #FFFFFF    # White text
            separator          #666666    # Grey separators
            focused_workspace  #2CB494 #2CB494 #000000  # Teal background/text, black text
-           urgent_workspace   #88409C #88409C #FFFFFF  # Purple with white text
+           urgent_workspace   #000000 #000000 #88409C  # Purple with white text
            active_workspace   #000000 #000000 #FFFFFF  # Black with white text
            inactive_workspace #000000 #000000 #666666  # Black with white text
     }
