@@ -19,6 +19,7 @@ return {
 				extensions = {
 					bibtex = {
 						context = true,
+            depth = 3,
 						context_fallback = true,
 					},
 				},

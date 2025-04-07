@@ -454,7 +454,7 @@ fuzzy_find_dir() {
         -kb-custom-1 "Alt+Return" \
         -matching regex \
         -lines 40 -width 100 \
-        -font "monospace 8" \
+        -font "8" \
         -filter '' \
         -preview-window "right,60%,max" \
         -preview 'if [ -d "{}" ]; then ls -la "{}"; else bat --style=numbers --color=always "{}"; fi')
@@ -533,7 +533,7 @@ vaultpush() {
     git -C "$vault_dir" push
 }
 
-store_wd() {
+store_dir() {
   local file="$HOME/.project_static_dirs"
   echo "$PWD" >> "$file"
   echo "Added $PWD to static directories."

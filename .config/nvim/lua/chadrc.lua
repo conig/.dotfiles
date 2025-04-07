@@ -5,7 +5,7 @@ local M = {}
 
 M.base46 = {
   theme = "gruvbox",
-  transparency = true,
+  transparency = false,
   hl_override = {
     DiffDelete = {
       -- bg = "dark_purple",
