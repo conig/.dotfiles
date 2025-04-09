@@ -1,12 +1,11 @@
 # Alacritty Configuration File
 
 [general]
-# Import the Dracula theme
 import = ["~/.config/alacritty/themes/themes/gruvbox_dark.toml"]
 
 [window]
 # Background transparency (0.0 = fully transparent, 1.0 = fully opaque)
-opacity = 0.6
+opacity = 0.7
 
 # Window dimensions in terms of terminal rows/columns
 dimensions = { columns = 80, lines = 24 }
@@ -23,8 +22,6 @@ title = "Alacritty"
 [colors.primary]
 # Force the background to be black so it’s easier to read
 background = "#000000"
-# Decorations theme variant: "Dark", "Light", or "None"
-# decorations_theme_variant = "Dark"
 
 [font]
 # Use JetBrains Mono Nerd Font

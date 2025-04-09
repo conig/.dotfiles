@@ -22,7 +22,6 @@ exec --no-startup-id setxkbmap -option compose:ralt
 
 # audio
 # bluetooth
-exec --no-startup-id pulseaudio --start
 # exec --no-startup-id blueman-applet
 # Set default audio level
 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ 22%
@@ -188,49 +187,6 @@ bindsym $mod+Shift+mod2+KP_Add move container to workspace 13
 
 bindsym $mod+Shift+KP_Multiply move container to workspace pl
 
-# NOTE: This is some real tom fooliery with my keyboard layout
-#  ZMK will send a shift mod with the items that require a shift key on a
-#  regular keyboard.  so though it defines a keycode as "LEFT_BRACE" it really
-#  is shift_L + LEFT_BRACE.  So you will notice the odd peppering of shifts and
-#  non shifts
-# switch to workspace
-# bindsym $mod+Shift+plus workspace 1
-# bindsym $mod+bracketleft workspace 2
-# bindsym $mod+Shift+braceleft workspace 3
-# bindsym $mod+Shift+parenleft workspace 4
-# bindsym $mod+Shift+ampersand workspace 5
-# bindsym $mod+equal workspace 6
-# bindsym $mod+Shift+parenright workspace 7
-# bindsym $mod+Shift+braceright workspace 8
-# bindsym $mod+bracketright workspace 9
-# bindsym $mod+Shift+asterisk workspace 10
-#
-# # NOTE: since i have to press shift to get these symbols
-# # move focused container to workspace.
-# #  I wanted to use this as my method of moving spaces around, but it doesn't
-# #  seem to work, but when i provide the keycode + shift it seems to work well.
-# # bindsym $mod+Shift+kp_1 move container to workspace 1
-# # bindsym $mod+Shift+kp_2 move container to workspace 2
-# # bindsym $mod+Shift+kp_3 move container to workspace 3
-# # bindsym $mod+Shift+kp_4 move container to workspace 4
-# # bindsym $mod+Shift+kp_5 move container to workspace 5
-# # bindsym $mod+Shift+kp_6 move container to workspace 6
-# # bindsym $mod+Shift+kp_7 move container to workspace 7
-# # bindsym $mod+Shift+kp_8 move container to workspace 8
-# # bindsym $mod+Shift+kp_9 move container to workspace 9
-# # bindsym $mod+Shift+kp_0 move container to workspace 10
-#
-# bindcode $mod+Shift+87 move container to workspace 1
-# bindcode $mod+Shift+88 move container to workspace 2
-# bindcode $mod+Shift+89 move container to workspace 3
-# bindcode $mod+Shift+83 move container to workspace 4
-# bindcode $mod+Shift+84 move container to workspace 5
-# bindcode $mod+Shift+85 move container to workspace 6
-# bindcode $mod+Shift+79 move container to workspace 7
-# bindcode $mod+Shift+80 move container to workspace 8
-# bindcode $mod+Shift+81 move container to workspace 9
-# bindcode $mod+Shift+90 move container to workspace 10
-
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -286,31 +242,6 @@ bindsym $mod+r mode "resize"
 # ------------------------------------------
 # CUSTOM KEYS START
 # ------------------------------------------
-exec --no-startup-id nm-applet
-
-bindsym $mod+Shift+s exec --no-startup-id ~/dotfiles/bin/monitor
-bindsym $mod+Shift+n exec --no-startup-id ~/dotfiles/bin/resolution
-
-# FKeys
-# Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
-#
-# # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
-
-# Alsa audio controls.
-bindsym $mod+Shift+comma exec ~/.config/i3/scripts/alsa restore
-bindsym $mod+semicolon exec ~/.config/i3/scripts/alsa down Headphone
-bindsym $mod+comma exec ~/.config/i3/scripts/alsa up Headphone
-bindsym $mod+m move workspace to output left
-
-# Suspend
-bindsym $mod+Shift+period exec systemctl suspend
-
-# Hints setup
 exec_always for id in $(xinput list | grep "ydotool.*pointer" | cut -d '=' -f 2 | cut -f 1); do xinput --set-prop $id 'libinput Accel Profile Enabled' 0, 1; done
 bindsym Mod1+Tab exec firejail --net=none ~/.local/bin/hints-launcher
 bindsym $mod+i exec firejail --net=none hints --mode scroll

@@ -2,6 +2,10 @@
 command=~/.config/i3blocks/scripts/R_update.sh
 interval=21600
 
+[cpu]
+command=~/.config/i3blocks/scripts/cpu.sh
+interval=5
+
 [next_meeting]
 command=~/.config/i3blocks/scripts/cal.py
 interval=60

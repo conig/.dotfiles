@@ -107,9 +107,14 @@ function M.SendTarMakeActiveDebug()
 end
 
 -- Generic function that wraps the current word with the specified function and sends it to the R console
-function M.FunctionToWord(fn_name)
+function M.FunctionToWord(fn_name, quote)
   -- Get the current word under the cursor
   local word = utils.get_word()
+
+  -- Quote the word if requested
+  if quote then
+    word = string.format('"%s"', word)
+  end
 
   -- Construct the command by wrapping the word with the function
   local command = string.format("%s(%s)", fn_name, word)
@@ -479,7 +484,7 @@ end
 function M.Wrap_rmd_chunk(chunk_type)
   chunk_type = chunk_type or "r"
   -- Notify that the function has been called (for debugging)
-  vim.notify("Wrap_rmd_chunk function called", vim.log.levels.INFO)
+  -- vim.notify("Wrap_rmd_chunk function called", vim.log.levels.INFO)
 
   local bufnr = vim.api.nvim_get_current_buf()
   local cursor = vim.api.nvim_win_get_cursor(0)

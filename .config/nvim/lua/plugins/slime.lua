@@ -119,8 +119,11 @@ end, desc = "Start goo", noremap = true, silent = true },
         require("functions.Rfunctions").FunctionToWord "table"
       end, { desc = "Run table on word" })
       vim.keymap.set("n", "<leader>rp", function()
-        require("functiuons.Rfunctions").FunctionToWord "plot"
+        require("functions.Rfunctions").FunctionToWord "plot"
       end, {desc = "Plot word"})
+      vim.keymap.set("n", "<leader>ri", function()
+        require("functions.Rfunctions").FunctionToWord("pak::pkg_install", true)
+      end, { desc = "Install R package under cursor" })
 
       vim.keymap.set("n", "<leader>r?", function()
         require("functions.Rfunctions").QueryRFunction()
@@ -130,11 +133,11 @@ end, desc = "Start goo", noremap = true, silent = true },
         require("functions.Rfunctions").SendTarMakeProgress()
       end, { desc = "Show Targets progress" })
 
-      vim.keymap.set("n", "<leader>rI", function()
+      vim.keymap.set("n", "<leader>rII", function()
         require("functions.Rfunctions").InstallRpackages()
       end, { desc = "Install R package" })
 
-      vim.keymap.set("n", "<leader>ri", function()
+      vim.keymap.set("n", "<leader>rID", function()
         require("functions.Rfunctions").DocumentRPackage()
       end, { desc = "Document R package" })
 
