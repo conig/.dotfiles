@@ -51,7 +51,9 @@ bindings = [
     { key = "Tab", mods = "Alt", action = "ToggleViMode"},
     { key = "v", mods = "Control", action = "Paste"},
     { key = "j", mods = "Alt", chars = "\u001b[B" },  # Alt-j sends Down Arrow
-    { key = "k", mods = "Alt", chars = "\u001b[A" }   # Alt-k sends Up Arrow
+    { key = "k", mods = "Alt", chars = "\u001b[A" },   # Alt-k sends Up Arrow
+    { key = "h", mods = "Alt", chars = "\u001b[D" },  # Alt-h sends Left Arrow
+    { key = "l", mods = "Alt", chars = "\u001b[C" },  # Alt-l sends Right Arrow
 ]
 
 [env]
