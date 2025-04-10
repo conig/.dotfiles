@@ -23,7 +23,7 @@ cpu_usage() {
 
     # Only print if CPU usage is over 50%
     if [ "$CPU_USAGE" -gt 50 ]; then
-        echo "$CPU_USAGE%"
+        echo "⚙️$CPU_USAGE%"
     fi
 }
 
