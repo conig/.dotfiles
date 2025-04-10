@@ -590,5 +590,5 @@ alias winstart="docker compose --file ~/.config/winapps/compose.yaml start"
 alias winstop="docker compose --file ~/.config/winapps/compose.yaml stop"
 alias winrestart="docker compose --file ~/.config/winapps/compose.yaml restart"
 alias winkill="docker compose --file ~/.config/winapps/compose.yaml kill"
-alias killR-"pkill -9 -f '^/opt/R/'"
+alias killR="pkill -9 -f '^/opt/R/'"
 

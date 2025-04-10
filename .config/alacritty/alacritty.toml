@@ -49,7 +49,9 @@ bindings = [
     { key = "F11", action = "ToggleFullscreen" },
     { key = "NumpadEnter", mods = "None", action = "ReceiveChar"},
     { key = "Tab", mods = "Alt", action = "ToggleViMode"},
-    { key = "v", mods = "Control", action = "Paste"}
+    { key = "v", mods = "Control", action = "Paste"},
+    { key = "j", mods = "Alt", chars = "\u001b[B" },  # Alt-j sends Down Arrow
+    { key = "k", mods = "Alt", chars = "\u001b[A" }   # Alt-k sends Up Arrow
 ]
 
 [env]

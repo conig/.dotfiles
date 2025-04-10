@@ -25,6 +25,8 @@ $RCLONE_BIN mount "$REMOTE" "$MOUNTPOINT" \
     --cache-dir /tmp/rclonecache \
     --config "$CONFIG" \
     --log-file "$RCLONE_LOG" \
+    --tpslimit=2 \
+    --tpslimit-burst=3 \
     --log-level ERROR \
     --timeout 30s \
     --contimeout 15s \
