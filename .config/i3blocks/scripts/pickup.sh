@@ -16,7 +16,7 @@ pickup_total_minutes=$((pickup_hour * 60 + pickup_minute))
 if [ "$current_total_minutes" -lt "$pickup_total_minutes" ]; then
     # Calculate the minutes until pickup
     minutes_until_pickup=$((pickup_total_minutes - current_total_minutes))
-    echo "${minutes_until_pickup}m 🚗"
+    echo "🚗 ${minutes_until_pickup}m"
 else
     echo ""
 fi
