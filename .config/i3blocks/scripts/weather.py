@@ -39,7 +39,7 @@ else:
     if month in [12, 1, 2]:  # Summer
         display = temperature < 22 or temperature > 25
     elif month in [3, 4, 5]:  # Autumn
-        display = temperature < 15 or temperature > 25
+        display = temperature < 15 or temperature > 21
     elif month in [6, 7, 8]:  # Winter
         display = temperature < 3 or temperature > 18
     else:  # Spring

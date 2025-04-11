@@ -7,6 +7,7 @@ return {
 		opts = {
 			provider = "copilot",
       copilot = {
+        model = "claude-3.7-sonnet",
         disable_tools = false,
       },
 			hints = { enabled = false },
