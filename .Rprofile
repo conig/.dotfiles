@@ -51,7 +51,7 @@ options(help_type = "html")
 
 .First <- function() {
   if (interactive()) {
-    message(paste0(crayon::yellow(R.version.string), "\n", crayon::silver(R.Version()$nickname, "🎖️")))
+    message(paste0(crayon::yellow(R.version.string), "\n", crayon::silver(R.Version()$nickname, "🥃 ")))
   }
 }
 options(prompt = "\033[34m󰅂 \033[0m")

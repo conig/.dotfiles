@@ -106,10 +106,6 @@ cd_win() {
     fi
 }
 
-th() {
-    thunar "$(pwd)" &>/dev/null &
-}
-
 install_r() {
   local ver=$1
 
@@ -443,8 +439,6 @@ zle -N start_nvim
 # bind to ctrl-n
 bindkey 'fj' start_nvim
 
-alias we="explorer.exe ."
-
 # Fuzzy find directories up to 6 levels deep
 
 fuzzy_find_dir() {
@@ -584,7 +578,7 @@ rm() {
 
   command rm --preserve-root "$@"
 }
-
+alias th='nautilus . > /dev/null 2>&1 &'
 alias wmclass="xprop | grep WM_CLASS"
 alias winstart="docker compose --file ~/.config/winapps/compose.yaml start"
 alias winstop="docker compose --file ~/.config/winapps/compose.yaml stop"

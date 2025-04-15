@@ -4,7 +4,6 @@ return{
   event = {"BufReadPre", "BufNewFile"},
   opts = {
      triggers = {"<leader>"},
-     delay=1000
   },
   keys = {
     {

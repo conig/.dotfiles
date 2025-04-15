@@ -87,3 +87,10 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
   end,
 })
 
+-- Don't conceal markdown
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "rmd",
+  callback = function()
+    vim.wo.conceallevel = 0
+  end,
+})

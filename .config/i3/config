@@ -86,7 +86,7 @@ bindsym $mod+q kill
 
 # start dmenu (a program launcher)
 bindsym $mod+space exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+e exec --no-startup-id thunar
+bindsym $mod+e exec --no-startup-id nautilus
 bindsym Control+Mod1+Shift+c exec --no-startup-id i3-dmenu-desktop
 bindsym Print exec "flameshot gui" 
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -257,13 +257,14 @@ bindsym $mod+Shift+n exec --no-startup-id ~/dotfiles/bin/resolution
 exec_always for id in $(xinput list | grep "ydotool.*pointer" | cut -d '=' -f 2 | cut -f 1); do xinput --set-prop $id 'libinput Accel Profile Enabled' 0, 1; done
 bindsym Mod1+Tab exec firejail --net=none ~/.local/bin/hints-launcher
 bindsym $mod+i exec firejail --net=none hints --mode scroll
+bindsym $mod+m exec /opt/google/chrome/google-chrome "--profile-directory=Profile 5" --app-id=hpfldicfbfomlpcikngkocigghgafkph
 # Assign programs to windows
 assign [class="libreoffice"] 1
 assign [title="LibreOffice"] 1
 assign [class="Microsoft Word"] 1
 assign [title="Zotero"] 2
-assign [title="Google Chrome"] 3
-assign [instance="planner.cloud.microsoft"] 12
+assign [title="Chromium"] 3
+assign [instance="crx_jfbmgboaepkdblfmjndnjcgigelloeop"] 12
 assign [instance="outlook.office.com__calendar_view_workweek"] 13
 assign [class="Alacritty"] 5
 assign [title="ChatGPT"] 6
@@ -287,7 +288,7 @@ for_window [class="R_x11"] floating enable
 for_window [class="blueman-manager"] floating enable
 for_window [title="Starcraft"] floating enable
 for_window [class="feh"] floating enable
-for_window [class="org.gnome.Nautilus"] floating enable
+# for_window [class="org.gnome.Nautilus"] floating enable
 # for_window [class="(?i)thunar"] floating enable
 for_window [title="Windows"] fullscreen enable
 for_window [class="battle.net.exe"] floating enable
@@ -313,7 +314,7 @@ workspace 13 output HDMI-1
 workspace pl output HDMI-1
 
 # Open default apps
-exec --no-startup-id google-chrome-stable
+exec --no-startup-id chromium
 exec --no-startup-id gtk-launch chrome-cadlkienfkclaiaibeoongdcgmdikeeg-Profile_5
 # chrome, planner, chatgpt, TYmusic, outlook, calendar
 bindsym $mod+p exec --no-startup-id "sh -c 'gtk-launch chrome-imjgnpfagonedjjnjaibbemmhgglmmca-Profile_5  & \

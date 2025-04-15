@@ -8,7 +8,7 @@ return {
 			provider = "copilot",
       copilot = {
         model = "claude-3.7-sonnet",
-        disable_tools = false,
+        disable_tools = true,
       },
 			hints = { enabled = false },
 		},
@@ -31,8 +31,6 @@ return {
 						drag_and_drop = {
 							insert_mode = true,
 						},
-						-- required for Windows users
-						use_absolute_path = true,
 					},
 				},
 			},
@@ -63,7 +61,7 @@ return {
 					enabled = true,
 					auto_trigger = true, -- Enables auto-suggestions
 					hide_during_completion = true,
-					debounce = 150,
+					debounce = 350,
 					keymap = {
 						accept = "<C-a>", -- Accept Copilot suggestion with Ctrl + A
 						accept_word = false,

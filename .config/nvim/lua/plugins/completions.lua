@@ -7,7 +7,7 @@ return {
 		dependencies = {
 			{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" }, -- LSP completion source
 			{ "hrsh7th/cmp-path", after = "nvim-cmp" }, -- Path completion source
-			-- { "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
+			{ "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
 			-- Add other sources if needed
 		},
 		config = function()

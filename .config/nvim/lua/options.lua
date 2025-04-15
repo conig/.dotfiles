@@ -20,6 +20,7 @@ vim.treesitter.language.register("markdown", "rmd")
 local o = vim.o
 o.cursorlineopt = "both" -- to enable cursorline!
 vim.opt.relativenumber = true
+vim.opt.conceallevel = 0
 -- -- toggle relative line numbers
 vim.api.nvim_set_keymap("n", "\\", ":set relativenumber!<CR>", { noremap = true, silent = true })
 

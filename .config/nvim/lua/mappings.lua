@@ -109,7 +109,7 @@ map("n", "<leader>v", "<cmd> vsplit <cr>")
 vim.api.nvim_set_keymap(
 	"n",
 	"<leader>we",
-	":silent !thunar . &<CR>",
+	":silent !nautilus . &<CR>",
 	{ noremap = true, silent = true, desc = "Open Files Explorer" }
 )
 
