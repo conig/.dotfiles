@@ -442,40 +442,59 @@ bindkey 'fj' start_nvim
 # Fuzzy find directories up to 6 levels deep
 
 fuzzy_find_dir() {
+  local MOUNT="/mnt/onedrive"
+  local CACHE="$HOME/.cache/rofi-onedrive/onedrive-fd-index.txt"
   local selected rofi_exit
-  selected=$(fdfind --hidden --no-ignore --type d --type f --regex '.*' 2>/dev/null \
-| rofi -dmenu -i -p "Enter: open, Alt+Return: cd parent:" \
-        -kb-custom-1 "Alt+Return" \
-        -matching regex \
-        -lines 40 -width 100 \
-        -font "8" \
-        -filter '' \
-        -preview-window "right,60%,max" \
-        -preview 'if [ -d "{}" ]; then ls -la "{}"; else bat --style=numbers --color=always "{}"; fi')
 
+  # 1) sanity‐check the cache exists
+  if [[ ! -f "$CACHE" ]]; then
+    echo "Error: OneDrive index missing. Run your cache script first." >&2
+    return 1
+  fi
+
+  # 2) build the feed: either grep the cache or run fdfind in cwd
+  selected=$(
+    { 
+      if [[ "$PWD" == "$MOUNT"* ]]; then
+        # inside OneDrive → only that subtree, for speed
+        grep -E "^${PWD}/" "$CACHE"
+      else
+        # anywhere else → live scan from here
+        fdfind --hidden --no-ignore --type d --type f --regex '.*' 2>/dev/null
+      fi
+    } | rofi -dmenu -i \
+             -p "Enter: open | Alt+Return: cd parent" \
+             -kb-custom-1 "Alt+Return" \
+             -matching regex \
+             -lines 40 -width 100 \
+             -font "8" \
+             -filter '' \
+             -preview-window right,60%,max \
+             -preview 'if [ -d "{}" ]; then ls -la "{}"; else bat --style=numbers --color=always "{}"; fi'
+  )
   rofi_exit=$?
-  [ -n "$selected" ] && {
-    if [ $rofi_exit -eq 0 ]; then
-      [ -d "$selected" ] && cd "$selected" || xdg-open "$selected"
-    elif [ $rofi_exit -eq 10 ]; then
-      [ -d "$selected" ] && cd "$selected" || cd "$(dirname "$selected")"
-    fi
-  }
+
+  # 3) act on it
+  case "$rofi_exit" in
+    0)  # [Enter] → cd into dir or open file
+      [[ -z "$selected" ]] && return
+      if [[ -d "$selected" ]]; then
+        cd "$selected" || return
+      else
+        xdg-open "$selected"
+      fi
+      ;;
+    10) # [Alt+Return] → cd to parent dir
+      [[ -z "$selected" ]] && return
+      cd "$(dirname "$selected")" || return
+      ;;
+    *)  # [Esc] or cancel → nothing
+      ;;
+  esac
 }
 
 
 
-# Optional: Bind the function as a Zsh widget.
-zle -N fuzzy_find_dir_widget fuzzy_find_dir
-
-
-# Optional: Create a Zsh widget for key binding.
-zle -N fuzzy_find_dir_widget fuzzy_find_dir
-
-
-
-
-# Optional: Create a Zsh widget for binding to a key
 zle -N fuzzy_find_dir_widget fuzzy_find_dir
 
 # Bind the widget to a key combination (e.g., Ctrl-D)
@@ -586,3 +605,4 @@ alias winrestart="docker compose --file ~/.config/winapps/compose.yaml restart"
 alias winkill="docker compose --file ~/.config/winapps/compose.yaml kill"
 alias killR="pkill -9 -f '^/opt/R/'"
 alias nano="nvim"
+alias d1="flatpak run org.diasurgical.DevilutionX & i3-msg workspace 1"
