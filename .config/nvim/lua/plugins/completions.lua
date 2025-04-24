@@ -3,7 +3,7 @@ return {
 		"hrsh7th/nvim-cmp",
 		lazy = true,
 		event = { "BufReadPost", "BufNewFile" },
-    enabled = true,
+    enabled = false,
 		dependencies = {
 			{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" }, -- LSP completion source
 			{ "hrsh7th/cmp-path", after = "nvim-cmp" }, -- Path completion source

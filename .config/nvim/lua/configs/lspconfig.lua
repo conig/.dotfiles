@@ -18,7 +18,9 @@ for _, lsp in ipairs(servers) do
     },
   }
 end
-
+--
+--
+-- Don't show documentation hover
 -- configuring single server, example: typescript
 -- lspconfig.ts_ls.setup {
 --   on_attach = nvlsp.on_attach,

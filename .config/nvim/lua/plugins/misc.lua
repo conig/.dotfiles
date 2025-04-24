@@ -162,30 +162,6 @@ return {
 	},
 
 	{
-		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate",
-		config = function()
-			require("nvim-treesitter.configs").setup({
-				ensure_installed = {
-					"markdown",
-					"html",
-					"latex",
-					"lua",
-					"markdown",
-					"yaml",
-					"markdown_inline",
-					"r",
-					"regex",
-					"yaml",
-					"bash",
-					"python",
-					"julia",
-				},
-				highlight = { enable = true },
-			})
-		end,
-	},
-	{
 		"HiPhish/rainbow-delimiters.nvim",
 		ft = { "r", "rmd", "quarto", "lua" },
 		config = function()
