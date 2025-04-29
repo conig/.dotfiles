@@ -6,7 +6,7 @@ set $mod Mod4
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
 #
-
+mouse_warping output
 exec --no-startup-id sh -c '$HOME/.local/bin/autotiling &'
 # exec --no-startup-id picom -b
 # It would be nice if clipboard were reliable
@@ -32,12 +32,12 @@ exec_always --no-startup-id \
 bindsym $mod+Home exec --no-startup-id i3lock --blur 7 --color=00000000 --screen=2
 # paste current date
 
-
-bindsym $mod+d exec --no-startup-id \
-    sh -c 'xdotool key --clearmodifiers F2 && \
-    sleep 0.2 && \
-    xdotool type --clearmodifiers "$(date +\"{%Y%m%d}_\")"'
-
+bindsym Mod1+Tab exec --no-startup-id rofi \
+  -show drun \
+  -show-icons \
+  -icon-theme "Papirus" \
+  -display-drun "" \
+  -theme ~/.config/rofi/themes-collection/themes/squared-everforest.rasi
 
 # audio settings in keyboard to work again
 bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 5
@@ -47,10 +47,7 @@ bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 # bluetooth
-# exec --no-startup-id blueman-applet
-# Set default audio level
-
-exec_always --no-startup-id ~/.scripts/audio/set_audio_sink.sh
+exec --no-startup-id blueman-applet
 
 # Connect to headset
 bindsym $mod+b exec --no-startup-id bluetoothctl connect AC:80:0A:36:E2:1B
@@ -101,7 +98,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 # bindsym $mod+space exec "/home/theprimeagen/dotfiles/awesome-streamerrc/ThePrimeagen/tmux2"
 
 bindsym $mod+q kill
-
+bindsym $mod+x exec --no-startup-id flatpak run org.diasurgical.DevilutionX & i3-msg workspace 1
 # start dmenu (a program launcher)
 bindsym $mod+space exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+e exec --no-startup-id nautilus
@@ -273,7 +270,7 @@ bindsym $mod+Shift+n exec --no-startup-id ~/dotfiles/bin/resolution
 
 # Hints setup
 exec_always for id in $(xinput list | grep "ydotool.*pointer" | cut -d '=' -f 2 | cut -f 1); do xinput --set-prop $id 'libinput Accel Profile Enabled' 0, 1; done
-bindsym Mod1+Tab exec firejail --net=none ~/.local/bin/hints-launcher
+# bindsym Mod1+Tab exec firejail --net=none ~/.local/bin/hints-launcher
 bindsym $mod+i exec firejail --net=none hints --mode scroll
 bindsym $mod+m exec /opt/google/chrome/google-chrome "--profile-directory=Profile 5" --app-id=hpfldicfbfomlpcikngkocigghgafkph
 # Assign programs to windows
@@ -292,7 +289,7 @@ assign [instance="crx_faolnafnngnfdaknnbpnkhgohbobgegn"] 7
 assign [class="qBittorrent"] "q"
 # assign [class="org.gnome.Nautilus"] 10
 assign [class="R_x11"] pl
-assign [title="StarCraft"] 10
+assign [title="StarCraft"] 1
 assign [title="Windows"] 11
 assign [title="Creative Cloud"] 10
 assign [class="Zathura"] 10
