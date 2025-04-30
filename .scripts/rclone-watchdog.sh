@@ -11,27 +11,29 @@ echo "$(date) - Starting rclone mount." >> "$LOGFILE"
 
 # Start rclone mount in background
 $RCLONE_BIN mount "$REMOTE" "$MOUNTPOINT" \
-    --header "Prefer: Include-Feature=AddToOneDrive" \
-    --allow-other \
-    --vfs-cache-mode full \
-    --vfs-cache-max-size 20G \
-    --vfs-cache-poll-interval 5s \
-    --vfs-write-back 5s \
-    --buffer-size 256M \
-    --dir-cache-time 30s \
-    --attr-timeout 5s \
-    --fast-list \
-    --async-read=true \
-    --cache-dir /tmp/rclonecache \
-    --config "$CONFIG" \
-    --log-file "$RCLONE_LOG" \
-    --tpslimit=2 \
-    --tpslimit-burst=3 \
-    --log-level ERROR \
-    --timeout 30s \
-    --contimeout 15s \
-    --retries 2 \
-    --low-level-retries 1 &
+  --header "Prefer: Include-Feature=AddToOneDrive" \
+  --allow-other \
+  --vfs-cache-mode full \
+  --vfs-cache-max-size 20G \
+  --vfs-cache-poll-interval 5s \
+  --vfs-write-back 5s \
+  --vfs-read-ahead 128M \
+  --vfs-read-chunk-size 32M \
+  --vfs-read-chunk-size-limit off \
+  --buffer-size 256M \
+  --dir-cache-time 30s \
+  --attr-timeout 5s \
+  --async-read=true \
+  --cache-dir /tmp/rclonecache \
+  --config "$CONFIG" \
+  --tpslimit 2 \
+  --tpslimit-burst 2 \
+  --log-level ERROR \
+  --timeout 30s \
+  --contimeout 15s \
+  --retries 2 \
+  --low-level-retries 1 \
+  --rc &
 
 RCLONE_PID=$!
 

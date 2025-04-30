@@ -34,8 +34,6 @@ bindsym $mod+Home exec --no-startup-id i3lock --blur 7 --color=00000000 --screen
 
 bindsym Mod1+Tab exec --no-startup-id rofi \
   -show drun \
-  -show-icons \
-  -icon-theme "Papirus" \
   -display-drun "" \
   -theme ~/.config/rofi/themes-collection/themes/squared-everforest.rasi
 

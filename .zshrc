@@ -446,37 +446,34 @@ fuzzy_find_dir() {
   local CACHE="$HOME/.cache/rofi-onedrive/onedrive-fd-index.txt"
   local selected rofi_exit
 
-  # 1) sanity‐check the cache exists
   if [[ ! -f "$CACHE" ]]; then
     echo "Error: OneDrive index missing. Run your cache script first." >&2
     return 1
   fi
 
-  # 2) build the feed: either grep the cache or run fdfind in cwd
   selected=$(
     { 
       if [[ "$PWD" == "$MOUNT"* ]]; then
-        # inside OneDrive → only that subtree, for speed
         grep -E "^${PWD}/" "$CACHE"
       else
-        # anywhere else → live scan from here
         fdfind --hidden --no-ignore --type d --type f --regex '.*' 2>/dev/null
       fi
-    } | rofi -dmenu -i \
+    } | rofi -dmenu -no-config \
+             -theme-str 'window { width: 100%; }' \
+             -location 0 \
+             -lines 40 \
+             -font "monospace 10" \
              -p "Enter: open | Alt+Return: cd parent" \
              -kb-custom-1 "Alt+Return" \
              -matching regex \
-             -lines 40 -width 100 \
-             -font "8" \
              -filter '' \
-             -preview-window right,60%,max \
+             -preview-window right,70%,max \
              -preview 'if [ -d "{}" ]; then ls -la "{}"; else bat --style=numbers --color=always "{}"; fi'
   )
   rofi_exit=$?
 
-  # 3) act on it
   case "$rofi_exit" in
-    0)  # [Enter] → cd into dir or open file
+    0)
       [[ -z "$selected" ]] && return
       if [[ -d "$selected" ]]; then
         cd "$selected" || return
@@ -484,11 +481,9 @@ fuzzy_find_dir() {
         xdg-open "$selected"
       fi
       ;;
-    10) # [Alt+Return] → cd to parent dir
+    10)
       [[ -z "$selected" ]] && return
       cd "$(dirname "$selected")" || return
-      ;;
-    *)  # [Esc] or cancel → nothing
       ;;
   esac
 }
@@ -597,7 +592,8 @@ rm() {
 
   command rm --preserve-root "$@"
 }
-alias th='nautilus . > /dev/null 2>&1 &'
+alias th='nautilus "$(pwd)" > /dev/null 2>&1 &'
+alias sp="~/.scripts/sharepoint/find_root.sh"
 alias wmclass="xprop | grep WM_CLASS"
 alias winstart="docker compose --file ~/.config/winapps/compose.yaml start"
 alias winstop="docker compose --file ~/.config/winapps/compose.yaml stop"
@@ -605,4 +601,22 @@ alias winrestart="docker compose --file ~/.config/winapps/compose.yaml restart"
 alias winkill="docker compose --file ~/.config/winapps/compose.yaml kill"
 alias killR="pkill -9 -f '^/opt/R/'"
 alias nano="nvim"
+
+# Game launchers
 alias d1="flatpak run org.diasurgical.DevilutionX & i3-msg workspace 1"
+sc2 () {
+  # 1. launch SC2 fully detached and silent
+  setsid ~/.scripts/game_launchers/sc2.sh >/dev/null 2>&1 &!
+
+  # 2. hop to workspace 1 quietly
+  i3-msg -q workspace 1 >/dev/null
+
+  # 3. friendly Protoss greeting
+  printf '\e[34mMy Life for Aiur\e[0m\n'
+}
+
+
+# ~/.bashrc  (or ~/.zshrc)
+
+# ~/.bashrc   — reload with  "source ~/.bashrc"  after saving
+
