@@ -466,6 +466,7 @@ fuzzy_find_dir() {
              -p "Enter: open | Alt+Return: cd parent" \
              -kb-custom-1 "Alt+Return" \
              -matching regex \
+             -i \ # case insensitive
              -filter '' \
              -preview-window right,70%,max \
              -preview 'if [ -d "{}" ]; then ls -la "{}"; else bat --style=numbers --color=always "{}"; fi'
@@ -615,7 +616,7 @@ sc2 () {
   printf '\e[34mMy Life for Aiur\e[0m\n'
 }
 
-
+alias r2t="repo-to-text --stdout > .text-repo"
 # ~/.bashrc  (or ~/.zshrc)
 
 # ~/.bashrc   — reload with  "source ~/.bashrc"  after saving
