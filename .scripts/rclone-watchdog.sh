@@ -21,18 +21,16 @@ $RCLONE_BIN mount "$REMOTE" "$MOUNTPOINT" \
   --vfs-read-chunk-size 32M \
   --vfs-read-chunk-size-limit off \
   --buffer-size 256M \
-  --dir-cache-time 30s \
+  --dir-cache-time 120s \
   --attr-timeout 5s \
   --async-read=true \
   --cache-dir /tmp/rclonecache \
   --config "$CONFIG" \
-  --tpslimit 2 \
-  --tpslimit-burst 2 \
+  --tpslimit 6 \
+  --tpslimit-burst 6 \
   --log-level ERROR \
-  --timeout 30s \
-  --contimeout 15s \
-  --retries 2 \
-  --low-level-retries 1 \
+  --timeout 60s \
+  --contimeout 30s \
   --rc &
 
 RCLONE_PID=$!
