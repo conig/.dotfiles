@@ -603,7 +603,7 @@ alias winrestart="docker compose --file ~/.config/winapps/compose.yaml restart"
 alias winkill="docker compose --file ~/.config/winapps/compose.yaml kill"
 alias killR="pkill -9 -f '^/opt/R/'"
 alias nano="nvim"
-alias lzdot="lazygit --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+alias dots="lazygit --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 # Game launchers
 alias d1="flatpak run org.diasurgical.DevilutionX & i3-msg workspace 1"
 sc2 () {
