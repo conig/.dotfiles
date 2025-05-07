@@ -459,15 +459,16 @@ fuzzy_find_dir() {
         fdfind --hidden --no-ignore --type d --type f --regex '.*' 2>/dev/null
       fi
     } | rofi -dmenu -no-config \
-             -theme-str 'window { width: 100%; }' \
+             -theme ~/.config/rofi/themes-collection/themes/simple-tokyonight.rasi \
+             -theme-str 'window { width: 100%; anchor: center; location: center; }' \
              -location 0 \
              -lines 40 \
              -font "monospace 10" \
              -p "Enter: open | Alt+Return: cd parent" \
              -kb-custom-1 "Alt+Return" \
              -matching regex \
-             -i \ # case insensitive
-             -filter '' \
+             -i \
+             --filter '' \
              -preview-window right,70%,max \
              -preview 'if [ -d "{}" ]; then ls -la "{}"; else bat --style=numbers --color=always "{}"; fi'
   )
