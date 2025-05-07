@@ -215,7 +215,7 @@ vim.api.nvim_set_keymap("n", "<Down>", "gj", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>aa", ":AvanteAsk<CR>i", { noremap = true, silent = true })
 vim.api.nvim_set_keymap(
 	"n",
-	"<leader>ci",
+	"<leader>sp",
 	":set spell!<CR>",
 	{ noremap = true, silent = true, desc = "Toggle spell checking" }
 )
