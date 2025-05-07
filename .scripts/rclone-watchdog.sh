@@ -12,25 +12,15 @@ echo "$(date) - Starting rclone mount." >> "$LOGFILE"
 # Start rclone mount in background
 $RCLONE_BIN mount "$REMOTE" "$MOUNTPOINT" \
   --header "Prefer: Include-Feature=AddToOneDrive" \
-  --allow-other \
-  --vfs-cache-mode full \
+  --vfs-cache-mode writes \
   --vfs-cache-max-size 20G \
-  --vfs-cache-poll-interval 5s \
-  --vfs-write-back 5s \
-  --vfs-read-ahead 128M \
-  --vfs-read-chunk-size 32M \
-  --vfs-read-chunk-size-limit off \
-  --buffer-size 256M \
-  --dir-cache-time 120s \
-  --attr-timeout 5s \
-  --async-read=true \
-  --cache-dir /tmp/rclonecache \
-  --config "$CONFIG" \
-  --tpslimit 6 \
-  --tpslimit-burst 6 \
-  --log-level ERROR \
-  --timeout 60s \
-  --contimeout 30s \
+  --vfs-write-back 30s \
+  --dir-cache-time 1h \
+  --onedrive-delta \
+  --vfs-fast-fingerprint \
+  --tpslimit 10 --tpslimit-burst 10 \
+  --cache-dir ~/.cache/rclone/vfs \
+  --log-level INFO \
   --rc &
 
 RCLONE_PID=$!
