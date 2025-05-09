@@ -594,7 +594,7 @@ rm() {
 
   command rm --preserve-root "$@"
 }
-alias th='nautilus "$(pwd)" > /dev/null 2>&1 &'
+alias th='thunar "$(pwd)" > /dev/null 2>&1 &'
 alias sp="~/.scripts/sharepoint/find_root.sh"
 alias wmclass="xprop | grep WM_CLASS"
 alias winstart="docker compose --file ~/.config/winapps/compose.yaml start"

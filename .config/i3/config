@@ -20,6 +20,9 @@ exec --no-startup-id sh -c 'eval $(/usr/bin/gnome-keyring-daemon --start --compo
 # We don't need a cursor
 exec --no-startup-id xbanish
 
+# Start thunar daemon
+exec --no-startup-id thunar --daemon
+
 # Turn on right alt compose key
 exec --no-startup-id setxkbmap -option compose:ralt
 
@@ -99,7 +102,7 @@ bindsym $mod+q kill
 bindsym $mod+x exec --no-startup-id flatpak run org.diasurgical.DevilutionX & i3-msg workspace 1
 # start dmenu (a program launcher)
 bindsym $mod+space exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+e exec --no-startup-id nautilus
+bindsym $mod+e exec --no-startup-id thunar
 bindsym Control+Mod1+Shift+c exec --no-startup-id i3-dmenu-desktop
 bindsym Print exec "flameshot gui" 
 # There also is the (new) i3-dmenu-desktop which only displays applications
