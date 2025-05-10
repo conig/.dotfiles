@@ -1,6 +1,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 export ZSH_THEME="robbyrussell"
+
 # Set theme
 # Set config home
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -8,7 +9,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 plugins=(git zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
-
+unsetopt correct_all
 # Check if picom is running, if in isn't and we're not in wayland, start it
 
 # Set personal aliases
