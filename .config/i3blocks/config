@@ -43,6 +43,10 @@ interval=60
 command=~/.config/i3blocks/scripts/weather.py
 interval=60
 
+[battery]
+command=~/.config/i3blocks/scripts/battery.sh
+interval=60
+
 [time]
 # This block displays the date and time in the specified format.
 command=date '+%b %d, %H:%M'
