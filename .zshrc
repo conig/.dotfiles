@@ -618,6 +618,9 @@ sc2 () {
 }
 
 alias r2t="repo-to-text --stdout > .text-repo"
+alias bt-on="bluetoothctl power on"
+alias bt-off="bluetoothctl power off"
+
 # ~/.bashrc  (or ~/.zshrc)
 
 # ~/.bashrc   — reload with  "source ~/.bashrc"  after saving
