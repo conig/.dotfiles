@@ -166,6 +166,7 @@ bindsym $mod+mod2+KP_Decimal exec --no-startup-id ~/.config/i3/switch_workspace.
 bindsym $mod+mod2+KP_Enter exec --no-startup-id i3-msg fullscreen toggle global
 # Make workspace fullscreen asterisk
 bindsym $mod+mod2+KP_Multiply exec --no-startup-id ~/.config/i3/switch_workspace.sh pl
+bindsym $mod+minus exec --no-startup-id ~/.config/i3/switch_workspace.sh pl
 bindsym $mod+mod2+KP_Divide exec --no-startup-id ~/.config/i3/switch_workspace.sh q
 # Numpad also works
 bindsym $mod+mod2+KP_1 exec --no-startup-id ~/.config/i3/switch_workspace.sh 1
