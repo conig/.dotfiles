@@ -21,7 +21,7 @@ vim.api.nvim_create_autocmd("FileType", {
       if type(Scripts) == "table" and type(Scripts.gootabs.start_goo) == "function" then
         local R_norm = "clear && R"
         local R_radian = "clear && r"
-        Scripts.gootabs.start_goo { R_radian, R_radian, R_radian, R_norm}
+        Scripts.gootabs.start_goo { R_norm, R_norm, R_norm, R_norm}
         -- os.execute("sleep " .. tonumber(1))  -- Give it a moment to start
         Scripts.gootabs.summon_goo(1)
         -- Set the flag to true to prevent future executions in this session
